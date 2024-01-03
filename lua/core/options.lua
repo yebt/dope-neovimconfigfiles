@@ -4,7 +4,7 @@ local cache_dir = vim.env.HOME .. '/.cache/nvim/'
 local configs = {
   compatible = false,
 
-backspace = "indent,eol,start,nostop",
+  backspace = 'indent,eol,start,nostop',
   -- Wrap
   wrap = false,
   linebreak = true,
@@ -47,7 +47,7 @@ backspace = "indent,eol,start,nostop",
   backupdir = cache_dir .. 'backup/',
   viewdir = cache_dir .. 'view/',
   spellfile = cache_dir .. 'spell/en.uft-8.add' .. ',' .. cache_dir .. 'spell/es.uft-8.add',
-  undofile=true,
+  undofile = true,
   --
   spelllang = 'en,es',
   spelloptions = 'camel',
@@ -82,7 +82,7 @@ backspace = "indent,eol,start,nostop",
     o = true, -- overwrite message for writing a file with subsequent message for reading a file (useful for ":wn" or when 'autowrite' on) O	message for reading a file overwri
     O = true, -- message for reading a file overwrites any previous	message;  also for quickfix message (e.g., ":cn")
     F = true, -- don't give the file info when editing a file, like	`:silent` was used for the command
-	c = true, --	don't give |ins-completion-menu| messages; for		*shm-c*
+    c = true, --	don't give |ins-completion-menu| messages; for		*shm-c*
     --
     a = true, -- all short
   },
@@ -129,7 +129,7 @@ backspace = "indent,eol,start,nostop",
   listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←',
 
   fillchars = {
-    diff = "╱",
+    diff = '╱',
     -- 
     -- 
     -- foldclose = "",
@@ -139,12 +139,12 @@ backspace = "indent,eol,start,nostop",
     -- diff = "",
   },
   diffopt = {
-    "filler", -- sync text content
+    'filler', -- sync text content
     -- "horizontal", -- use horizontal views -
-    "closeoff", -- off diff on just 1 window
+    'closeoff', -- off diff on just 1 window
     --"followwrap",
     -- "internal",
-    "linematch:60", --
+    'linematch:60', --
     --  myers      the default algorithm
     -- minimal    spend extra time to generate the
     -- smallest possible diff
@@ -164,13 +164,12 @@ backspace = "indent,eol,start,nostop",
     -- F = true, -- When included, a ":write" command with a file name argument will set the file name for the current buffer, if the current buffer doesn't have a file name yet.  Also see |cpo-P|.
     n = true, -- When included, the column used for 'number' and 'relativenumber' will also be used for text of wrapped lines.
     s = true, -- Set buffer options when entering the buffer for the first time.  This is like it is in Vim version 3.0. And it is the default.  If not present the options are set when the buffer is created.
-    ["_"] = true, -- When using |cw| on a word, do not include the whitespace following the word in the motion.
+    ['_'] = true, -- When using |cw| on a word, do not include the whitespace following the word in the motion.
   },
-
 }
 
 local globals = {
-  spellfile_URL = "https://ftp.nluug.nl/vim/runtime/spell",
+  spellfile_URL = 'https://ftp.nluug.nl/vim/runtime/spell',
   --
   loaded_perl_provider = 0,
   loaded_ruby_provider = 0,
