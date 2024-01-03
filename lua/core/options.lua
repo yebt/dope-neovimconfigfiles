@@ -6,7 +6,7 @@ local configs = {
 
   backspace = 'indent,eol,start,nostop',
   -- Wrap
-  wrap = false,
+  -- wrap = false,
   linebreak = true,
   whichwrap = 'h,l,<,>,[,],~',
   breakindentopt = 'shift:2,min:20', -- "min:40,shift:0,sbr",
@@ -78,7 +78,7 @@ local configs = {
     -- x = true, -- use "[dos]" instead of "[dos format]", "[unix]"	instead of "[unix format]" and "[mac]" instead of "[macformat]" *shm-x*
     -- t = true, -- truncate file message at the start if it is too long	to fit on the command-line, "<" will appear in the left most column; ignored in Ex mode *shm-t*
     T = true, -- truncate other messages in the middle if they are too 	long to fit on the command line; "..." will appear in the middle; ignored in Ex mode *shm-T*
-    -- I = true -- hiddetn intro messages
+    I = true, -- hiddetn intro messages -- is not needed cause use start session
     o = true, -- overwrite message for writing a file with subsequent message for reading a file (useful for ":wn" or when 'autowrite' on) O	message for reading a file overwri
     O = true, -- message for reading a file overwrites any previous	message;  also for quickfix message (e.g., ":cn")
     F = true, -- don't give the file info when editing a file, like	`:silent` was used for the command
