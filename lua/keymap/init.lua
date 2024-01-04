@@ -6,7 +6,7 @@ local cmd = keymap.cmd
 
 -- Use space as leader key
 vim.g.mapleader = ' '
-vim.g.localmapleader = ' '
+vim.g.localmapleader = ','
 
 -- leaderkey
 nmap({ ' ', '', opts(noremap) })
