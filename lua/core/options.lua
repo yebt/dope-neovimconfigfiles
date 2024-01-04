@@ -5,42 +5,42 @@ local configs = {
   compatible = false,
 
   backspace = 'indent,eol,start,nostop',
-  -- Wrap
+  --# Wrap
   -- wrap = false,
   linebreak = true,
   whichwrap = 'h,l,<,>,[,],~',
   breakindentopt = 'shift:2,min:20', -- "min:40,shift:0,sbr",
   breakindent = true,
   showbreak = '↳ ',
-  -- Indent
+  --# Indent
   copyindent = true,
   preserveindent = true,
   smartindent = true,
   smarttab = true,
   autoindent = true,
-  -- Tabs
+  --# Tabs
   -- expandtab=true,
   shiftwidth = 4,
   tabstop = 4,
   softtabstop = 4,
-  -- Cursor
+  --# Cursor
   cursorline = true,
   guicursor = 'a:block-cursor',
   virtualedit = 'block',
-  -- Conceal
+  --# Conceal
   concealcursor = 'nc',
   -- conceallevel = 2,
-  -- Buffer
+  --# Buffer
   hidden = true,
   magic = true,
   confirm = true,
   clipboard = 'unnamed', -- unnamedplus, unnamed
-  -- Search
+  --# Search
   wildignorecase = true,
   ignorecase = true,
   smartcase = true,
   infercase = true,
-  -- Files
+  --# Files
   swapfile = false,
   directory = cache_dir .. 'swap/',
   undodir = cache_dir .. 'undo/',
@@ -48,24 +48,24 @@ local configs = {
   viewdir = cache_dir .. 'view/',
   spellfile = cache_dir .. 'spell/en.uft-8.add' .. ',' .. cache_dir .. 'spell/es.uft-8.add',
   undofile = true,
-  --
+  --# Spell
   spelllang = 'en,es',
   spelloptions = 'camel',
-  -- Column
+  --# Column
   number = true,
   relativenumber = true,
-  -- Fold
+  --# Fold
   -- foldenable= true,
   foldlevelstart = 99,
   foldmethod = 'marker', -- marker, indent
   -- foldmethod = 'indent',-- marker, indent
   foldcolumn = '1',
-  -- Sign
+  --# Sign
   signcolumn = 'yes', -- yes auto
-  -- Paragrap
+  --# Paragrap
   textwidth = 100,
   colorcolumn = '100',
-  -- CMD
+  --# CMD
   cmdheight = 0, -- 0,2
   history = 2000,
   showmode = false,
@@ -87,7 +87,7 @@ local configs = {
     a = true, -- all short
   },
   showtabline = 0,
-  -- Split
+  --# Split
   splitbelow = true,
   splitright = true,
   splitkeep = 'screen',
@@ -98,10 +98,10 @@ local configs = {
   -- pumblend= 10, -- pseudo-transparency
   -- winblend = 10, -- pseudo-transparency in win
   showcmd = false,
-  --
+  --#
   laststatus = 3,
   ruler = false,
-  -- Miselaneous
+  --# Miselaneous
   -- completeopt = 'menu,menuone,noselect', --
   completeopt = {
     'menu',
@@ -109,25 +109,25 @@ local configs = {
     'noselect',
     'noinsert',
   },
-  -- Time
+  --# Time
   timeout = true,
   ttimeout = true,
   timeoutlen = 500,
   ttimeoutlen = 10,
   updatetime = 100,
   redrawtime = 1500,
-  -- Colors
+  --# Colors
   termguicolors = true,
   -- background="dark",
-  -- Scroll
+  --# Scroll
   scrolloff = 2,
   sidescrolloff = 5,
   sessionoptions = 'buffers,curdir,winsize',
   viewoptions = 'folds,cursor',
-  -- chars
+  --# chars
   list = true,
   listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←',
-
+  --# Fills
   fillchars = {
     diff = '╱',
     -- 
@@ -138,6 +138,7 @@ local configs = {
     -- foldsep = "▏"
     -- diff = "",
   },
+  --# Diffs
   diffopt = {
     'filler', -- sync text content
     -- "horizontal", -- use horizontal views -
@@ -152,6 +153,7 @@ local configs = {
     -- histogram  histogram diff algorithm
     -- "algorithm:histogram"
   },
+  --# Cpoptions
   cpoptions = {
     -- a = true, -- When included, a ":read" command with a file name argument will set the alternate file name for the current window.
     -- b = true, -- When included, a ":write" command with a file name argument will set the alternate file name for the current window.
