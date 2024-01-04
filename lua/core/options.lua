@@ -19,7 +19,7 @@ local configs = {
   smarttab = true,
   autoindent = true,
   --# Tabs
-  -- expandtab=true,
+  expandtab=true,
   shiftwidth = 4,
   tabstop = 4,
   softtabstop = 4,
