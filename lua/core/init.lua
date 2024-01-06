@@ -41,10 +41,10 @@ g.loaded_matchparen = 1
 g.loaded_2html_plugin = 1
 g.loaded_logiPat = 1
 g.loaded_rrhelper = 1
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
-g.loaded_netrwSettings = 1
-g.loaded_netrwFileHandlers = 1
+-- g.loaded_netrw = 1
+-- g.loaded_netrwPlugin = 1
+-- g.loaded_netrwSettings = 1
+-- g.loaded_netrwFileHandlers = 1
 
 require('core.pack'):boot_strap()
 require('core.options')
