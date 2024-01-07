@@ -1,4 +1,4 @@
-local keymap = require("core.keymap")
+local keymap = require('core.keymap')
 local nmap, imap, cmap, xmap = keymap.nmap, keymap.imap, keymap.cmap, keymap.xmap
 local silent, noremap, expr = keymap.silent, keymap.noremap, keymap.expr
 local opts = keymap.new_opts
@@ -10,13 +10,13 @@ local map = vim.keymap.set
 
 -- Home
 local homeVsKey = function()
-  local col = vim.fn.col(".")
+  local col = vim.fn.col('.')
   local line = vim.api.nvim_get_current_line()
-  local nonBlankColumn = vim.fn.match(line, "\\S") + 1
+  local nonBlankColumn = vim.fn.match(line, '\\S') + 1
   if col == nonBlankColumn then
-    action = "g0"
+    action = 'g0'
   else
-    action = "^"
+    action = '^'
   end
   return action
 end
@@ -24,27 +24,26 @@ end
 -- Remove buffer
 local brem = function()
   -- if there are less than 2
-  if vim.fn.winnr("$") < 2 then
-    vim.cmd("bw")
+  if vim.fn.winnr('$') < 2 then
+    vim.cmd('bw')
     return
   end
   -- there are at least 2 windows
   -- if there are less that 2 bufers
-  if vim.fn.bufnr("$") < 2 then
-    vim.cmd("enew")
+  if vim.fn.bufnr('$') < 2 then
+    vim.cmd('enew')
   end
-  vim.cmd("bn |  bw #")
+  vim.cmd('bn |  bw #')
 end
 
 ---------------
 -- Use space as leader key
-vim.g.mapleader = " "
-vim.g.localmapleader = ","
+vim.g.mapleader = ' '
+vim.g.localmapleader = ','
 
 -- leaderkey
-nmap({ " ", "", opts(noremap) })
-xmap({ " ", "", opts(noremap) })
-
+nmap({ ' ', '', opts(noremap) })
+xmap({ ' ', '', opts(noremap) })
 
 -- usage example
 -- nmap({
@@ -72,59 +71,57 @@ xmap({ " ", "", opts(noremap) })
 -- })
 
 imap({
-	-- insert mode
-	{ "<C-h>", "<Bs>", opts(noremap) },
-	{ "<C-e>", "<End>", opts(noremap) },
+  -- insert mode
+  { '<C-h>', '<Bs>', opts(noremap) },
+  { '<C-e>', '<End>', opts(noremap) },
 })
 
 -- commandline remap
-cmap({ "<C-b>", "<Left>", opts(noremap) })
+cmap({ '<C-b>', '<Left>', opts(noremap) })
 -- usage of plugins
 nmap({
-	-- plugin manager: Lazy.nvim
-	{ "<Leader>pu", cmd("Lazy update"), opts(noremap, silent) },
-	{ "<Leader>pi", cmd("Lazy install"), opts(noremap, silent) },
-	-- dashboard
-	{ "<Leader>n", cmd("DashboardNewFile"), opts(noremap, silent) },
-	{ "<Leader>ss", cmd("SessionSave"), opts(noremap, silent) },
-	{ "<Leader>sl", cmd("SessionLoad"), opts(noremap, silent) },
-	-- nvimtree
-	{ "<Leader>e", cmd("NvimTreeToggle"), opts(noremap, silent) },
-	-- Telescope
-	{ "<Leader>b", cmd("Telescope buffers"), opts(noremap, silent) },
-	{ "<Leader>fa", cmd("Telescope live_grep"), opts(noremap, silent) },
-	{ "<Leader>ff", cmd("Telescope find_files"), opts(noremap, silent) },
+  -- plugin manager: Lazy.nvim
+  { '<Leader>pu', cmd('Lazy update'), opts(noremap, silent) },
+  { '<Leader>pi', cmd('Lazy install'), opts(noremap, silent) },
+  -- dashboard
+  { '<Leader>n', cmd('DashboardNewFile'), opts(noremap, silent) },
+  { '<Leader>ss', cmd('SessionSave'), opts(noremap, silent) },
+  { '<Leader>sl', cmd('SessionLoad'), opts(noremap, silent) },
+  -- nvimtree
+  { '<Leader>e', cmd('NvimTreeToggle'), opts(noremap, silent) },
+  -- Telescope
+  { '<Leader>b', cmd('Telescope buffers'), opts(noremap, silent) },
+  { '<Leader>fa', cmd('Telescope live_grep'), opts(noremap, silent) },
+  { '<Leader>ff', cmd('Telescope find_files'), opts(noremap, silent) },
 })
 
 ------------------------
 
 -- Regular maps
-map({ "x", "i", "n" }, "<C-c>", "<ESC>", { silent = true, desc = "Stop on esc" })
-
+map({ 'x', 'i', 'n' }, '<C-c>', '<ESC>', { silent = true, desc = 'Stop on esc' })
 
 --  Single xmaps
 xmap({
-    {"<leader>p", '"_dP', opts(silent, "Paste without lose the content")},
-    {"<leader>y", '"+y', opts(silent, "Copy selection in clipboard")},
+  { '<leader>p', '"_dP', opts(silent, 'Paste without lose the content') },
+  { '<leader>y', '"+y', opts(silent, 'Copy selection in clipboard') },
 })
 
 -- Single nomral maps
 nmap({
-    -- Home key with 0
-    {"0", homeVsKey, opts(silent, expr, "Home key like vscode")},
-	-- noremal remap
-	-- close buffer
-	{ "<M-c>",brem, opts(noremap, silent, "Close buffer") },
-	-- save
-	{ "<leader>w", cmd("write"), opts(noremap, "Save Buffer") },
-	-- quit
-	{ "<leader>q", cmd("quit"), opts(noremap, "Quit of buffer") },
-	-- yank
-	{ "<leader>yy", '"+yy', opts(noremap, "Yank on clipboard") },
-	{ "Y", "y$", opts(noremap) },
-	{ "<leader>Y", '"+y$', opts(noremap, "Yanc to end to clipboard") },
-	-- buffer jump
-	{ "]b", cmd("bn"), opts(noremap) },
-	{ "[b", cmd("bp"), opts(noremap) },
-
+  -- Home key with 0
+  { '0', homeVsKey, opts(silent, expr, 'Home key like vscode') },
+  -- noremal remap
+  -- close buffer
+  { '<M-c>', brem, opts(noremap, silent, 'Close buffer') },
+  -- save
+  { '<leader>w', cmd('write'), opts(noremap, 'Save Buffer') },
+  -- quit
+  { '<leader>q', cmd('quit'), opts(noremap, 'Quit of buffer') },
+  -- yank
+  { '<leader>yy', '"+yy', opts(noremap, 'Yank on clipboard') },
+  { 'Y', 'y$', opts(noremap) },
+  { '<leader>Y', '"+y$', opts(noremap, 'Yanc to end to clipboard') },
+  -- buffer jump
+  { ']b', cmd('bn'), opts(noremap) },
+  { '[b', cmd('bp'), opts(noremap) },
 })
