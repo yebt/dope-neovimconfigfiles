@@ -38,13 +38,12 @@ local brem = function()
   vim.cmd('bn |  bw #')
 end
 
-
 -- Toggle netrw
 local toggleNetrw = function()
   -- Verificar si el buffer de netrw ya está abierto
   local netrw_buf_exists = false
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_get_option(buf, "filetype") == "netrw" then
+    if vim.api.nvim_buf_get_option(buf, 'filetype') == 'netrw' then
       netrw_buf_exists = true
       break
     end
@@ -53,20 +52,20 @@ local toggleNetrw = function()
   -- Abrir Vexprore si el buffer de netrw no está abierto
   if not netrw_buf_exists then
     --vim.cmd("Vexplore")
-    vim.cmd("Explore %:p:h")
+    vim.cmd('Explore %:p:h')
   else
     -- Obtener el número del buffer actual
     local current_buf = vim.api.nvim_get_current_buf()
 
     -- Verificar si el buffer actual es netrw
-    if vim.api.nvim_buf_get_option(current_buf, "filetype") == "netrw" then
+    if vim.api.nvim_buf_get_option(current_buf, 'filetype') == 'netrw' then
       -- Cerrar el buffer actual
-      vim.cmd("bd")
+      vim.cmd('bd')
     else
       -- Enfocar el buffer de netrw
       for _, win in ipairs(vim.api.nvim_list_wins()) do
         local buf = vim.api.nvim_win_get_buf(win)
-        if vim.api.nvim_buf_get_option(buf, "filetype") == "netrw" then
+        if vim.api.nvim_buf_get_option(buf, 'filetype') == 'netrw' then
           vim.api.nvim_set_current_win(win)
           break
         end
@@ -94,7 +93,7 @@ xmap({ ' ', '', opts(noremap) })
 -- Multiple maps
 map({ 'x', 'i', 'n' }, '<C-c>', '<ESC>', { silent = true, desc = 'Stop on ESC' })
 
-map("n", "\\", toggleNetrw, { silent = true, desc = "Toggle netrw" })
+map('n', '\\', toggleNetrw, { silent = true, desc = 'Toggle netrw' })
 
 nmap({
   { '0', homeVsKey, opts(silent, noremap, 'Home key like vscode') },
@@ -124,15 +123,15 @@ nmap({
   { '<leader>yy', '"+yy', opts(silent, noremap, 'Copy the line content on the system clipboard') },
   -- Surround
   -- Toggler
-  { '\\', toggleNetrw, opts(silent, noremap, 'Toggle netrw')},
+  { '\\', toggleNetrw, opts(silent, noremap, 'Toggle netrw') },
   -- Repalce
-  { '<leader>s', ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", opts(silent, noremap, 'Replace word')},
+  { '<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>', opts(silent, noremap, 'Replace word') },
   -- Toggle wrap mode
-  { '<M-z>w', cmd('set wrap!'), opts(silent, noremap, "Toggle wrap")}
+  { '<M-z>w', cmd('set wrap!'), opts(silent, noremap, 'Toggle wrap') },
 })
 
 xmap({
-    -- Yank on system clipboard
+  -- Yank on system clipboard
   { '<leader>y', '"+y', opts(silent, noremap, 'Yank visual select in system clipboard') },
   -- Indentation
   { '>', '>gv', opts(silent, noremap, 'Increase Indentation') },
@@ -140,17 +139,14 @@ xmap({
   -- Move selected lines
   { 'J', ":m '>+1<CR>gv=gv", opts(silent, noremap, 'Moce line down') },
   { 'K', ":m '<-2<CR>gv=gv", opts(silent, noremap, 'Moce line up') },
-
 })
 
 imap({
-     { '<C-h>', '<Bs>', opts(noremap) },
-     { '<C-e>', '<End>', opts(noremap) },
+  { '<C-h>', '<Bs>', opts(noremap) },
+  { '<C-e>', '<End>', opts(noremap) },
 })
 
-tmap(
-    {"<ESC>", "<C-\\><C-n>", opts(silent, noremap, "Exist of terminal mode")}
-)
+tmap({ '<ESC>', '<C-\\><C-n>', opts(silent, noremap, 'Exist of terminal mode') })
 
 --   -- usage example
 --   -- nmap({
