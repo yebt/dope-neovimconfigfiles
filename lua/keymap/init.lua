@@ -1,6 +1,6 @@
 local keymap = require("core.keymap")
 local nmap, imap, cmap, xmap = keymap.nmap, keymap.imap, keymap.cmap, keymap.xmap
-local silent, noremap = keymap.silent, keymap.noremap
+local silent, noremap, expr = keymap.silent, keymap.noremap, keymap.expr
 local opts = keymap.new_opts
 local cmd = keymap.cmd
 
@@ -45,33 +45,31 @@ vim.g.localmapleader = ","
 nmap({ " ", "", opts(noremap) })
 xmap({ " ", "", opts(noremap) })
 
---
-xmap({ "<leader>y", "a", opts()})
 
 -- usage example
-nmap({
-	-- noremal remap
-	-- close buffer
-	{ "<M-c>", cmd("bdelete"), opts(noremap, silent, "Close buffer") },
-	-- save
-	{ "<leader>w", cmd("write"), opts(noremap, "Save Buffer") },
-	-- quit
-	{ "<leader>q", cmd("quit"), opts(noremap, "Quit of buffer") },
-	-- yank
-	{ "<leader>yy", '"+yy', opts(noremap, "Yank on clipboard") },
-	{ "Y", "y$", opts(noremap) },
-	{ "<leader>Y", '"+y$', opts(noremap, "Yanc to end to clipboard") },
-	-- buffer jump
-	{ "]b", cmd("bn"), opts(noremap) },
-	{ "[b", cmd("bp"), opts(noremap) },
-	-- remove trailing white space
-	{ "<Leader>t", cmd("TrimTrailingWhitespace"), opts(noremap) },
-	-- window jump
-	{ "<C-h>", "<C-w>h", opts(noremap) },
-	{ "<C-l>", "<C-w>l", opts(noremap) },
-	{ "<C-j>", "<C-w>j", opts(noremap) },
-	{ "<C-k>", "<C-w>k", opts(noremap) },
-})
+-- nmap({
+-- 	-- noremal remap
+-- 	-- close buffer
+-- 	{ "<M-c>", cmd("bdelete"), opts(noremap, silent, "Close buffer") },
+-- 	-- save
+-- 	{ "<leader>w", cmd("write"), opts(noremap, "Save Buffer") },
+-- 	-- quit
+-- 	{ "<leader>q", cmd("quit"), opts(noremap, "Quit of buffer") },
+-- 	-- yank
+-- 	{ "<leader>yy", '"+yy', opts(noremap, "Yank on clipboard") },
+-- 	{ "Y", "y$", opts(noremap) },
+-- 	{ "<leader>Y", '"+y$', opts(noremap, "Yanc to end to clipboard") },
+-- 	-- buffer jump
+-- 	{ "]b", cmd("bn"), opts(noremap) },
+-- 	{ "[b", cmd("bp"), opts(noremap) },
+-- 	-- remove trailing white space
+-- 	{ "<Leader>t", cmd("TrimTrailingWhitespace"), opts(noremap) },
+-- 	-- window jump
+-- 	{ "<C-h>", "<C-w>h", opts(noremap) },
+-- 	{ "<C-l>", "<C-w>l", opts(noremap) },
+-- 	{ "<C-j>", "<C-w>j", opts(noremap) },
+-- 	{ "<C-k>", "<C-w>k", opts(noremap) },
+-- })
 
 imap({
 	-- insert mode
@@ -100,4 +98,33 @@ nmap({
 
 ------------------------
 
+-- Regular maps
 map({ "x", "i", "n" }, "<C-c>", "<ESC>", { silent = true, desc = "Stop on esc" })
+
+
+--  Single xmaps
+xmap({
+    {"<leader>p", '"_dP', opts(silent, "Paste without lose the content")},
+    {"<leader>y", '"+y', opts(silent, "Copy selection in clipboard")},
+})
+
+-- Single nomral maps
+nmap({
+    -- Home key with 0
+    {"0", homeVsKey, opts(silent, expr, "Home key like vscode")},
+	-- noremal remap
+	-- close buffer
+	{ "<M-c>",brem, opts(noremap, silent, "Close buffer") },
+	-- save
+	{ "<leader>w", cmd("write"), opts(noremap, "Save Buffer") },
+	-- quit
+	{ "<leader>q", cmd("quit"), opts(noremap, "Quit of buffer") },
+	-- yank
+	{ "<leader>yy", '"+yy', opts(noremap, "Yank on clipboard") },
+	{ "Y", "y$", opts(noremap) },
+	{ "<leader>Y", '"+y$', opts(noremap, "Yanc to end to clipboard") },
+	-- buffer jump
+	{ "]b", cmd("bn"), opts(noremap) },
+	{ "[b", cmd("bp"), opts(noremap) },
+
+})
