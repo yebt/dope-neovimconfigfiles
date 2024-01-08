@@ -96,7 +96,7 @@ map({ 'x', 'i', 'n' }, '<C-c>', '<ESC>', { silent = true, desc = 'Stop on ESC' }
 map('n', '\\', toggleNetrw, { silent = true, desc = 'Toggle netrw' })
 
 nmap({
-  { '0', homeVsKey, opts(silent, noremap, 'Home key like vscode') },
+  { '0', homeVsKey, opts(silent, noremap, expr, 'Home key like vscode') },
   { '<leader>q', cmd('q'), opts(silent, noremap, 'Quit of vim') },
   { '<leader>w', cmd('w'), opts(silent, noremap, 'Save file') },
   -- Splits
