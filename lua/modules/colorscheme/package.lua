@@ -1,10 +1,13 @@
 local package = require('core.pack').package
 local conf = require('modules.colorscheme.config')
 
--- Kanagawa
-package({})
+local colorscheme = 'kanagawa'
 
--- Oxo Carbon
+-- Kanagawa
 package({
-  'nyoom-engineering/oxocarbon.nvim',
+  enabled = colorscheme == 'kanagawa',
+  'rebelot/kanagawa.nvim',
+  priority = 1000,
+  lazy = false,
+  config = conf.kanagawa,
 })
