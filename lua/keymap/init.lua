@@ -80,7 +80,7 @@ end
 
 -- Use space as leader key
 vim.g.mapleader = ' '
-vim.g.localmapleader = ','
+vim.g.maplocalleader = ' '
 
 -- leaderkey
 nmap({ ' ', '', opts(noremap) })
