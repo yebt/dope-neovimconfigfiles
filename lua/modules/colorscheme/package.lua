@@ -97,3 +97,12 @@ package({
   lazy = false,
   config = conf.vitesse,
 })
+
+-- Tokyonight
+package({
+  enabled = colorscheme == 'tokyonight',
+  'folke/tokyonight.nvim',
+  priority = 1000,
+  lazy = false,
+  config = conf.tokyonight,
+})
