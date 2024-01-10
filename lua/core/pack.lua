@@ -44,6 +44,28 @@ function pack:boot_strap()
     defaults = {
       lazy = true,
     },
+    performance = {
+      rtp = {
+        disabled_plugins = {
+          'gzip',
+          -- 'matchit',
+          -- 'matchparen',
+          -- 'netrwPlugin',
+          'tarPlugin',
+          'tohtml',
+          'tutor',
+          'zipPlugin',
+          --
+          'editorconfig',
+          'man',
+          'osc52',
+          -- 'rplugin',
+          'shada',
+          -- 'spellfile',
+          'nvim',
+        },
+      },
+    },
   }
   self:load_modules_packages()
   lazy.setup(self.repos, opts)
