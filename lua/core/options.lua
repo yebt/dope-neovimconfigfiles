@@ -66,7 +66,8 @@ local configs = {
   textwidth = 100,
   colorcolumn = '100',
   --# CMD
-  cmdheight = 0, -- 0,2
+  -- cmdheight = 0, -- 0,2
+  cmdheight = 2, -- 0,2
   history = 2000,
   showmode = false,
   -- shortmess = 'aoOTIcF',
