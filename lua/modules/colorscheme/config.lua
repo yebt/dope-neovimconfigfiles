@@ -132,4 +132,122 @@ function config.ronny()
   })
 end
 
+function config.nvimgelion()
+  vim.cmd.colorscheme('nvimgelion')
+end
+
+function config.everblush()
+  require('everblush').setup({
+
+    -- Default options
+    override = {},
+    transparent_background = false,
+    nvim_tree = {
+      contrast = false,
+    },
+    -- Configuration examples
+    -- Override the default highlights using Everblush or other colors
+    override = {
+      -- Normal = { fg = '#ffffff', bg = 'comment' },
+    },
+    -- Set transparent background
+    -- transparent_background = true,
+    -- Set contrast for nvim-tree highlights
+    nvim_tree = {
+      contrast = true,
+    },
+  })
+  vim.cmd.colorscheme('everblush')
+end
+
+function config.aquarium()
+  vim.cmd.colorscheme('aquarium')
+end
+
+function config.catppuccin()
+  require('catppuccin').setup({
+    flavour = 'mocha', -- latte, frappe, macchiato, mocha
+    background = { -- :h background
+      light = 'latte',
+      dark = 'mocha',
+    },
+    transparent_background = false, -- disables setting the background color.
+    show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+    term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+    dim_inactive = {
+      enabled = false, -- dims the background color of inactive window
+      shade = 'dark',
+      percentage = 0.15, -- percentage of the shade to apply to the inactive window
+    },
+    no_italic = false, -- Force no italic
+    no_bold = false, -- Force no bold
+    no_underline = false, -- Force no underline
+    styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+      comments = { 'italic' }, -- Change the style of comments
+      conditionals = { 'italic' },
+      loops = {},
+      functions = {},
+      keywords = {},
+      strings = {},
+      variables = {},
+      numbers = {},
+      booleans = {},
+      properties = {},
+      types = {},
+      operators = {},
+    },
+    color_overrides = {
+      all = {
+        text = '#ffffff',
+      },
+      latte = {
+        base = '#ff0000',
+        mantle = '#242424',
+        crust = '#474747',
+      },
+      frappe = {},
+      macchiato = {},
+      mocha = {},
+    },
+    custom_highlights = {},
+    integrations = {
+      cmp = true,
+      gitsigns = true,
+      nvimtree = true,
+      treesitter = true,
+      notify = false,
+      mini = {
+        enabled = true,
+        indentscope_color = '',
+      },
+      -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+    },
+  })
+
+  -- setup must be called before loading
+  vim.cmd.colorscheme('catppuccin')
+end
+
+function config.vitesse()
+  require('vitesse').setup({
+    comment_italics = true,
+    transparent_background = false,
+    transparent_float_background = false, -- aka pum(popup menu) background
+    reverse_visual = true,
+    dim_nc = true,
+    cmp_cmdline_disable_search_highlight_group = false, -- disable search highlight group for cmp item
+    -- if `transparent_float_background` false, make telescope border color same as float background
+    telescope_border_follow_float_background = false,
+    -- similar to above, but for lspsaga
+    lspsaga_border_follow_float_background = false,
+    -- diagnostic virtual text background, like error lens
+    diagnostic_virtual_text_background = false,
+
+    -- override the `lua/vitesse/palette.lua`, go to file see fields
+    colors = {},
+    themes = {},
+  })
+  vim.cmd.colorscheme('vitesse')
+end
+
 return config

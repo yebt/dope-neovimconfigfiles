@@ -1,7 +1,7 @@
 local package = require('core.pack').package
 local conf = require('modules.colorscheme.config')
 
-local colorscheme = 'ronny'
+local colorscheme = 'vitesse'
 
 -- Kanagawa
 package({
@@ -46,4 +46,54 @@ package({
   priority = 1000,
   lazy = false,
   config = conf.ronny,
+})
+
+-- NvimGelion
+package({
+  enabled = colorscheme == 'nvimgelion',
+  'nyngwang/nvimgelion',
+  priority = 1000,
+  lazy = false,
+  config = conf.nvimgelion,
+})
+
+-- Everblush
+package({
+  enabled = colorscheme == 'everblush',
+  'Everblush/nvim',
+  name = 'everblush',
+  priority = 1000,
+  lazy = false,
+  config = conf.everblush,
+})
+
+-- Aquarium
+package({
+  enabled = colorscheme == 'aquarium',
+  'FrenzyExists/aquarium-vim',
+  priority = 1000,
+  lazy = false,
+  config = conf.aquarium,
+})
+
+-- Catppuccin
+package({
+  enabled = colorscheme == 'catppuccin',
+  'catppuccin/nvim',
+  name = 'catppuccin',
+  priority = 1000,
+  lazy = false,
+  config = conf.catppuccin,
+})
+
+-- Vitesse
+package({
+  enabled = colorscheme == 'vitesse',
+  '2nthony/vitesse.nvim',
+  dependencies = {
+    'tjdevries/colorbuddy.nvim',
+  },
+  priority = 1000,
+  lazy = false,
+  config = conf.vitesse,
 })
