@@ -36,9 +36,10 @@ local configs = {
   confirm = true,
   clipboard = 'unnamed', -- unnamedplus, unnamed
   --# Search
-  wildignorecase = true,
+  --wildignorecase = true,
   ignorecase = true,
-  smartcase = true,
+  smartcase = false,
+  incsearch = true,
   infercase = true,
   --# Files
   swapfile = false,
@@ -57,8 +58,8 @@ local configs = {
   --# Fold
   -- foldenable= true,
   foldlevelstart = 99,
-  foldmethod = 'marker', -- marker, indent
-  -- foldmethod = 'indent',-- marker, indent
+  -- foldmethod = 'marker', -- marker, indent
+  foldmethod = 'indent', -- marker, indent
   foldcolumn = '1',
   --# Sign
   signcolumn = 'yes', -- yes auto
@@ -194,10 +195,10 @@ for key, valor in pairs(globals) do
 end
 
 -- rg
-if vim.fn.executable('rg') == 1 then
-  opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
-  opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
-end
+-- if vim.fn.executable('rg') == 1 then
+--   opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
+--   opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
+-- end
 
 if vim.loop.os_uname().sysname == 'Darwin' then
   vim.g.clipboard = {
