@@ -36,8 +36,8 @@ g.loaded_getscript = 1
 g.loaded_getscriptPlugin = 1
 g.loaded_vimball = 1
 g.loaded_vimballPlugin = 1
-g.loaded_matchit = 1
-g.loaded_matchparen = 1
+-- g.loaded_matchit = 1
+-- g.loaded_matchparen = 1
 g.loaded_2html_plugin = 1
 g.loaded_logiPat = 1
 -- g.loaded_rrhelper = 1
@@ -47,5 +47,25 @@ g.loaded_netrwSettings = 1
 g.loaded_netrwFileHandlers = 1
 
 require('core.options')
+
+-- Use space as leader key
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 require('core.pack'):boot_strap()
 require('keymap')
+
+-- vim.api.nvim_create_autocmd({ "User" }, {
+--   pattern = { "VeryLazy" },
+--   callback = function(args)
+--     -- aditional filetype event on verylazy
+--     vim.api.nvim_exec_autocmds("FileType", {})
+--     -- Aditional requires
+--     --require("locals.statusline")
+--
+--     vim.schedule(function()
+--       --require("locals.statusline")
+--       vim.api.nvim_exec_autocmds('User', { pattern = 'PostLazy' })
+--     end)
+--   end,
+-- })
