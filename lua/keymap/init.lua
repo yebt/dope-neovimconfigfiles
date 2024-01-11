@@ -77,11 +77,11 @@ end
 ---------------
 --- Maps
 ---------------
-
--- Use space as leader key
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
+--
+-- -- Use space as leader key
+-- vim.g.mapleader = ' '
+-- vim.g.maplocalleader = ' '
+--
 -- leaderkey
 nmap({ ' ', '', opts(noremap) })
 xmap({ ' ', '', opts(noremap) })
@@ -125,14 +125,18 @@ nmap({
   -- Toggler
   { '\\', toggleNetrw, opts(silent, noremap, 'Toggle netrw') },
   -- Repalce
-  { '<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>', opts(silent, noremap, 'Replace word') },
+  -- { '<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>', opts(silent, noremap, 'Replace word') },
   -- Toggle wrap mode
   { '<M-z>w', cmd('set wrap!'), opts(silent, noremap, 'Toggle wrap') },
   -- Noh
   { '<leader>h', cmd('noh'), opts(silent, noremap, 'Search off') },
   -- Basic search and replace
   -- :%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>
-  { '<leader>S', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>', opts(noremap, 'Replace cursor word in al doc') },
+  {
+    '<leader>S',
+    ':%s/\\\\<<C-r><C-w>\\\\>/<C-r><C-w>/gI<Left><Left><Left>',
+    opts(noremap, 'Replace cursor word in al doc'),
+  },
 })
 
 xmap({
@@ -165,7 +169,11 @@ xmap({
     end,
     opts(silent, expr, 'Force surrounds'),
   },
-  { '<leader>S', "\"sy<ESC>:%s/<C-r>s/<C-r>s/gI<Left><Left><Left>", opts(noremap, "Replace selection in all doc")},
+  {
+    '<leader>S',
+    '"sy<ESC>:%s/\\\\<<C-r>s/<C-r>s/gI<Left><Left><Left>',
+    opts(noremap, 'Replace selection in all doc'),
+  },
 })
 
 imap({
