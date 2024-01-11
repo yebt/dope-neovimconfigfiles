@@ -109,7 +109,7 @@ nmap({
   { '<M-j>', 'j', opts(silent, noremap, 'Move to Down split') },
   -- Move between buffers
   { '<M-d>', cmd('bn'), opts(silent, noremap, 'Go to Next buffer') },
-  { '<M-a>', cmd('ba'), opts(silent, noremap, 'Go to Prev buffer') },
+  { '<M-a>', cmd('bp'), opts(silent, noremap, 'Go to Prev buffer') },
   { '<M-s>', cmd('b#'), opts(silent, noremap, 'Go to Last buffer') },
   -- Remove buffer
   { '<M-c>', brem, opts(silent, noremap, 'Delete the buffer') },
