@@ -128,6 +128,8 @@ nmap({
   { '<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>', opts(silent, noremap, 'Replace word') },
   -- Toggle wrap mode
   { '<M-z>w', cmd('set wrap!'), opts(silent, noremap, 'Toggle wrap') },
+  -- Noh
+  { '<leader>h', cmd('noh'), opts(silent, noremap, 'Search off') },
 })
 
 xmap({
@@ -139,6 +141,27 @@ xmap({
   -- Move selected lines
   { 'J', ":m '>+1<CR>gv=gv", opts(silent, noremap, 'Moce line down') },
   { 'K', ":m '<-2<CR>gv=gv", opts(silent, noremap, 'Moce line up') },
+  -- Force surroudns
+  {
+    '<C-s>',
+    function()
+      local char_code = vim.fn.getchar()
+      local char = vim.fn.nr2char(char_code)
+      if char == '\x03' or char == '\x1b' then
+        return
+      end
+      local surrounds = {
+        ['('] = ')',
+        ['['] = ']',
+        ['{'] = '}',
+        ['<'] = '>',
+        -- ' " ` = are the same
+      }
+      local pair_char = surrounds[char] or char
+      return 'c' .. char .. '<C-r><C-o>"' .. pair_char .. '<ESC><Left>vi' .. char
+    end,
+    opts(silent, expr, 'Force surrounds'),
+  },
 })
 
 imap({
