@@ -1,7 +1,8 @@
 local package = require('core.pack').package
 local conf = require('modules.colorscheme.config')
 
-local colorscheme = 'vitesse'
+-- local colorscheme = 'vitesse'
+local colorscheme = 'tokyonight'
 
 -- Kanagawa
 package({
