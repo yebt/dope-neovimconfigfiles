@@ -190,4 +190,31 @@ function cli:meta(arg)
   end
 end
 
+function cli.makemodule(module_name)
+  local module_dir = helper.path_join(cli.module_path, module_name)
+
+  if helper.isdir(module_dir) then
+    -- error('Module"' .. module_name .. '" already exist.')
+    helper.error(' ❗Module "' .. module_name .. '" already exist.')
+    return
+  end
+
+  os.execute('mkdir -p ' .. module_dir)
+
+  -- Crear archivo package.lua
+  local package_file = io.open(module_dir .. '/package.lua', 'w')
+  package_file:write("local package = require('core.pack').package\n")
+  package_file:write("local conf = require('modules." .. module_name .. ".config')\n")
+  package_file:close()
+  helper.green(' ✨ .../modules/' .. module_name .. '/package.lua file created')
+
+  -- -- Crear archivo config.lua
+  local config_file = io.open(module_dir .. '/config.lua', 'w')
+  config_file:write('local config = {}\n')
+  config_file:write('return config\n')
+  config_file:close()
+
+  helper.green(' ✨ .../modules/' .. module_name .. '/config.lua file created')
+end
+
 return cli
