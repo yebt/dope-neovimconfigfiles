@@ -18,7 +18,7 @@ local argument
 if #arg == 0 then
   argument = 'install'
 else
-  if #arg > 1 and (arg[1] ~= 'debug' and arg[1] ~= 'snapshot' and arg[1] ~= 'makemodule') then
+  if #arg > 1 and (arg[1] ~= 'dmodule' and arg[1] ~= 'snapshot' and arg[1] ~= 'makemodule') then
     error('passed multiple arguments.')
   end
 
@@ -39,7 +39,7 @@ else
   -- end
 
   if arg[1] == 'dmodule' then
-    local var = [[let g:disable_modules="]] .. arg[2] .. '"'
+    local var = [[let g:disable_modules="]] .. (arg[2] or '') .. '"'
     os.execute("nvim --cmd '" .. var .. "'")
     return
   end
