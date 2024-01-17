@@ -174,6 +174,8 @@ xmap({
     '"sy<ESC>:%s/\\\\<<C-r>s/<C-r>s/gI<Left><Left><Left>',
     opts(noremap, 'Replace selection in all doc'),
   },
+  -- Paste without lost + register
+  { '<leader>p', '"_dP', opts(silent, noremap, 'Paste without lose content') },
 })
 
 imap({
