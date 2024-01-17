@@ -87,6 +87,7 @@
 -- end
 
 local opt = vim.opt
+local api = vim.api
 local cache_dir = vim.env.HOME .. '/.cache/nvim/'
 
 local configs = {
@@ -125,7 +126,7 @@ local configs = {
   clipboard = 'unnamed', -- unnamedplus, unnamed
   --# Search
   ignorecase = true,
-  wildignorecas = true, -- ignorecase files
+  wildignorecase = true, -- ignorecase files
   smartcase = true, -- true,false
   incsearch = true,
   infercase = true,
