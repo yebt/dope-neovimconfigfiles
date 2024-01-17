@@ -306,32 +306,32 @@ end
 --   vim.g.python3_host_prog = '/usr/local/bin/python3'
 -- end
 
-local function get_signs(name)
-  return function()
-    local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
-    local it = vim
-      .iter(api.nvim_buf_get_extmarks(bufnr, -1, 0, -1, { details = true, type = 'sign' }))
-      :find(function(item)
-        return item[2] == vim.v.lnum - 1 and item[4].sign_hl_group:find(name)
-      end)
-    return not it and '  ' or '%#' .. it[4].sign_hl_group .. '#' .. it[4].sign_text .. '%*'
-  end
-end
-
-function _G.show_stc()
-  local stc_diagnostic = get_signs('Diagnostic')
-  local stc_gitsign = get_signs('GitSign')
-
-  local function show_break()
-    if vim.v.virtnum > 0 then
-      return (' '):rep(math.floor(math.ceil(math.log10(vim.v.lnum))) - 1) .. '↳'
-    elseif vim.v.virtnum < 0 then
-      return ''
-    else
-      return vim.v.lnum
-    end
-  end
-  return stc_diagnostic() .. '%=' .. show_break() .. stc_gitsign()
-end
-
-vim.opt.stc = '%!v:lua.show_stc()'
+-- local function get_signs(name)
+--   return function()
+--     local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
+--     local it = vim
+--       .iter(api.nvim_buf_get_extmarks(bufnr, -1, 0, -1, { details = true, type = 'sign' }))
+--       :find(function(item)
+--         return item[2] == vim.v.lnum - 1 and item[4].sign_hl_group:find(name)
+--       end)
+--     return not it and '  ' or '%#' .. it[4].sign_hl_group .. '#' .. it[4].sign_text .. '%*'
+--   end
+-- end
+--
+-- function _G.show_stc()
+--   local stc_diagnostic = get_signs('Diagnostic')
+--   local stc_gitsign = get_signs('GitSign')
+--
+--   local function show_break()
+--     if vim.v.virtnum > 0 then
+--       return (' '):rep(math.floor(math.ceil(math.log10(vim.v.lnum))) - 1) .. '↳'
+--     elseif vim.v.virtnum < 0 then
+--       return ''
+--     else
+--       return vim.v.lnum
+--     end
+--   end
+--   return stc_diagnostic() .. '%=' .. show_break() .. stc_gitsign()
+-- end
+--
+-- vim.opt.stc = '%!v:lua.show_stc()'
