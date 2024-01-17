@@ -8,6 +8,7 @@ local arguments = {
   debug = true,
   help = true,
   modules = true,
+  makemodule = true,
 }
 
 local argument
@@ -15,7 +16,7 @@ local argument
 if #arg == 0 then
   argument = 'install'
 else
-  if #arg > 1 and (arg[1] ~= 'debug' and arg[1] ~= 'doctor') then
+  if #arg > 1 and (arg[1] ~= 'debug' and arg[1] ~= 'doctor' and arg[1] ~= 'makemodule') then
     error('passed multiple arguments.')
   end
 
@@ -57,13 +58,14 @@ if argument == 'help' then
   local helper = require('core.helper')
   helper.green('Dope usage')
   local usage = {
-    { '\tinstall', '  install Plugins' },
-    { '\tupdate ', '  update Plugins' },
-    { '\tclean  ', '  clean the directories' },
-    { '\tdoctor ', '  check the plugins info' },
-    { '\tmodules', '  Show all modules' },
-    { '\tdebug  ', '  dynamic disable modules for debug' },
-    { '\thelp   ', '  show the usage of bot' },
+    { '\tinstall    ', '  install Plugins' },
+    { '\tupdate     ', '  update Plugins' },
+    { '\tclean      ', '  clean the directories' },
+    { '\tdoctor     ', '  check the plugins info' },
+    { '\tmodules    ', '  Show all modules' },
+    { '\tdebug      ', '  dynamic disable modules for debug' },
+    { '\tmakemodule ', '  make a module template'},
+    { '\thelp       ', '  show the usage of bot' },
   }
   for _, msg in pairs(usage) do
     helper.write('blue')(msg[1])
