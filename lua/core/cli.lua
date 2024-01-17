@@ -84,12 +84,8 @@ function cli:boot_strap()
     helper.green('🔸 Found lazy.nvim skip download')
     return
   end
-  helper.run_git(
-    'lazy.nvim',
-    'git clone https://github.com/folke/lazy.nvim.git ' .. self.lazy_dir .. '/lazy.nvim',
-    'Install'
-  )
-  -- helper.run_git('lazy.nvim', 'git clone https://github.com/folke/lazy.nvim ' .. self.lazy_dir, 'Install')
+  local cmd = 'git clone https://github.com/folke/lazy.nvim.git '
+  helper.run_git('lazy.nvim', cmd .. self.lazy_dir, 'Install')
   helper.success('lazy.nvim')
 end
 
@@ -134,7 +130,7 @@ function cli.clean()
   os.execute('rm -rf ' .. cli.lazy_dir)
 end
 
-function cli.doctor(pack_name)
+function cli.snapshot(pack_name)
   local list = cli:get_all_packages()
   if not list then
     return
@@ -201,17 +197,15 @@ function cli.makemodule(module_name)
 
   os.execute('mkdir -p ' .. module_dir)
 
-  -- Crear archivo package.lua
   local package_file = io.open(module_dir .. '/package.lua', 'w')
-  package_file:write("local package = require('core.pack').package\n")
-  package_file:write("local conf = require('modules." .. module_name .. ".config')\n")
+  package_file:write(
+    "local package = require('core.pack').package\nlocal conf = require('modules." .. module_name .. ".config')\n"
+  )
   package_file:close()
   helper.green(' ✨ .../modules/' .. module_name .. '/package.lua file created')
 
-  -- -- Crear archivo config.lua
   local config_file = io.open(module_dir .. '/config.lua', 'w')
-  config_file:write('local config = {}\n')
-  config_file:write('return config\n')
+  config_file:write('local config = {}\n----\n\n-- function config.plugin()\n-- end\n\n----\nreturn config')
   config_file:close()
 
   helper.green(' ✨ .../modules/' .. module_name .. '/config.lua file created')
