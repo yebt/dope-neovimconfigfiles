@@ -13,6 +13,4 @@ function homeVsKey()
   return col == no_blank_col and 'g0' or '^'
 end
 
-function brem()
-
-end
+function brem() end
