@@ -17,7 +17,7 @@ end
 
 -- Delay for Netrw to open and load the file list
 function search_name(current_file)
-    vfn.search(escape_fname(vim.fn.fnamemodify(current_file, ':t')), 'W')
+  vfn.search(escape_fname(vim.fn.fnamemodify(current_file, ':t')), 'W')
   -- vim.defer_fn(function()
   --   vim.fn.search(escape_fname(vim.fn.fnamemodify(current_file, ':t')), 'W')
   -- end, 100)
@@ -51,9 +51,7 @@ function toggleNetrw()
 
   vcmd(explorer_command)
   search_name(current_file)
-
 end
-
 
 -- Imports
 -----------------------------------
