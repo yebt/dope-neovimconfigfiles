@@ -1,30 +1,29 @@
-local g, fn = vim.g, vim.fn
+local g, fn, api = vim.g, vim.fn, vim.api
 local helper = require('core.helper')
--- remove check is windows because I only use mac or linux
-local cache_dir = helper.path_join(vim.fn.stdpath('cache'), 'nvim')
-
--- Create cache dir and subs dir
-local createdir = function()
-  local data_dir = {
-    cache_dir .. 'backup',
-    cache_dir .. 'session',
-    cache_dir .. 'swap',
-    cache_dir .. 'tags',
-    cache_dir .. 'undo',
-  }
-  -- There only check once that If cache_dir exists
-  -- Then I don't want to check subs dir exists
-  if fn.isdirectory(cache_dir) == 0 then
-    os.execute('mkdir -p ' .. cache_dir)
-    for _, v in pairs(data_dir) do
-      if fn.isdirectory(v) == 0 then
-        os.execute('mkdir -p ' .. v)
-      end
-    end
-  end
-end
-
-createdir()
+-- -- remove check is windows because I only use mac or linux
+-- local cache_dir = helper.path_join(vim.fn.stdpath('cache'), 'nvim')
+-- -- Create cache dir and subs dir
+-- local createdir = function()
+--   local data_dir = {
+--     cache_dir .. 'backup',
+--     cache_dir .. 'session',
+--     cache_dir .. 'swap',
+--     cache_dir .. 'tags',
+--     cache_dir .. 'undo',
+--   }
+--   -- There only check once that If cache_dir exists
+--   -- Then I don't want to check subs dir exists
+--   if fn.isdirectory(cache_dir) == 0 then
+--     os.execute('mkdir -p ' .. cache_dir)
+--     for _, v in pairs(data_dir) do
+--       if fn.isdirectory(v) == 0 then
+--         os.execute('mkdir -p ' .. v)
+--       end
+--     end
+--   end
+-- end
+--
+-- createdir()
 
 --disable_distribution_plugins
 g.loaded_gzip = 1
@@ -42,16 +41,20 @@ g.loaded_2html_plugin = 1
 g.loaded_logiPat = 1
 g.loaded_rrhelper = 1
 -- g.loaded_netrw = 1
--- g.loaded_netrwPlugin = 1
+g.loaded_netrwPlugin = 1
 -- g.loaded_netrwSettings = 1
-g.loaded_netrwFileHandlers = 1
+-- g.loaded_netrwFileHandlers = 1
 
 g.mapleader = ' '
 g.maplocalleader = ' '
 
+api.nvim_set_keymap('n', ' ', '', { noremap = true })
+api.nvim_set_keymap('x', ' ', '', { noremap = true })
+
 require('core.options')
-require('core.pack'):boot_strap()
-require('keymap')
+-- Bootstrapping cause  the treesitter error
+-- require('core.pack'):boot_strap()
+-- require('keymap')
 -- Integrate internal
 -- require('internal.event')
 -- require('internal.netrw')
