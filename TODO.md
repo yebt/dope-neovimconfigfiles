@@ -39,4 +39,3 @@ For cath specific file configs
   - [ ] phpdoc
   - [ ] phpactor
 - [ ] AI
-
