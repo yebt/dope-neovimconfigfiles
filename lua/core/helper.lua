@@ -1,3 +1,7 @@
+----------------------------------
+--- This file contain cli help
+--- logic
+----------------------------------
 local helper = {}
 helper.is_win = package.config:sub(1, 1) == '\\' and true or false
 helper.path_sep = helper.is_win and '\\' or '/'
