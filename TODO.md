@@ -1,5 +1,13 @@
 # TODO
 
+Feature needed in nvim
+
+## Keyboard
+
+## Hooks
+
+## Plugins
+
 - [ ] Mark down basic support and easy usage
   - [ ] add new line
   - [ ] format table
