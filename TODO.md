@@ -4,7 +4,15 @@ Feature needed in nvim
 
 ## Keyboard
 
+The key map usage
+
 ## Hooks
+
+The hooks of events
+
+## Specific file configs
+
+For cath specific file configs
 
 ## Plugins
 
@@ -31,3 +39,4 @@ Feature needed in nvim
   - [ ] phpdoc
   - [ ] phpactor
 - [ ] AI
+
