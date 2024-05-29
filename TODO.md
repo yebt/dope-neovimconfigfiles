@@ -1,0 +1,25 @@
+# TODO
+
+- [ ] Mark down basic support and easy usage
+  - [ ] add new line
+  - [ ] format table
+  - [ ] add new list item
+- [ ] telescope
+- [ ] fuzzifinder
+- [ ] autopairs
+- [ ] comment
+- [ ] treesitter
+- [ ] nvim-tree
+- [ ] dashboard
+- [ ] sessions
+- [ ] plugins session manager - workspace plugins
+  - [ ] activate the plugins config in the session
+  - [ ] Config the project plugins in base to local config
+- [ ] colorscheme
+- [ ] autocompletion
+- [ ] php
+  - [ ] phpstan
+  - [ ] psalm
+  - [ ] phpdoc
+  - [ ] phpactor
+- [ ] AI
