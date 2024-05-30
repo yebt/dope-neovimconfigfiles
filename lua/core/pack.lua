@@ -1,10 +1,16 @@
-local uv, api, fn = vim.loop, vim.api, vim.fn
+----------------------------------
+--- This file contain pack
+--- of packa manangment starter
+----------------------------------
 
+local uv, api, fn = vim.loop, vim.api, vim.fn
 local pack = {}
 pack.__index = pack
 
 function pack:load_modules_packages()
-  local modules_dir = self.helper.path_join(self.config_path, 'lua', 'modules')
+  --local modules_dir = self.helper.path_join(self.config_path, 'lua', 'modules')
+  ---@diagnostic disable-next-line: param-type-mismatch
+  local modules_dir = vim.fs.joinpath(self.config_path, 'lua', 'modules')
   self.repos = {}
 
   local list = vim.fs.find('package.lua', { path = modules_dir, type = 'file', limit = 10 })
@@ -12,26 +18,34 @@ function pack:load_modules_packages()
     return
   end
 
-  local disable_modules = {}
+  -- local disable_modules = {}
 
-  if fn.exists('g:disable_modules') == 1 then
-    disable_modules = vim.split(vim.g.disable_modules, ',', { trimempty = true })
-  end
+  -- if fn.exists('g:disable_modules') == 1 then
+  --   disable_modules = vim.split(vim.g.disable_modules, ',', { trimempty = true })
+  -- end
 
-  for _, f in pairs(list) do
+  -- for _, f in pairs(list) do
+  --   local _, pos = f:find(modules_dir)
+  --   f = f:sub(pos - 6, #f - 4)
+  --   if not vim.tbl_contains(disable_modules, f) then
+  --     require(f)
+  --   end
+  -- end
+  vim.iter(list):map(function(f)
     local _, pos = f:find(modules_dir)
     f = f:sub(pos - 6, #f - 4)
-    if not vim.tbl_contains(disable_modules, f) then
-      require(f)
-    end
-  end
+    require(f)
+  end)
 end
 
 function pack:boot_strap()
   self.helper = require('core.helper')
   self.data_path = self.helper.data_path()
   self.config_path = self.helper.config_path()
-  local lazy_path = self.helper.path_join(self.data_path, 'lazy', 'lazy.nvim')
+  -- local lazy_path = self.helper.path_join(self.data_path, 'lazy', 'lazy.nvim')
+  ---@diagnostic disable-next-line: param-type-mismatch
+  local lazy_path = vim.fs.joinpath(self.data_path, 'lazy', 'lazy.nvim')
+
   local state = uv.fs_stat(lazy_path)
   if not state then
     local cmd = '!git clone https://github.com/folke/lazy.nvim.git ' .. lazy_path
@@ -39,8 +53,13 @@ function pack:boot_strap()
   end
   vim.opt.runtimepath:prepend(lazy_path)
   local lazy = require('lazy')
+  self:load_modules_packages()
+
   local opts = {
-    lockfile = self.helper.path_join(self.data_path, 'lazy-lock.json'),
+    -- lockfile = self.helper.path_join(self.data_path, 'lazy-lock.json'),
+    ---@diagnostic disable-next-line: param-type-mismatch
+    lockfile = vim.fs.joinpath(self.data_path, 'lazy-lock.json'),
+
     defaults = {
       lazy = true, -- should plugins be lazy-loaded?
     },
@@ -62,7 +81,12 @@ function pack:boot_strap()
       notify = true, -- get a notification when changes are found
     },
     performance = {
+      cache = {
+        enabled = true,
+      },
+      reset_packpath = true,
       rtp = {
+        reset = _G.walo.reset_rtp,
         ---@type string[]
         paths = {}, -- add any custom paths here that you want to includes in the rtp
         ---@type string[] list any plugins you want to disable here
@@ -90,21 +114,27 @@ function pack:boot_strap()
     --   require = true,
     -- },
   }
-  self:load_modules_packages()
   lazy.setup(self.repos, opts)
 
-  for k, v in pairs(self) do
-    if type(v) ~= 'function' then
-      self[k] = nil
-    end
-  end
+  -- -- for k, v in pairs(self) do
+  -- --   if type(v) ~= 'function' then
+  -- --     self[k] = nil
+  -- --   end
+  -- -- end
 end
 
-function pack.package(repo)
+-- function pack.package(repo)
+--   if not pack.repos then
+--     pack.repos = {}
+--   end
+--   table.insert(pack.repos, repo)
+-- end
+_G.packadd = function(repo)
   if not pack.repos then
     pack.repos = {}
   end
-  table.insert(pack.repos, repo)
+
+  pack.repos[#pack.repos + 1] = repo
 end
 
 return pack

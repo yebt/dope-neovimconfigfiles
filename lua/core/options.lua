@@ -1,3 +1,7 @@
+----------------------------------
+--- This file base config
+----------------------------------
+
 -- local opt = vim.opt
 -- local cache_dir = vim.env.HOME .. '/.cache/nvim/'
 --

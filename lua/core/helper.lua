@@ -1,5 +1,8 @@
+----------------------------------
+--- This file contain cli help
+--- logic
+----------------------------------
 local helper = {}
--- helper.path_sep = package.config:sub(1, 1) == '\\' and '\\' or '/'
 helper.is_win = package.config:sub(1, 1) == '\\' and true or false
 helper.path_sep = helper.is_win and '\\' or '/'
 
@@ -52,7 +55,7 @@ function helper.write(color)
 end
 
 function helper.success(msg)
-  color_print('green')('\t🍻 ' .. msg .. ' Success ‼️ ')
+  color_print('green')('\t🎉 ' .. msg .. ' Success ‼️ ')
 end
 
 function helper.error(msg)
@@ -61,7 +64,7 @@ end
 
 function helper.run_git(name, cmd, type)
   local pip = assert(io.popen(cmd .. ' 2>&1'))
-  color_print('green')('\t🍻 ' .. type .. ' ' .. name)
+  color_print('green')('\t🎊 ' .. type .. ' ' .. name)
   local failed = false
   for line in pip:lines() do
     if line:find('fatal') then

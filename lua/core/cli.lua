@@ -1,3 +1,7 @@
+----------------------------------
+--- This file contain cli logic
+----------------------------------
+
 local cli = {}
 local helper = require('core.helper')
 
@@ -5,21 +9,16 @@ function cli:env_init()
   self.module_path = helper.path_join(self.config_path, 'lua', 'modules')
   self.lazy_dir = helper.path_join(self.data_path, 'lazy')
 
-  -- stylua: ignore
-  package.path = package.path
-    .. ';'
-    .. self.rtp
-    .. '/lua/vim/?.lua;'
-    .. self.module_path
-    .. '/?.lua;'
+  package.path = package.path .. ';' .. self.rtp .. '/lua/vim/?.lua;' .. self.module_path .. '/?.lua;'
   local shared = assert(loadfile(helper.path_join(self.rtp, 'lua', 'vim', 'shared.lua')))
   _G.vim = shared()
 end
 
 function cli:get_all_packages()
   local pack = require('core.pack')
-  local p = io.popen('find "' .. cli.module_path .. '" -type f')
+  local p = io.popen('find "' .. cli.module_path .. '" -type f  2> /dev/null')
   if not p then
+    helper.yellow('⚠️ Error with "' .. cli.module_path .. '"')
     return
   end
 
@@ -91,7 +90,7 @@ function cli:boot_strap()
     return
   end
   local cmd = 'git clone https://github.com/folke/lazy.nvim.git '
-  helper.run_git('lazy.nvim', cmd .. self.lazy_dir, 'Install')
+  helper.run_git('lazy.nvim', cmd .. self.lazy_dir .. '/lazy.nvim', 'Install')
   helper.success('lazy.nvim')
 end
 
@@ -166,7 +165,7 @@ function cli.snapshot(pack_name)
 end
 
 function cli.modules()
-  local p = io.popen('find "' .. cli.module_path .. '" -type d')
+  local p = io.popen('find "' .. cli.module_path .. '" -type d 2>/dev/null')
   if not p then
     return
   end
@@ -193,6 +192,10 @@ function cli:meta(arg)
 end
 
 function cli.makemodule(module_name)
+  if not module_name then
+    helper.error(' ❗Module name not provided')
+    return
+  end
   local module_dir = helper.path_join(cli.module_path, module_name)
 
   if helper.isdir(module_dir) then

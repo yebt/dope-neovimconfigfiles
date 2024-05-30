@@ -17,54 +17,50 @@ local options = {
   snapshot = {
     enable = true,
     multiple = true,
-    dec = 'Check the plugins info',
+    desc = 'Check the plugins info',
   },
   --debug = true,
   dmodule = {
     enable = true,
     multiple = true,
-    dec = 'Dynamic disable modules for debug',
+    desc = 'Dynamic disable modules for debug',
   },
   help = {
     enable = true,
-    dec = 'Show the usage of bot',
+    desc = 'Show the usage of bot',
   },
   modules = {
     enable = true,
-    dec = 'Show all modules',
+    desc = 'Show all modules',
   },
   makemodule = {
     enable = true,
     multiple = true,
-    dec = 'Make a module from the template',
+    desc = 'Make a module from the template',
   }, -- to create a module project struct
 }
 
 ------------------------------------------------
+-- Vars to generate
 local enabledArgs = {}
 local enabledAndMultipleArgs = {}
 local argument
 ------------------------------------------------
--- Iterate through options table
-for key, value in pairs(options) do
-  if value.enable then
-    table.insert(enabledArgs, key)
-  end
-  if value.enable and value.multiple then
-    table.insert(enabledAndMultipleArgs, key)
-  end
-end
 
+-- set install by default or load the argument
 argument = #arg == 0 and 'install' or arg[1]
 
-if #arg > 1 and not enabledAndMultipleArgs[argument] then
+-- Check if passed argument is available
+if not options[argument] or not options[argument].enable then
+  error('Unknown argument. ' .. argument)
+end
+
+-- verify allowed multiple arguments
+if #arg > 1 and not options[argument].multiple then
   error('Passed multiple arguments.')
 end
 
-if not enabledArgs[argument] then
-  error('Unknow argument.')
-end
-
+-- Work with dmodule option (debug)
 if argument == 'dmodule' then
   --   local modules = [[let g:disable_modules="]]
   --   ---@diagnostic disable-next-line: deprecated
@@ -74,13 +70,13 @@ if argument == 'dmodule' then
   --   modules = modules .. '"'
   --   os.execute("nvim --cmd '" .. modules .. "'")
   --   return
-  local var = [[let g:disable_modules="]] .. arg[2] .. '"'
-  os.execute("nvim --cmd '" .. var .. "'")
+  local disabled_modules_command = [[let g:disable_modules="]] .. arg[2] .. '"'
+  os.execute("nvim --cmd '" .. disabled_modules_command .. "'")
   return
 end
 
 local handle
-handle = assert(io.popen([[nvim --clean --handless --cmd 'echo $VIMRUNTIME|q' 2>&1]], 'r'))
+handle = assert(io.popen([[nvim --clean --headless --cmd 'echo $VIMRUNTIME|q' 2>&1]], 'r'))
 if not handle then
   return
 end
@@ -97,12 +93,13 @@ handle:close()
 package.path = package.path .. ';' .. rtp .. '/lua/vim/?.lua;' .. config_path .. '/lua/?.lua'
 
 if argument == 'help' then
-  local helper = require('code.helper')
+  local helper = require('core.helper')
   helper.green('Dope usage')
   -- Generate the 'usage' table
   local usage = {}
+  local largestKeySize = 12
   for key, value in pairs(options) do
-    local paddedKey = string.format('\t%-*s', largestKeySize, key)
+    local paddedKey = string.format('\t%-' .. largestKeySize .. 's', key)
     local description = '  ' .. value.desc
     table.insert(usage, { paddedKey, description })
   end
@@ -132,104 +129,3 @@ cli:env_init()
 
 ---@diagnostic disable-next-line: deprecated
 cli:meta(argument)(table.unpack(arg, 2))
-------------------------------------------------
-
--- local arguments = {
---   install = true,
---   update = true,
---   clean = true,
---   --doctor = true,
---   snapshot = true,
---   --debug = true,
---   dmodule = true,
---   help = true,
---   modules = true,
---   makemodule = true, -- to create a module project struct
--- }
---
--- local argument
---
--- if #arg == 0 then
---   argument = 'install'
--- else
---   if #arg > 1 and (arg[1] ~= 'dmodule' and arg[1] ~= 'snapshot' and arg[1] ~= 'makemodule') then
---     error('passed multiple arguments.')
---   end
---
---   if not arguments[arg[1]] then
---     error('unknow argument ' .. arg[1])
---   end
---   argument = arg[1]
---
---   -- if arg[1] == 'dmodule' then
---   --   local modules = [[let g:disable_modules="]]
---   --   ---@diagnostic disable-next-line: deprecated
---   --   for _, k in pairs({ table.unpack(arg, 2, #arg) } or {}) do
---   --     modules = modules .. ',' .. 'modules/' .. k .. '/plugins'
---   --   end
---   --   modules = modules .. '"'
---   --   os.execute("nvim --cmd '" .. modules .. "'")
---   --   return
---   -- end
---
---   if arg[1] == 'dmodule' then
---     local var = [[let g:disable_modules="]] .. (arg[2] or '') .. '"'
---     os.execute("nvim --cmd '" .. var .. "'")
---     return
---   end
--- end
---
--- local handle
--- handle = assert(io.popen([[nvim --clean --headless --cmd 'echo $VIMRUNTIME|q' 2>&1]], 'r'))
--- if not handle then
---   return
--- end
---
--- local rtp = handle:read('*a')
--- handle:close()
---
--- -- read config path
--- handle = assert(io.popen([[nvim --clean --headless --cmd 'echo stdpath("config")|q' 2>&1]], 'r'))
--- local config_path = handle:read('*a')
--- handle:close()
---
--- -- set the poackage path
--- package.path = package.path .. ';' .. rtp .. '/lua/vim/?.lua;' .. config_path .. '/lua/?.lua'
---
--- if argument == 'help' then
---   local helper = require('core.helper')
---   helper.green('Dope usage')
---   local usage = {
---     { '\tinstall    ', '  install Plugins' },
---     { '\tupdate     ', '  update Plugins' },
---     { '\tclean      ', '  clean the directories' },
---     { '\tsnapshot   ', '  check the plugins info' },
---     { '\tmodules    ', '  Show all modules' },
---     { '\tdmodule    ', '  dynamic disable modules for debug' },
---     { '\tmakemodule ', '  make a module template' },
---     { '\thelp       ', '  show the usage of bot' },
---   }
---   for _, msg in pairs(usage) do
---     helper.write('blue')(msg[1])
---     helper.write('white')(msg[2])
---     print()
---   end
---   os.exit()
--- end
---
--- -- read data path
--- handle = assert(io.popen([[nvim --clean --headless --cmd 'echo stdpath("data")|q' 2>&1]], 'r'))
--- local data_path = handle:read('*a')
--- handle:close()
---
--- local cli = require('core.cli')
---
--- cli.rtp = rtp
--- cli.config_path = config_path
--- cli.data_path = data_path
---
--- -- env init
--- cli:env_init()
---
--- ---@diagnostic disable-next-line: deprecated
--- cli:meta(argument)(table.unpack(arg, 2))
