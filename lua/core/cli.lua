@@ -16,8 +16,9 @@ end
 
 function cli:get_all_packages()
   local pack = require('core.pack')
-  local p = io.popen('find "' .. cli.module_path .. '" -type f')
+  local p = io.popen('find "' .. cli.module_path .. '" -type f  2> /dev/null')
   if not p then
+    helper.yellow('⚠️ Error with "' .. cli.module_path .. '"')
     return
   end
 
@@ -88,8 +89,8 @@ function cli:boot_strap()
     helper.green('🔸 Found lazy.nvim skip download')
     return
   end
-  local cmd = 'git clone https://github.com/folke/lazy.nvim '
-  helper.run_git('lazy.nvim', cmd .. self.lazy_dir, 'Install')
+  local cmd = 'git clone https://github.com/folke/lazy.nvim.git '
+  helper.run_git('lazy.nvim', cmd .. self.lazy_dir .. '/lazy.nvim', 'Install')
   helper.success('lazy.nvim')
 end
 
@@ -164,7 +165,7 @@ function cli.snapshot(pack_name)
 end
 
 function cli.modules()
-  local p = io.popen('find "' .. cli.module_path .. '" -type d')
+  local p = io.popen('find "' .. cli.module_path .. '" -type d 2>/dev/null')
   if not p then
     return
   end
@@ -188,6 +189,35 @@ function cli:meta(arg)
   return function(data)
     self[arg](data)
   end
+end
+
+function cli.makemodule(module_name)
+  if not module_name then
+    helper.error(' ❗Module name not provided')
+    return
+  end
+  local module_dir = helper.path_join(cli.module_path, module_name)
+
+  if helper.isdir(module_dir) then
+    -- error('Module"' .. module_name .. '" already exist.')
+    helper.error(' ❗Module "' .. module_name .. '" already exist.')
+    return
+  end
+
+  os.execute('mkdir -p ' .. module_dir)
+
+  local package_file = io.open(module_dir .. '/package.lua', 'w')
+  package_file:write(
+    "local package = require('core.pack').package\nlocal conf = require('modules." .. module_name .. ".config')\n"
+  )
+  package_file:close()
+  helper.green(' ✨ .../modules/' .. module_name .. '/package.lua file created')
+
+  local config_file = io.open(module_dir .. '/config.lua', 'w')
+  config_file:write('local config = {}\n----\n\n-- function config.plugin()\n-- end\n\n----\nreturn config')
+  config_file:close()
+
+  helper.green(' ✨ .../modules/' .. module_name .. '/config.lua file created')
 end
 
 return cli

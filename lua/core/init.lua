@@ -22,6 +22,12 @@ local g = vim.g
 
 -- Map leader
 g.mapleader = ' '
+g.maplocalleader = ','
+
+-- Main config
+local walo = {}
+walo.reset_rtp = false
+_G.walo = walo
 
 -- Load packages
 require('core.pack'):boot_strap()
