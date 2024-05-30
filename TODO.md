@@ -75,3 +75,4 @@ For cath specific file configs
 - [ ] fast jump
   - [ ] flash of folke
   - [ ] easy moiyion, etc
+- [ ] https://github.com/folke/neodev.nvim
