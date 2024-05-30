@@ -17,26 +17,26 @@ local options = {
   snapshot = {
     enable = true,
     multiple = true,
-    dec = 'Check the plugins info',
+    desc = 'Check the plugins info',
   },
   --debug = true,
   dmodule = {
     enable = true,
     multiple = true,
-    dec = 'Dynamic disable modules for debug',
+    desc = 'Dynamic disable modules for debug',
   },
   help = {
     enable = true,
-    dec = 'Show the usage of bot',
+    desc = 'Show the usage of bot',
   },
   modules = {
     enable = true,
-    dec = 'Show all modules',
+    desc = 'Show all modules',
   },
   makemodule = {
     enable = true,
     multiple = true,
-    dec = 'Make a module from the template',
+    desc = 'Make a module from the template',
   }, -- to create a module project struct
 }
 
@@ -46,27 +46,18 @@ local enabledArgs = {}
 local enabledAndMultipleArgs = {}
 local argument
 ------------------------------------------------
--- Iterate through options table
-for key, value in pairs(options) do
-  if value.enable then
-    table.insert(enabledArgs, key)
-    if value.multiple then
-      table.insert(enabledAndMultipleArgs, key)
-    end
-  end
-end
 
 -- set install by default or load the argument
 argument = #arg == 0 and 'install' or arg[1]
 
--- verify allowed multiple arguments
-if #arg > 1 and not enabledAndMultipleArgs[argument] then
-  error('Passed multiple arguments.')
+-- Check if passed argument is available
+if not options[argument] or not options[argument].enable then
+  error('Unknown argument. ' .. argument)
 end
 
--- Verify if the passed argument is enabled
-if not enabledArgs[argument] then
-  error('Unknow argument. ' .. argument)
+-- verify allowed multiple arguments
+if #arg > 1 and not options[argument].multiple then
+  error('Passed multiple arguments.')
 end
 
 -- Work with dmodule option (debug)
@@ -85,7 +76,7 @@ if argument == 'dmodule' then
 end
 
 local handle
-handle = assert(io.popen([[nvim --clean --handless --cmd 'echo $VIMRUNTIME|q' 2>&1]], 'r'))
+handle = assert(io.popen([[nvim --clean --headless --cmd 'echo $VIMRUNTIME|q' 2>&1]], 'r'))
 if not handle then
   return
 end
@@ -102,12 +93,13 @@ handle:close()
 package.path = package.path .. ';' .. rtp .. '/lua/vim/?.lua;' .. config_path .. '/lua/?.lua'
 
 if argument == 'help' then
-  local helper = require('code.helper')
+  local helper = require('core.helper')
   helper.green('Dope usage')
   -- Generate the 'usage' table
   local usage = {}
+  local largestKeySize = 12
   for key, value in pairs(options) do
-    local paddedKey = string.format('\t%-*s', largestKeySize, key)
+    local paddedKey = string.format('\t%-' .. largestKeySize .. 's', key)
     local description = '  ' .. value.desc
     table.insert(usage, { paddedKey, description })
   end
