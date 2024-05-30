@@ -45,9 +45,11 @@ For cath specific file configs
   - [ ] https://github.com/stevearc/conform.nvim
   - [ ] https://github.com/mfussenegger/nvim-lint
   - [ ] https://github.com/frostplexx/mason-bridge.nvim
+  - [ ] nvim GUARD (linter and formatter)
 - [ ] autocompletion
   - [ ] cmp
     - [ ] https://github.com/jdrupal-dev/css-vars.nvim
+  - [ ] nvim EPO
   - [ ] snippets
     - [ ] https://github.com/TwIStOy/luasnip-snippets
 - [ ]
