@@ -160,7 +160,7 @@ local configs = {
   textwidth = 100,
   colorcolumn = '100',
   --# CMD
-  cmdheight = 0, -- 0,2
+  -- cmdheight = 0, -- 0,2
   -- cmdheight = 2, -- 0,2
   history = 2000,
   -- showmode = false,
@@ -192,7 +192,7 @@ local configs = {
   pumheight = 15,
   -- pumblend= 10, -- pseudo-transparency
   -- winblend = 10, -- pseudo-transparency in win
-  showcmd = false,
+  showcmd = true,
   --#
   laststatus = 3,
   ruler = false,
