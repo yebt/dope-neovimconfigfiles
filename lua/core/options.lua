@@ -82,20 +82,20 @@ local configs = {
   -- showmode = false,
   -- shortmess = 'aoOTIcF',
   shortmess = {
-          -- f = true, -- use "(3 of 5)" instead of "(file 3 of 5)"		*shm-f*
-          -- i = true, -- use "[noeol]" instead of "[Incomplete last line]"	*shm-i*
-          -- l = true, -- use "999L, 888B" instead of "999 lines, 888 bytes"	*shm-l*
-          -- n = true, -- use "[New]" instead of "[New File]"			*shm-n*
-          -- x = true, -- use "[dos]" instead of "[dos format]", "[unix]"	instead of "[unix format]" and "[mac]" instead of "[macformat]" *shm-x*
-          -- t = true, -- truncate file message at the start if it is too long	to fit on the command-line, "<" will appear in the left most column; ignored in Ex mode *shm-t*
-          T = true, -- truncate other messages in the middle if they are too 	long to fit on the command line; "..." will appear in the middle; ignored in Ex mode *shm-T*
-          -- I = true, -- hiddetn intro messages -- is not needed cause use start session
-          o = true, -- overwrite message for writing a file with subsequent message for reading a file (useful for ":wn" or when 'autowrite' on) O	message for reading a file overwri
-          O = true, -- message for reading a file overwrites any previous	message;  also for quickfix message (e.g., ":cn")
-          F = true, -- don't give the file info when editing a file, like	`:silent` was used for the command
-          c = true, --	don't give |ins-completion-menu| messages; for		*shm-c*
-          --
-          a = true, -- all short
+    -- f = true, -- use "(3 of 5)" instead of "(file 3 of 5)"		*shm-f*
+    -- i = true, -- use "[noeol]" instead of "[Incomplete last line]"	*shm-i*
+    -- l = true, -- use "999L, 888B" instead of "999 lines, 888 bytes"	*shm-l*
+    -- n = true, -- use "[New]" instead of "[New File]"			*shm-n*
+    -- x = true, -- use "[dos]" instead of "[dos format]", "[unix]"	instead of "[unix format]" and "[mac]" instead of "[macformat]" *shm-x*
+    -- t = true, -- truncate file message at the start if it is too long	to fit on the command-line, "<" will appear in the left most column; ignored in Ex mode *shm-t*
+    T = true, -- truncate other messages in the middle if they are too 	long to fit on the command line; "..." will appear in the middle; ignored in Ex mode *shm-T*
+    -- I = true, -- hiddetn intro messages -- is not needed cause use start session
+    o = true, -- overwrite message for writing a file with subsequent message for reading a file (useful for ":wn" or when 'autowrite' on) O	message for reading a file overwri
+    O = true, -- message for reading a file overwrites any previous	message;  also for quickfix message (e.g., ":cn")
+    F = true, -- don't give the file info when editing a file, like	`:silent` was used for the command
+    c = true, --	don't give |ins-completion-menu| messages; for		*shm-c*
+    --
+    a = true, -- all short
   },
   showtabline = 0,
   --# Split
