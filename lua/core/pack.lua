@@ -8,7 +8,6 @@ local pack = {}
 pack.__index = pack
 
 function pack:load_modules_packages()
-  --local modules_dir = self.helper.path_join(self.config_path, 'lua', 'modules')
   ---@diagnostic disable-next-line: param-type-mismatch
   local modules_dir = vim.fs.joinpath(self.config_path, 'lua', 'modules')
   self.repos = {}
@@ -42,7 +41,6 @@ function pack:boot_strap()
   self.helper = require('core.helper')
   self.data_path = self.helper.data_path()
   self.config_path = self.helper.config_path()
-  -- local lazy_path = self.helper.path_join(self.data_path, 'lazy', 'lazy.nvim')
   ---@diagnostic disable-next-line: param-type-mismatch
   local lazy_path = vim.fs.joinpath(self.data_path, 'lazy', 'lazy.nvim')
 
@@ -56,7 +54,6 @@ function pack:boot_strap()
   self:load_modules_packages()
 
   local opts = {
-    -- lockfile = self.helper.path_join(self.data_path, 'lazy-lock.json'),
     ---@diagnostic disable-next-line: param-type-mismatch
     lockfile = vim.fs.joinpath(self.data_path, 'lazy-lock.json'),
 
