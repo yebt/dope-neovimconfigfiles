@@ -1,99 +1,12 @@
 ----------------------------------
 --- This file base config
 ----------------------------------
-
--- local opt = vim.opt
--- local cache_dir = vim.env.HOME .. '/.cache/nvim/'
---
--- opt.termguicolors = true
--- opt.hidden = true
--- opt.magic = true
--- opt.virtualedit = 'block'
--- opt.clipboard = 'unnamedplus'
--- opt.wildignorecase = true
--- opt.swapfile = false
--- opt.directory = cache_dir .. 'swap/'
--- opt.undodir = cache_dir .. 'undo/'
--- opt.backupdir = cache_dir .. 'backup/'
--- opt.viewdir = cache_dir .. 'view/'
--- opt.spellfile = cache_dir .. 'spell/en.uft-8.add'
--- opt.history = 2000
--- opt.timeout = true
--- opt.ttimeout = true
--- opt.timeoutlen = 500
--- opt.ttimeoutlen = 10
--- opt.updatetime = 100
--- opt.redrawtime = 1500
--- opt.ignorecase = true
--- opt.smartcase = true
--- opt.infercase = true
---
--- if vim.fn.executable('rg') == 1 then
---   opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
---   opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
--- end
---
--- opt.completeopt = 'menu,menuone,noselect'
--- opt.showmode = false
--- opt.shortmess = 'aoOTIcF'
--- opt.scrolloff = 2
--- opt.sidescrolloff = 5
--- opt.ruler = false
--- opt.showtabline = 0
--- opt.winwidth = 30
--- opt.pumheight = 15
--- opt.showcmd = false
---
--- opt.cmdheight = 0
--- opt.laststatus = 3
--- opt.list = true
--- opt.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'
--- opt.pumblend = 10
--- opt.winblend = 10
--- opt.undofile = true
---
--- opt.smarttab = true
--- opt.expandtab = true
--- opt.autoindent = true
--- opt.tabstop = 2
--- opt.shiftwidth = 2
---
--- -- wrap
--- opt.linebreak = true
--- opt.whichwrap = 'h,l,<,>,[,],~'
--- opt.breakindentopt = 'shift:2,min:20'
--- opt.showbreak = '↳ '
---
--- opt.foldlevelstart = 99
--- opt.foldmethod = 'marker'
---
--- opt.number = true
--- opt.signcolumn = 'yes'
--- opt.spelloptions = 'camel'
---
--- opt.textwidth = 100
--- opt.colorcolumn = '100'
--- if vim.loop.os_uname().sysname == 'Darwin' then
---   vim.g.clipboard = {
---     name = 'macOS-clipboard',
---     copy = {
---       ['+'] = 'pbcopy',
---       ['*'] = 'pbcopy',
---     },
---     paste = {
---       ['+'] = 'pbpaste',
---       ['*'] = 'pbpaste',
---     },
---     cache_enabled = 0,
---   }
---   vim.g.python_host_prog = '/usr/bin/python'
---   vim.g.python3_host_prog = '/usr/local/bin/python3'
--- end
-
 local opt = vim.opt
 local api = vim.api
+local spf = vim.fs.joinpath(vim.fn.stdpath('config'), 'spell')
 local cache_dir = vim.env.HOME .. '/.cache/nvim/'
 
+--
 local configs = {
   compatible = false,
 
@@ -140,8 +53,11 @@ local configs = {
   -- undodir = cache_dir .. 'undo/',
   -- backupdir = cache_dir .. 'backup/',
   -- viewdir = cache_dir .. 'view/',
-  -- spellfile = cache_dir .. 'spell/en.uft-8.add' .. ',' .. cache_dir .. 'spell/es.uft-8.add',
   undofile = true,
+  spellfile = {
+    vim.fs.joinpath(vim.fn.stdpath('config'), 'spell/en.utf-8.add'),
+    vim.fs.joinpath(vim.fn.stdpath('config'), 'spell/es.utf-8.add'),
+  },
   --# Spell
   spelllang = 'en,es',
   spelloptions = 'camel',
@@ -166,20 +82,20 @@ local configs = {
   -- showmode = false,
   -- shortmess = 'aoOTIcF',
   shortmess = {
-    -- f = true, -- use "(3 of 5)" instead of "(file 3 of 5)"		*shm-f*
-    -- i = true, -- use "[noeol]" instead of "[Incomplete last line]"	*shm-i*
-    -- l = true, -- use "999L, 888B" instead of "999 lines, 888 bytes"	*shm-l*
-    -- n = true, -- use "[New]" instead of "[New File]"			*shm-n*
-    -- x = true, -- use "[dos]" instead of "[dos format]", "[unix]"	instead of "[unix format]" and "[mac]" instead of "[macformat]" *shm-x*
-    -- t = true, -- truncate file message at the start if it is too long	to fit on the command-line, "<" will appear in the left most column; ignored in Ex mode *shm-t*
-    T = true, -- truncate other messages in the middle if they are too 	long to fit on the command line; "..." will appear in the middle; ignored in Ex mode *shm-T*
-    -- I = true, -- hiddetn intro messages -- is not needed cause use start session
-    o = true, -- overwrite message for writing a file with subsequent message for reading a file (useful for ":wn" or when 'autowrite' on) O	message for reading a file overwri
-    O = true, -- message for reading a file overwrites any previous	message;  also for quickfix message (e.g., ":cn")
-    F = true, -- don't give the file info when editing a file, like	`:silent` was used for the command
-    c = true, --	don't give |ins-completion-menu| messages; for		*shm-c*
-    --
-    a = true, -- all short
+          -- f = true, -- use "(3 of 5)" instead of "(file 3 of 5)"		*shm-f*
+          -- i = true, -- use "[noeol]" instead of "[Incomplete last line]"	*shm-i*
+          -- l = true, -- use "999L, 888B" instead of "999 lines, 888 bytes"	*shm-l*
+          -- n = true, -- use "[New]" instead of "[New File]"			*shm-n*
+          -- x = true, -- use "[dos]" instead of "[dos format]", "[unix]"	instead of "[unix format]" and "[mac]" instead of "[macformat]" *shm-x*
+          -- t = true, -- truncate file message at the start if it is too long	to fit on the command-line, "<" will appear in the left most column; ignored in Ex mode *shm-t*
+          T = true, -- truncate other messages in the middle if they are too 	long to fit on the command line; "..." will appear in the middle; ignored in Ex mode *shm-T*
+          -- I = true, -- hiddetn intro messages -- is not needed cause use start session
+          o = true, -- overwrite message for writing a file with subsequent message for reading a file (useful for ":wn" or when 'autowrite' on) O	message for reading a file overwri
+          O = true, -- message for reading a file overwrites any previous	message;  also for quickfix message (e.g., ":cn")
+          F = true, -- don't give the file info when editing a file, like	`:silent` was used for the command
+          c = true, --	don't give |ins-completion-menu| messages; for		*shm-c*
+          --
+          a = true, -- all short
   },
   showtabline = 0,
   --# Split
@@ -248,7 +164,7 @@ local configs = {
     -- histogram  histogram diff algorithm
     -- "algorithm:histogram"
   },
-  --# Cpoptions
+  --     --# Cpoptions
   cpoptions = {
     -- a = true, -- When included, a ":read" command with a file name argument will set the alternate file name for the current window.
     -- b = true, -- When included, a ":write" command with a file name argument will set the alternate file name for the current window.
@@ -264,24 +180,23 @@ local configs = {
     ['_'] = true, -- When using |cw| on a word, do not include the whitespace following the word in the motion.
   },
 }
-
+--
 local globals = {
-  spellfile_URL = 'https://ftp.nluug.nl/vim/runtime/spell',
-  --
-  loaded_perl_provider = 0,
-  loaded_ruby_provider = 0,
-  --
-  -- netrw_browse_split = 4,
-  netrw_banner = 0,
-  netrw_use_errorwindow = 0,
-  netrw_windize = 35,
-  netrw_keepdir = 0,
+  --     spellfile_URL = 'https://ftp.nluug.nl/vim/runtime/spell',
+  --     --
+  --     loaded_perl_provider = 0,
+  --     loaded_ruby_provider = 0,
+  --     --
+  --     -- netrw_browse_split = 4,
+  --     netrw_banner = 0,
+  --     netrw_use_errorwindow = 0,
+  --     netrw_windize = 35,
+  --     netrw_keepdir = 0,
 }
 
 -- Setters
 for key, valor in pairs(configs) do
   vim.opt[key] = valor
-  -- vim.g.spellfile_URL = "https://ftp.nluug.nl/vim/runtime/spell" ---------
 end
 for key, valor in pairs(globals) do
   vim.g[key] = valor
