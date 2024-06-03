@@ -20,7 +20,7 @@ map({ 'n' }, '<leader>w', cmd('w'), { silent = true, desc = 'Write buffer' })
 map({ 'n', 'x', 'i' }, '<c-c>', '<esc>', { silent = true, desc = 'Ctrl-c like esc' })
 map({ 'n' }, '<leader>a', 'ggVG', { silent = true, desc = 'Select all' })
 
-map({ 'n' }, '\\', fns.toggleNetrw , { silent = true, desc = 'Toggle netrw' })
+map({ 'n' }, '\\', fns.toggleNetrw, { silent = true, desc = 'Toggle netrw' })
 
 -- Editing
 map({ 'n' }, '[<space>', fns.blank_above, { silent = true, desc = 'Add space above' })
@@ -39,12 +39,15 @@ map({ 'v' }, 'J', ":m '>+1<CR>gv=gv", { silent = true, desc = 'Move selection do
 
 map({ 'x' }, '<c-s>', fns.vsurround, { silent = true, expr = true, desc = 'Add the surround around selection' })
 
-
-map({ 'n' }, '<leader>s', ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>" , { silent = true, desc = 'Replace cursor word in document' })
-
+map(
+  { 'n' },
+  '<leader>s',
+  ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>',
+  { silent = true, desc = 'Replace cursor word in document' }
+)
 
 -- Motions
-map({ 'n' }, '0', fns.homeVsKey , { silent = true, desc = 'Home key' })
+map({ 'n' }, '0', fns.homeVsKey, { silent = true, desc = 'Home key' })
 
 -- buffers
 map({ 'n' }, '<M-c>', fns.brem, { silent = true, desc = 'Remove buffer' })
