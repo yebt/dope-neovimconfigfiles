@@ -57,10 +57,13 @@ au('TermOpen', {
   group = group,
   callback = function()
     vim.opt_local.stc = ''
-    vim.wo.number = false
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.signcolumn = 'no'
     vim.cmd.startinsert()
   end,
 })
+au({ 'BufLeave' }, { pattern = { 'term://*' }, group = group, command = [[stopinsert]] })
 
 -- go to last loc when opening a buffer
 au('BufReadPost', {
