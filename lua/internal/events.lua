@@ -146,13 +146,6 @@ au({ 'FileType' }, {
 --   end,
 -- })
 
-au({ 'User' }, {
-  pattern = { 'VeryLazy' },
-  group = group,
-  callback = function()
-    -- require('internal.cmds')
-  end,
-})
 
 vim.on_key(function(char)
   if vim.fn.mode() == 'n' then
@@ -162,3 +155,13 @@ vim.on_key(function(char)
     end
   end
 end, vim.api.nvim_create_namespace('auto_hlsearch'))
+
+-- ----------------------------------------------------------------------------------------
+au({ 'User' }, {
+  pattern = { 'VeryLazy' },
+  group = group,
+  callback = function()
+    -- require('internal.cmds')
+    require('internal.status')
+  end,
+})
