@@ -97,7 +97,8 @@ local configs = {
     --
     a = true, -- all short
   },
-  showtabline = 0,
+  -- showtabline = 0,
+  showtabline = 2,
   --# Split
   splitbelow = true,
   splitright = true,
