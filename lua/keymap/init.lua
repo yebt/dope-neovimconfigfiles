@@ -61,6 +61,7 @@ kap.n({
 -- View
 map({ 'n' }, '<M-Bar>', cmd('vs'), { silent = true })
 map({ 'n' }, '<M-->', cmd('sp'), { silent = true })
+map({ 'n' }, '<M-z>', cmd('set wrap!'), { silent = true, desc = 'Toggle wrap' })
 
 -- Move in splits
 kap.n({
