@@ -47,7 +47,7 @@ map(
 )
 
 -- Motions
-map({ 'n' }, '0', fns.homeVsKey, { silent = true, desc = 'Home key' })
+map({ 'n' }, '0', fns.homeVsKey, { silent = true, expr = true, desc = 'Home key' })
 
 -- buffers
 map({ 'n' }, '<M-c>', fns.brem, { silent = true, desc = 'Remove buffer' })
