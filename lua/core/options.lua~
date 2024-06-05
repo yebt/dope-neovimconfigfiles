@@ -10,7 +10,7 @@ local spf = vim.fs.joinpath(vim.fn.stdpath('config'), 'spell')
 local options = {
 
   -- Indentation
-  autoindent = true,
+  autoindent= true,
   linebreak = true,
   breakindentopt = 'shift:2,min:20', --"min:40, shift:0,sbr"
   -- File
@@ -27,10 +27,10 @@ local options = {
   -- autochdir=true, -- change the dir to file dir
 
   -- Editing
-  backspace = 'indent,eol,start,nostop',
+  backspace = "indent,eol,start,nostop",
 
   -- Usage
-  clipboard = 'unnamed',
+  clipboard = "unnamed"
   compatible = false,
   whichwrap = 'h,l,<,>,[,],~',
 }
