@@ -38,7 +38,7 @@ local options = {
   autoread = true,
   backup = false,
   writebackup = false,
-  backupdir = '~/.config/nvim/.backups',
+  backupdir = vim.fs.joinpath(vim.fn.stdpath('config'), '.backups'),
   swapfile = false,
   undofile = true,
 
