@@ -66,6 +66,7 @@ local options = {
   laststatus = 3,
   ruler = false,
   winwidth = 30,
+  showtabline = 2,
 
   -- Split
   splitbelow = true,
@@ -74,7 +75,7 @@ local options = {
   inccommand = 'split',
 
   -- CMD
-  cmdheight = 2,
+  cmdheight = 1,
   cmdwinheight = 8,
   showcmd = true,
 
