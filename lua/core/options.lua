@@ -84,10 +84,10 @@ local options = {
     o = true,
     O = tre,
     F = true,
-    c = true,
+    -- c = true,
     a = true,
   },
-
+  --
   -- Columns
   number = true,
   relativenumber = true,
