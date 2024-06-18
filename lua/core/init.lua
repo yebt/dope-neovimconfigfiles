@@ -7,11 +7,11 @@ require('core.lazy')
 -- Load events
 require('internal.events')
 
+vim.cmd.colorscheme(_G.globals.colorscheme)
+
 vim.api.nvim_create_autocmd({ 'User' }, {
   pattern = { 'VeryLazy' },
   callback = function(args)
-    vim.cmd.colorscheme(_G.globals.colorscheme)
-
     local lazy_loads = {
       'keys',
       -- 'events',
