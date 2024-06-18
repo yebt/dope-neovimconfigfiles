@@ -9,6 +9,8 @@ mps('n', '<leader>q', ':q<CR>', { silent = true, desc = 'Quit of nvim' })
 mps('n', '<leader>w', ':w<CR>', { silent = true, desc = 'Save buffer' })
 -- same stop with ctrl+c
 mps({ 'x', 'i', 'n' }, '<C-c>', '<ESC>', { silent = true, desc = 'Stop on esc' })
+-- Unmap ctrl+z
+mps({ 'n' }, '<C-z>', '', {})
 -- select all
 mps('n', '<leader>a', 'ggVG', { silent = true, desc = 'select all content' })
 -- yanc
