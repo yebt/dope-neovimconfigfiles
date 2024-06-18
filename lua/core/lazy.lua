@@ -14,6 +14,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+--- Maps
 vim.g.mapleader = ' ' -- Make sure to set `mapleader` before lazy so your mappings are correct
 vim.g.maplocalleader = ' ' -- Same for `maplocalleader`
 
@@ -197,5 +198,6 @@ local lazy_options = {
     require = false,
   },
 }
---
+
+--- start lazy
 require('lazy').setup('plugins', lazy_options)

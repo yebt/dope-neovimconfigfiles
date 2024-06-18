@@ -1,20 +1,21 @@
+--- Load the global configs
+require('globals')
 --- Load las opts
 require('core.options')
---
 -- Load lazy vim
 require('core.lazy')
+-- Load events
+require('internal.events')
 
 vim.api.nvim_create_autocmd({ 'User' }, {
   pattern = { 'VeryLazy' },
   callback = function(args)
-    -- call internal calls
-    local colorscheme = 'habamax'
 
-    vim.cmd.colorscheme(colorscheme)
+    vim.cmd.colorscheme(_G.globals.colorscheme)
 
     local lazy_loads = {
       'keys',
-      'events',
+      -- 'events',
       'status',
     }
 
