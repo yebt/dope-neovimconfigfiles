@@ -154,21 +154,7 @@ local lazy_options = {
       ---@type string[]
       paths = {}, -- add any custom paths here that you want to includes in the rtp
       ---@type string[] list any plugins you want to disable here
-      disabled_plugins = {
-        'gzip',
-        'man',
-        -- "matchit",
-        -- "matchparen",
-        -- "netrwPlugin",
-        'tarPlugin',
-        -- "tohtml",
-        'tutor',
-        'zipPlugin',
-
-        -- "editorconfig",
-        -- "rplugin",
-        'shada',
-      },
+      disabled_plugins = _G.globals.desiabled_plugins or {},
     },
   },
   -- lazy can generate helptags from the headings in markdown readme files,
