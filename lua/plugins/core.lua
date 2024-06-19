@@ -1,8 +1,9 @@
 return {
-  -- Nvim Tree
+  -- Treesitter
   {
     'nvim-treesitter/nvim-treesitter',
     lazy = false,
+    -- event={"VeryLazy"},
     build = ':TSUpdate',
     config = function()
       local configs = require('nvim-treesitter.configs')
@@ -55,20 +56,21 @@ return {
 
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
-    event = {
-      'VeryLazy',
+    -- event = {
+    --   'VeryLazy',
+    -- },
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
     },
-    --   dependencies = {
-
-    --     'nvim-treesitter/nvim-treesitter',
-    --   },
   },
 
-  -- {
-  --   url = 'https://gitlab.com/HiPhish/nvim-ts-rainbow2',
-  --   dependencies = {
-
-  --     'nvim-treesitter/nvim-treesitter',
-  --   },
-  -- },
+  {
+    'm4xshen/hardtime.nvim',
+    lazy = false,
+    dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
+    opts = {
+      -- Add "oil" to the disabled_filetypes
+      disabled_filetypes = { 'qf', 'netrw', 'NvimTree', 'lazy', 'mason', 'oil', 'netrw' },
+    },
+  },
 }
