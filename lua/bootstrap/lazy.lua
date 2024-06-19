@@ -14,9 +14,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
---- Maps
-vim.g.mapleader = ' ' -- Make sure to set `mapleader` before lazy so your mappings are correct
-vim.g.maplocalleader = ' ' -- Same for `maplocalleader`
 
 local lazy_options = {
   root = vim.fn.stdpath('data') .. '/lazy', -- directory where plugins will be installed
@@ -202,3 +199,16 @@ local lazy_options = {
 
 --- start lazy
 require('lazy').setup('plugins', lazy_options)
+
+-- Events base
+vim.api.nvim_create_autocmd({ 'User' }, {
+  pattern = { 'VeryLazy' },
+  callback = function(args)
+    -- aditional filetype event on verylazy
+    vim.api.nvim_exec_autocmds('FileType', {})
+
+    vim.schedule(function()
+      vim.api.nvim_exec_autocmds('User', { pattern = 'PostPlugins' })
+    end)
+  end,
+})
