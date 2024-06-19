@@ -2,10 +2,10 @@
 require('globals')
 --- Load las opts
 require('core.options')
+-- Load events
+require('core.events')
 -- Load lazy vim
 require('core.lazy')
--- Load events
-require('internal.events')
 
 vim.cmd.colorscheme(_G.globals.colorscheme)
 
