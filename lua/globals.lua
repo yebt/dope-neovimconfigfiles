@@ -1,6 +1,8 @@
 local globals = {
   -- Colorscheme
   colorscheme = 'habamax',
+  -- colorscheme = 'material',
+  -- colorscheme = 'solarized-osaka',
   -- Disabled plugins
   desiabled_plugins = {
     -- "editorconfig",
@@ -19,6 +21,8 @@ local globals = {
     'tohtml',
     'tutor',
   },
+  disable_mouse = true,
+
 }
 
 _G.globals = globals
