@@ -204,8 +204,6 @@ require('lazy').setup('plugins', lazy_options)
 vim.api.nvim_create_autocmd({ 'User' }, {
   pattern = { 'VeryLazy' },
   callback = function(args)
-    -- aditional filetype event on verylazy
-    vim.api.nvim_exec_autocmds('FileType', {})
 
     vim.schedule(function()
       vim.api.nvim_exec_autocmds('User', { pattern = 'PostPlugins' })
