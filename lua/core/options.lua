@@ -144,15 +144,22 @@ local options = {
     -- "algorithm:histogram"
   },
 
-  -- Usage
+  -- -- Usage
   clipboard = 'unnamed',
   compatible = false,
   whichwrap = 'h,l,<,>,[,],~',
   confirm = true,
   cpoptions = {
+    a = true, -- change windows name with the read comman file name
+    A = true, -- change windows name with the write comman file name
+    B = true, -- No special meaning of backslash in the maps
+    c = true, -- Searching continues at the end of any match at the cursor
+    e = true, -- Add CR to last line wjen executing a register with ":@r"
+    F = true, -- When included, a ":write" command a filename set filename to buffer
+    s = true, -- Set the buffer options for first time
+    --
     n = true, -- use number for wrap number
-    s = true, -- set options on load buffer
-    ['_'] = atrue, -- not cut the white space nex to word when press cw
+    ['_'] = true, -- not cut the white space nex to word when press cw
   },
   sessionoptions = 'buffers,curdir,winsize',
   viewoptions = 'folds,cursor',
