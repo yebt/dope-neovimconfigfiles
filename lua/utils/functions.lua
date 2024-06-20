@@ -73,7 +73,8 @@ M.toggleNetrw = function()
 end
 
 M.surround = function()
-  vim.notify(':➿:')
+  -- vim.notify(':➿:')
+  print(':➿:')
   local char_code = vim.fn.getchar()
   local char = vim.fn.nr2char(char_code)
   if char == '\x03' or char == '\x1b' then
