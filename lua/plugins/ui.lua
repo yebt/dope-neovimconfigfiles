@@ -209,7 +209,7 @@ return {
     'kevinhwang91/nvim-ufo',
     dependencies = 'kevinhwang91/promise-async',
     -- event= {"BufReadPost"},
-    event= {"VeryLazy"},
-    config = require("plugins.configs.ufo")
+    event = { 'VeryLazy' },
+    config = require('plugins.configs.ufo'),
   },
 }
