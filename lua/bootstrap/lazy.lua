@@ -14,7 +14,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 local lazy_options = {
   root = vim.fn.stdpath('data') .. '/lazy', -- directory where plugins will be installed
   defaults = {
@@ -204,7 +203,6 @@ require('lazy').setup('plugins', lazy_options)
 vim.api.nvim_create_autocmd({ 'User' }, {
   pattern = { 'VeryLazy' },
   callback = function(args)
-
     vim.schedule(function()
       vim.api.nvim_exec_autocmds('User', { pattern = 'PostPlugins' })
     end)

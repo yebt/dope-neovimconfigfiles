@@ -24,9 +24,9 @@ if not vim.loop.fs_stat(mini_path) then
 end
 
 -- reset package path
-vim.opt.pp={
-  "~/.local/share/nvim/site",
-  "/usr/local/share/nvim/runtime"
+vim.opt.pp = {
+  '~/.local/share/nvim/site',
+  '/usr/local/share/nvim/runtime',
 }
 
 -- ~/.config/nvim
