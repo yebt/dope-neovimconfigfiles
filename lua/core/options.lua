@@ -103,7 +103,7 @@ local options = {
 
   -- Text
   textwidth = 100,
-  colorcolumn = '100',
+  -- colorcolumn = '100',
 
   list = true,
   listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←',
