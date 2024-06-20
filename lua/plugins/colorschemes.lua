@@ -351,6 +351,6 @@ return {
 
   -- Papercolor
   {
-    "NLKNguyen/papercolor-theme",
-  }
+    'NLKNguyen/papercolor-theme',
+  },
 }

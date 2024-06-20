@@ -1,6 +1,6 @@
 return function()
   local opts = {}
-  local starter = require("mini.starter")
+  local starter = require('mini.starter')
   starter.setup({
     evaluate_single = true,
     items = {
@@ -12,7 +12,7 @@ return function()
     },
     content_hooks = {
       starter.gen_hook.adding_bullet(),
-      starter.gen_hook.indexing("all", { "Builtin actions" }),
+      starter.gen_hook.indexing('all', { 'Builtin actions' }),
       starter.gen_hook.padding(3, 2),
     },
   })
