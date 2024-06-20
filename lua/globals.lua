@@ -1,12 +1,21 @@
 local globals = {
   -- Colorscheme
-  colorscheme = 'habamax',
+  -- colorscheme = 'habamax',
   -- colorscheme = 'material',
   -- colorscheme = 'solarized-osaka',
+  -- colorscheme = 'onedark',
+  -- colorscheme = 'monokai-pro',
+
+  -- Text filetypes
+  text_filetypes = { '*.txt', '*.tex', '*.typ', 'gitcommit', 'markdown' },
+  -- Html filetypes
+
+  colorscheme = 'PaperColor',
   -- Disabled plugins
   desiabled_plugins = {
     -- "editorconfig",
     'zip',
+    'gzip',
     'man',
     -- "matchit",
     -- "matchparen",
@@ -22,7 +31,6 @@ local globals = {
     'tutor',
   },
   disable_mouse = true,
-
 }
 
 _G.globals = globals

@@ -127,10 +127,11 @@ au('FileType', {
 -- wrap and check for spell in text filetypes
 au('FileType', {
   group = ag('wrap_spell'),
-  pattern = { '*.txt', '*.tex', '*.typ', 'gitcommit', 'markdown' },
+  pattern = _G.globals.text_filetypes,
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
+    vim.opt_local.colorcolumn = '100'
   end,
 })
 
@@ -159,3 +160,6 @@ au({ 'TermOpen' }, {
 })
 au({ 'BufEnter', 'WinEnter' }, { pattern = { 'term://*' }, group = c, command = [[startinsert]] })
 au({ 'BufLeave' }, { pattern = { 'term://*' }, group = c, command = [[stopinsert]] })
+
+--
+-- Lazy events
