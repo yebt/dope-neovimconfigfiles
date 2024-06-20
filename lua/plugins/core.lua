@@ -116,7 +116,7 @@ return {
   -- Jump and motions
   {
     'folke/flash.nvim',
-    event = 'VeryLazy',
+    -- event = 'VeryLazy',
     ---@type Flash.Config
     opts = {
       modes = {
@@ -175,6 +175,7 @@ return {
       'T',
       ';',
       ',',
+      '/','?'
     },
   },
 }
