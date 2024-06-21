@@ -15,6 +15,7 @@ require('bootstrap.lazy')
 -- require('bootstrap.mini-deps')
 
 -- LSP
+require('internal.lsp')
 
 -- Events to execute when the plugins boostraping
 vim.api.nvim_create_autocmd({ 'User' }, {
