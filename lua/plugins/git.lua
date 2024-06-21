@@ -3,7 +3,7 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     event = { 'VeryLazy' },
-    lazy = false,
+    -- lazy = false,
     opts = {
       signs = {
         add = { text = '┃' },
