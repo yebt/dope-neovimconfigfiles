@@ -135,6 +135,27 @@ au('FileType', {
   end,
 })
 
+-- FZF
+-- au('FileType', {
+--   pattern="fzf",
+--   -- group = ag('wrap_spell'),
+--   callback = function()
+--     vim.o.laststatus=0
+--     vim.o.showmode=false
+--     vim.o.ruler=false
+--   end,
+-- })
+--
+-- au('BufLeave', {
+--   pattern="fzf",
+--   -- group = ag('wrap_spell'),
+--   callback = function()
+--     vim.o.laststatus=0
+--     vim.o.showmode=false
+--     vim.o.ruler=false
+--   end,
+-- })
+
 --
 -- Better conceal level for json files
 au({ 'FileType' }, {
