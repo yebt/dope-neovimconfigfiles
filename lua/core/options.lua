@@ -105,6 +105,14 @@ local options = {
   textwidth = 100,
   -- colorcolumn = '100',
 
+  -- Format
+  formatoptions = {
+    t = true, -- Autowrap textwidth
+    c = true, -- Autowrapp comments with textwidth
+    q = true, -- Allow formating comments with gq
+    j = true, -- Where it makes sense, remove a comment leader when joining lines.
+  },
+
   list = true,
   listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←',
 
@@ -184,7 +192,7 @@ local options = {
     -- 'preview',-- show extra info in preview windows
     'popup', -- show extra info in a popup winndow
     'noinsert',
-    'noselect',
+    -- 'noselect',
     -- 'fuzzy' -- is not in nvim 10
   },
   pumheight = 15,
