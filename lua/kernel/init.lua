@@ -1,8 +1,9 @@
 -- Kernel
 local kernel = {}
 
+-- default copnfigs
 local default_opts = {
-  colorscheme = 'habamax',
+  colorscheme = 'dessert',
   text_filetypes = { '*.txt', '*.tex', '*.typ', 'gitcommit', 'markdown' },
 
   lazy = {
@@ -34,6 +35,21 @@ kernel.setup = function(opts)
   if not ok then
     vim.notify("Error when try to load colorscheme '" .. kernel.opts.colorscheme .. "'")
     vim.cmd.colorscheme('desert')
+  end
+
+  -- call leader
+  --- Maps
+  vim.g.mapleader = kernel.opts.leader or ' '
+  vim.g.maplocalleader = kernel.opts.localleader or ' '
+
+  -- Load the initial files
+  local initials = {
+    'options',
+    'autocmds',
+    'keymaps',
+  }
+  for _, file in ipairs(initials) do
+    require('kernel.' .. file)
   end
 end
 
