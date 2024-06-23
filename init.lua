@@ -1,5 +1,5 @@
 require('kernel').setup({
   colorscheme = 'habamax',
-  leader= ' ',
-  localleader = ','
+  leader = ' ',
+  localleader = ',',
 })
