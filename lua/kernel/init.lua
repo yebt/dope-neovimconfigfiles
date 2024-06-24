@@ -51,6 +51,27 @@ kernel.setup = function(opts)
   for _, file in ipairs(initials) do
     require('kernel.' .. file)
   end
+
+  vim.api.nvim_create_autocmd({ 'User' }, {
+    pattern = { 'PostPlugins' },
+    callback = function(args)
+      -- aditional filetype event on verylazy
+
+      vim.api.nvim_exec_autocmds('FileType', {})
+
+      local lazy_loads = {
+        -- 'keys',
+        -- 'events',
+        'status',
+        'lsp',
+      }
+      for _, file in pairs(lazy_loads) do
+        require('internal.' .. file)
+      end
+    end,
+  })
+
+  require('bootstrap.lazyinit')
 end
 
 -- return
