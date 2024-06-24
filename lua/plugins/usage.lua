@@ -6,6 +6,6 @@ return {
       'Tab',
       'Tabularize',
     },
-    ft="markdown"
+    ft = 'markdown',
   },
 }
