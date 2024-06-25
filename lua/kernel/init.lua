@@ -24,6 +24,7 @@ local default_opts = {
       'tohtml',
       'tohtml',
       'tutor',
+      'zipPlugin'
     },
   },
 }

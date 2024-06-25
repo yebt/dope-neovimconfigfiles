@@ -16,6 +16,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- vim.notify(vim.inspect(_G.kernel.opts))
+
 local lazy_options = {
   root = vim.fn.stdpath('data') .. '/lazy', -- directory where plugins will be installed
   defaults = {
@@ -167,7 +169,7 @@ local lazy_options = {
       ---@type string[]
       paths = {}, -- add any custom paths here that you want to includes in the rtp
       ---@type string[] list any plugins you want to disable here
-      disabled_plugins = _G.kernel.opts.desiabled_plugins or {},
+      disabled_plugins = _G.kernel.opts.lazy.desiabled_plugins or {},
     },
   },
   -- lazy can generate helptags from the headings in markdown readme files,
