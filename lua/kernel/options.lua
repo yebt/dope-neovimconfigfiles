@@ -189,7 +189,7 @@ local options = {
     'menuone',
     -- 'preview',-- show extra info in preview windows
     'popup', -- show extra info in a popup winndow
-    'noinsert',
+    -- 'noinsert',
     -- 'noselect',
     -- 'fuzzy' -- is not in nvim 10
   },
