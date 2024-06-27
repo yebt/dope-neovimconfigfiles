@@ -1,5 +1,6 @@
 require('kernel').setup({
-  colorscheme = 'habamax',
+  -- colorscheme = 'habamax',
+  colorscheme = 'tokyonight-night',
   leader = ' ',
   localleader = ',',
 })
