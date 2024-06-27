@@ -31,12 +31,6 @@ local default_opts = {
 
 kernel.setup = function(opts)
   kernel.opts = vim.tbl_deep_extend('force', default_opts, opts)
-  -- call bootstrap
-  local ok, r = pcall(vim.cmd.colorscheme, kernel.opts.colorscheme)
-  if not ok then
-    vim.notify("Error when try to load colorscheme '" .. kernel.opts.colorscheme .. "'")
-    vim.cmd.colorscheme('desert')
-  end
 
   -- call leader
   --- Maps
@@ -72,7 +66,14 @@ kernel.setup = function(opts)
     end,
   })
 
+  -- call bootstrap
   require('bootstrap.lazyinit')
+  -- colorscheme
+  local ok, r = pcall(vim.cmd.colorscheme, kernel.opts.colorscheme)
+  if not ok then
+    vim.notify("Error when try to load colorscheme '" .. kernel.opts.colorscheme .. "'")
+    vim.cmd.colorscheme('desert')
+  end
 end
 
 -- return
