@@ -15,8 +15,6 @@ return {
     --   {'"',mode="i"},
     -- },
     lazy = false,
-    config = function()
-      require('plugins.configs.minipairs')()
-    end,
+    config = require('plugins.configs.minipairs'),
   },
 }
