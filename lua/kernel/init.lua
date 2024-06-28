@@ -57,7 +57,7 @@ kernel.setup = function(opts)
       local lazy_loads = {
         -- 'keys',
         -- 'events',
-        'status',
+        -- 'status',
         'lsp',
       }
       for _, file in pairs(lazy_loads) do

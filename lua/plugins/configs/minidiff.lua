@@ -12,7 +12,7 @@ return function()
         style = 'sign',
 
         -- Signs used for hunks with 'sign' view
-        signs = { add = '▒', change = '▒', delete = '-' },
+        signs = { add = '+', change = '~', delete = '-' , },
 
         -- Priority of used visualization extmarks
         priority = 199,
