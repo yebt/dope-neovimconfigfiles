@@ -59,7 +59,7 @@ return function()
         linematch = 60,
 
         -- Whether to wrap around edges during hunk navigation
-        wrap_goto = false
+        wrap_goto = false,
       },
     }
   )
@@ -75,7 +75,7 @@ return function()
   local nrml = vim.api.nvim_get_hl(0, { name = 'Normal' })
   for _, v in ipairs(htoinvert) do
     local tmph = vim.api.nvim_get_hl(0, { name = v })
-    vim.api.nvim_set_hl(0, v, { fg = nrml.bg , bg = tmph.fg })
+    vim.api.nvim_set_hl(0, v, { fg = nrml.bg, bg = tmph.fg })
   end
   -- local mdsa = vim.api.nvim_get_hl(0, { name = 'MiniDiffSignAdd' })
   -- local mdsc = vim.api.nvim_get_hl(0, { name = 'MiniDiffSignChange' })

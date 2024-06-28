@@ -40,7 +40,7 @@ return function()
     },
 
     on_attach = function(bufnr)
-      vim.notify("loaded")
+      vim.notify('loaded')
       local gitsigns = require('gitsigns')
 
       local function map(mode, l, r, opts)
@@ -70,7 +70,7 @@ return function()
       -- map('n', '<leader>hs', gitsigns.stage_hunk)
       -- map('n', '<leader>hr', gitsigns.reset_hunk)
       -- map('v', '<leader>hs', function()
-        -- gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+      -- gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
       -- end)
       -- map('v', '<leader>hr', function()
       --   gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
