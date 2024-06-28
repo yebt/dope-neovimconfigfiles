@@ -1,5 +1,6 @@
 -- help to search
 return {
+  -- Pickers
   {
     'echasnovski/mini.pick',
     version = false,
@@ -18,7 +19,16 @@ return {
     cmd = { 'Pick' },
     keys = {
       { '<C-p>', '<cmd>Pick files<cr>', desc = 'Pick files' },
+      { '<m-x>', '<cmd>Pick buffers<cr>', desc = 'Pick visit path' },
+      -- { '<C-p>', '<cmd>Pick files<cr>', desc = 'Pick files' },
     },
     config = require('plugins.configs.minipick'),
   },
+
+  -- Fuzzi
+  -- {
+  --   'echasnovski/mini.fuzzy',
+  --   version = false,
+  --   config = require("plugins.confgis.minifuzzy")
+  -- },
 }

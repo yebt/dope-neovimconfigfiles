@@ -39,4 +39,12 @@ return {
     event = 'VeryLazy',
     config = require('plugins.configs.mininotify'),
   },
+
+  -- Clue Key Wich
+  -- {
+  --   'echasnovski/mini.clue',
+  --   version = false,
+  --   event ="VeryLazy",
+  --   config = require('plugins.configs.miniclue')
+  -- },
 }
