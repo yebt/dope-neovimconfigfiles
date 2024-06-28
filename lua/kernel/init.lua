@@ -42,6 +42,7 @@ kernel.setup = function(opts)
     'options',
     'autocmds',
     'keymaps',
+    'lsp',
   }
   for _, file in ipairs(initials) do
     require('kernel.' .. file)
@@ -57,8 +58,8 @@ kernel.setup = function(opts)
       local lazy_loads = {
         -- 'keys',
         -- 'events',
-        -- 'status',
-        'lsp',
+        'status',
+        -- 'lsp',
       }
       for _, file in pairs(lazy_loads) do
         require('internal.' .. file)
