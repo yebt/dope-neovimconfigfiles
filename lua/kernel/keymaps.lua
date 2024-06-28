@@ -17,7 +17,8 @@ mps('n', '<leader>a', 'ggVG', { silent = true, desc = 'select all content' })
 -- yanc
 mps('x', '<leader>y', '"+y', { silent = true, desc = 'Copy selection insude clipboard' })
 mps('n', '<leader>Y', '"+y$', { silent = true, desc = 'Copy from position forward' })
-mps('n', '<leader>yy', '"+yy', { silent = true, desc = 'Copy the lines' })
+-- mps('n', '<leader>yy', '"+yy', { silent = true, desc = 'Copy the lines' })
+mps('n', '<leader>y', '"+y', { silent = true, desc = 'Copy the lines' })
 -- NoH
 mps({ 'n', 'x' }, '<leader>h', ':noh<CR>', { silent = true, desc = 'Toggle highlight of search' })
 
