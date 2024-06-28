@@ -19,10 +19,10 @@ return function()
       { mode = 'x', keys = "'" },
       { mode = 'x', keys = '`' },
 
-      { mode = 'n', keys = 'v'},
-      { mode = 'n', keys = 'c'},
-      { mode = 'n', keys = 's'},
-      { mode = 'n', keys = 'x'},
+      { mode = 'n', keys = 'v' },
+      { mode = 'n', keys = 'c' },
+      { mode = 'n', keys = 's' },
+      { mode = 'n', keys = 'x' },
 
       -- Registers
       { mode = 'n', keys = '"' },

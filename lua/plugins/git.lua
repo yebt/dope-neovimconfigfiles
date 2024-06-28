@@ -12,7 +12,7 @@ return {
   {
     'echasnovski/mini.diff',
     version = false,
-    event = "VeryLazy",
+    event = 'VeryLazy',
     config = require('plugins.configs.minidiff'),
   },
 }

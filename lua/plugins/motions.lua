@@ -34,7 +34,7 @@ return {
           })
         end,
         mode = { 'x', 'n' },
-        desc = "Show diagnostic at target"
+        desc = 'Show diagnostic at target',
       },
 
       -- Show diagnostics at target, without changing cursor position, also highlights diagnostics
@@ -61,7 +61,7 @@ return {
           })
         end,
         mode = { 'x', 'n' },
-        desc = "show diagnostic advanced"
+        desc = 'show diagnostic advanced',
       },
       -- Match beginning of words only
       -- {
@@ -110,7 +110,7 @@ return {
           })
         end,
         mode = { 'x', 'n' },
-        desc = "Jump to line"
+        desc = 'Jump to line',
       },
       -- Hop
       {
@@ -161,7 +161,7 @@ return {
           })
         end,
         mode = { 'x', 'n' },
-        desc = "Hop"
+        desc = 'Hop',
       },
     },
     opts = {

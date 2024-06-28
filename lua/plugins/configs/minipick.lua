@@ -118,9 +118,9 @@ return function()
     for indx, el in ipairs(items) do
       local els = vim.split(el, ' ')
       local name = els[1]
-      local path = els[2] and "  -> " .. els[2] or ""
+      local path = els[2] and '  -> ' .. els[2] or ''
       path = path:gsub('%%', '/')
-      table.insert(fitems, name .. path )
+      table.insert(fitems, name .. path)
     end
     -- table.sort(fitems)
     local source = { items = fitems, name = 'Sessions', choose = function() end }
