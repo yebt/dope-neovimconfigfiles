@@ -12,7 +12,7 @@ return function()
         style = 'sign',
 
         -- Signs used for hunks with 'sign' view
-        signs = { add = '+', change = '~', delete = '-' , },
+        signs = { add = '+', change = '~', delete = '-' },
 
         -- Priority of used visualization extmarks
         priority = 199,
@@ -59,8 +59,45 @@ return function()
         linematch = 60,
 
         -- Whether to wrap around edges during hunk navigation
-        wrap_goto = false,
+        wrap_goto = false
       },
     }
   )
+
+  -- highlight
+  --
+  local htoinvert = {
+    'MiniDiffSignAdd',
+    'MiniDiffSignChange',
+    'MiniDiffSignDelete',
+  }
+
+  local nrml = vim.api.nvim_get_hl(0, { name = 'Normal' })
+  for _, v in ipairs(htoinvert) do
+    local tmph = vim.api.nvim_get_hl(0, { name = v })
+    vim.api.nvim_set_hl(0, v, { fg = nrml.bg , bg = tmph.fg })
+  end
+  -- local mdsa = vim.api.nvim_get_hl(0, { name = 'MiniDiffSignAdd' })
+  -- local mdsc = vim.api.nvim_get_hl(0, { name = 'MiniDiffSignChange' })
+  -- local mdsd = vim.api.nvim_get_hl(0, { name = 'MiniDiffSignDelete' })
+  -- vim.notify(vim.inspect(mdsd))
+
+  -- vim.api.nvim_set_hl(0, 'Pmenu', { fg = '#C5CDD9', bg = '#22252A' })
+
+  -- local format_summary = function(data)
+  --   local summary = vim.b[data.buf].minidiff_summary
+  --   local t = {}
+  --   if summary.add > 0 then
+  --     table.insert(t, '+' .. summary.add)
+  --   end
+  --   if summary.change > 0 then
+  --     table.insert(t, '~' .. summary.change)
+  --   end
+  --   if summary.delete > 0 then
+  --     table.insert(t, '-' .. summary.delete)
+  --   end
+  --   vim.b[data.buf].minidiff_summary_string = table.concat(t, ' ')
+  -- end
+  -- local au_opts = { pattern = 'MiniDiffUpdated', callback = format_summary }
+  -- vim.api.nvim_create_autocmd('User', au_opts)
 end
