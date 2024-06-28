@@ -185,3 +185,59 @@ au({ 'BufLeave' }, { pattern = { 'term://*' }, group = c, command = [[stopinsert
 
 --
 -- Lazy events
+
+--
+-- List buffers
+
+-- local view_group = ag('_auto_list_buffs')
+-- -- Make view
+-- au({ 'BufEnter' }, {
+--   desc = 'Internal List the buffer',
+--   group = view_group,
+--   callback = function(ev)
+--     function indexOf(array, value)
+--       for i, v in ipairs(array) do
+--         if v == value then
+--           return i
+--         end
+--       end
+--       return nil
+--     end
+--
+--     -- make a table
+--     if not vim.g._auto_list_buffs then
+--       vim.g._auto_list_buffs = {}
+--       vim.g._auto_set_buffs = {}
+--     end
+--     local buf_list = vim.g._auto_list_buffs
+--     local buf_set = vim.g._auto_set_buffs
+--     local buf = ev['buf']
+--
+--     if not buf then
+--       return
+--     end
+--     local key = "#" .. buf
+--     -- check is in list
+--     if buf_set[key] then
+--       local buf_pos = indexOf(buf_list, buf)
+--       table.remove(buf_list, buf_pos)
+--     end
+--
+--     -- vim.notify(vim.inspect(buf_set))
+--     buf_set[key] = true
+--     -- buf_list[1] = buf
+--     -- table.insert(buf_set, buf, true)
+--     table.insert(buf_list, 1, buf)
+--     -- vim.notify(vim.inspect(ev))
+--
+--     vim.g._auto_list_buffs = buf_list
+--     vim.g._auto_set_buffs = buf_set
+--   end,
+-- })
+-- vim.keymap.set('n', "<leader>'", function()
+--   if not vim.g._auto_list_buffs then
+--     vim.notify('No bls')
+--   else
+--     vim.notify(vim.inspect({ vim.g._auto_list_buffs, vim.g._auto_set_buffs }))
+--   end
+-- end, { silent = true })
