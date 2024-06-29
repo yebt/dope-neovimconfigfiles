@@ -75,12 +75,13 @@ local options = {
   -- CMD
   cmdheight = 1,
   cmdwinheight = 8,
-  showcmd = true,
+  -- showcmd = true,
+  showmode = false,
 
   shortmess = {
     T = true,
     o = true,
-    O = tre,
+    O = true,
     F = true,
     -- c = true,
     a = true,
@@ -121,8 +122,7 @@ local options = {
   -- Buffer
   hidden = true,
   magic = true,
-  confirm = true,
-  clipboard = 'unnamed',
+  -- confirm = true,
 
   -- Search
   ignorecase = true,
@@ -187,10 +187,10 @@ local options = {
   completeopt = {
     'menu',
     'menuone',
-    -- 'preview',-- show extra info in preview windows
-    'popup', -- show extra info in a popup winndow
+    -- 'preview',-- show extra info in preview windows -- not complatible with preview
+    -- 'popup', -- show extra info in a popup winndow
     'noinsert',
-    -- 'noselect',
+    'noselect',
     -- 'fuzzy' -- is not in nvim 10
   },
   pumheight = 15,

@@ -27,6 +27,10 @@ local default_opts = {
       'zipPlugin',
     },
   },
+
+  plugins =  {
+    completion = nil
+  }
 }
 
 kernel.setup = function(opts)

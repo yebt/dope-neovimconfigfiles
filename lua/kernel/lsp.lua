@@ -5,6 +5,7 @@ local mapopts = function(desc)
   return { noremap = true, silent = true, desc = desc }
 end
 
+
 -- Diagnostic configs
 vim.diagnostic.config({
   underline = true,
@@ -22,6 +23,71 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = false,
 })
+
+
+-- local signs = { Error = '󰅚 ', Warn = '󰀪 ', Hint = '󰌶 ', Info = ' ' }
+-- for type, icon in pairs(signs) do
+--   local hl = 'DiagnosticSign' .. type
+--   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+-- end
+--
+-- local icons = {
+--   Class = ' ',
+--   Color = ' ',
+--   Constant = ' ',
+--   Constructor = ' ',
+--   Enum = ' ',
+--   EnumMember = ' ',
+--   Field = '󰄶 ',
+--   File = ' ',
+--   Folder = ' ',
+--   Function = ' ',
+--   Interface = '󰜰',
+--   Keyword = '󰌆 ',
+--   Method = 'ƒ ',
+--   Module = '󰏗 ',
+--   Property = ' ',
+--   Snippet = '󰘍 ',
+--   Struct = ' ',
+--   Text = ' ',
+--   Unit = ' ',
+--   Value = '󰎠 ',
+--   Variable = ' ',
+-- }
+-- local  codicons = {
+--     Text = "",
+--     Method = "",
+--     Function = "",
+--     Constructor = "",
+--     Field = "",
+--     Variable = "",
+--     Class = "",
+--     Interface = "",
+--     Module = "",
+--     Property = "",
+--     Unit = "",
+--     Value = "",
+--     Enum = "",
+--     Keyword = "",
+--     Snippet = "",
+--     Color = "",
+--     File = "",
+--     Reference = "",
+--     Folder = "",
+--     EnumMember = "",
+--     Constant = "",
+--     Struct = "",
+--     Event = "",
+--     Operator = "",
+--     TypeParameter = "",
+--   }
+-- local kinds = vim.lsp.protocol.CompletionItemKind
+--   for i, kind in ipairs(kinds) do
+--     -- kinds[i] = codicons[kind] or kind
+--   local icon = codicons[kind]
+--   kinds[i] = icon and icon .. " " .. kind or kind
+-- end
+
 
 --
 local toggle_lsp_client = function()
@@ -214,7 +280,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', '<space>lwl', function()
       print(vim.inspect(vlspb.list_workspace_folders()))
     end, mapopts('LSP Workspace list folders'))
+
+    -- correction
   end,
 
-  --
 })
