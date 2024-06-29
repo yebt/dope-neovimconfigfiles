@@ -20,6 +20,10 @@ vim.opt.rtp:prepend(lazypath)
 
 local lazy_options = {
   root = vim.fn.stdpath('data') .. '/lazy', -- directory where plugins will be installed
+  rocks = {
+    enabled = false,
+    hererocks = false,
+  },
   defaults = {
     lazy = true, -- should plugins be lazy-loaded?
     version = nil,
