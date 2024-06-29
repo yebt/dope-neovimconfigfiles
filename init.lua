@@ -3,4 +3,9 @@ require('kernel').setup({
   colorscheme = 'tokyonight-night',
   leader = ' ',
   localleader = ',',
+  plugins =  {
+    completion = 'epo',
+    -- completion = 'cmp',
+    -- completion = 'minicompletion',
+  }
 })
