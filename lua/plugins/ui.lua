@@ -33,12 +33,19 @@ return {
   },
 
   -- Notifications
-  -- {
-  --   'echasnovski/mini.notify',
-  --   version = false,
-  --   event = 'VeryLazy',
-  --   config = require('plugins.configs.mininotify'),
-  -- },
+  {
+    'echasnovski/mini.notify',
+    version = false,
+    event = 'VeryLazy',
+    cond = _G.kernel.opts.plugins.notification == 'mininotify',
+    config = require('plugins.configs.mininotify'),
+  },
+  {
+    'vigoux/notifier.nvim',
+    lazy = false,
+    cond = _G.kernel.opts.plugins.notification == 'notifier',
+    config = require('plugins.configs.notifier'),
+  },
 
   -- Clue Key Wich
   -- {
@@ -46,5 +53,22 @@ return {
   --   version = false,
   --   event ="VeryLazy",
   --   config = require('plugins.configs.miniclue')
+  -- },
+
+  -- Scope
+  {
+    "nvimdev/indentmini.nvim",
+    event = "VeryLazy",
+    config = require("lua.plugins.configs.indentmini")
+    -- config  =
+  },
+
+  -- indent line
+  -- {
+  --   "nvimdev/modeline.nvim",
+  --   event = "VeryLazy",
+  --   -- lazy = false,
+  --
+  --   config = require("lua.plugins.configs.modeline")
   -- },
 }
