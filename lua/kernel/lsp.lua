@@ -5,7 +5,6 @@ local mapopts = function(desc)
   return { noremap = true, silent = true, desc = desc }
 end
 
-
 -- Diagnostic configs
 vim.diagnostic.config({
   underline = true,
@@ -23,7 +22,6 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = false,
 })
-
 
 -- local signs = { Error = '󰅚 ', Warn = '󰀪 ', Hint = '󰌶 ', Info = ' ' }
 -- for type, icon in pairs(signs) do
@@ -87,7 +85,6 @@ vim.diagnostic.config({
 --   local icon = codicons[kind]
 --   kinds[i] = icon and icon .. " " .. kind or kind
 -- end
-
 
 --
 local toggle_lsp_client = function()
@@ -283,5 +280,4 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- correction
   end,
-
 })

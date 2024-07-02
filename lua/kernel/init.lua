@@ -28,9 +28,9 @@ local default_opts = {
     },
   },
 
-  plugins =  {
-    completion = nil
-  }
+  plugins = {
+    completion = nil,
+  },
 }
 
 kernel.setup = function(opts)
@@ -66,7 +66,7 @@ kernel.setup = function(opts)
         -- 'lsp',
       }
       if kernel.opts.plugins.satatusline == 'builtin' then
-        table.insert(lazy_loads,'status')
+        table.insert(lazy_loads, 'status')
       end
 
       for _, file in pairs(lazy_loads) do
