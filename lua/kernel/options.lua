@@ -83,7 +83,7 @@ local options = {
     o = true,
     O = true,
     F = true,
-    -- c = true,
+    c = true, -- now show autocmpletion print
     a = true,
   },
   --
@@ -123,7 +123,6 @@ local options = {
   hidden = true,
   magic = true,
   -- confirm = true,
-
   -- Search
   ignorecase = true,
   wildignorecase = true, -- ignorecase files

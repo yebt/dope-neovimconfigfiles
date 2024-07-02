@@ -207,9 +207,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     --overwrite_format2
     map('n', '<leader>lf', function()
       -- Format all
-      -- vim.lsp.buf.format({ async = true })
+      vim.lsp.buf.format({ async = true })
       -- Select
-      require('utils.lsp').overwrite_format2()
+      -- require('utils.lsp').overwrite_format2()
     end, mapopts('LSP Format'))
     --# textDocument/hover
     -- TODO: some plugin

@@ -33,12 +33,12 @@ return {
   },
 
   -- Notifications
-  {
-    'echasnovski/mini.notify',
-    version = false,
-    event = 'VeryLazy',
-    config = require('plugins.configs.mininotify'),
-  },
+  -- {
+  --   'echasnovski/mini.notify',
+  --   version = false,
+  --   event = 'VeryLazy',
+  --   config = require('plugins.configs.mininotify'),
+  -- },
 
   -- Clue Key Wich
   -- {

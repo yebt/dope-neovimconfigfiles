@@ -62,9 +62,13 @@ kernel.setup = function(opts)
       local lazy_loads = {
         -- 'keys',
         -- 'events',
-        'status',
+        -- 'status',
         -- 'lsp',
       }
+      if kernel.opts.plugins.satatusline == 'builtin' then
+        table.insert(lazy_loads,'status')
+      end
+
       for _, file in pairs(lazy_loads) do
         require('internal.' .. file)
       end
@@ -74,7 +78,7 @@ kernel.setup = function(opts)
   -- call bootstrap
   require('bootstrap.lazyinit')
   -- colorscheme
-  local ok, r = pcall(vim.cmd.colorscheme, kernel.opts.colorscheme)
+  local ok, _ = pcall(vim.cmd.colorscheme, kernel.opts.colorscheme)
   if not ok then
     vim.notify("Error when try to load colorscheme '" .. kernel.opts.colorscheme .. "'")
     vim.cmd.colorscheme('desert')
