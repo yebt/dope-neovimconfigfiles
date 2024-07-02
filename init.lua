@@ -5,12 +5,12 @@ require('kernel').setup({
   leader = ' ',
   localleader = ',',
   plugins = {
-    satatusline = "builtin",
+    satatusline = 'builtin',
     completion = 'epo',
     -- completion = 'cmp',
     -- completion = 'minicompletion',
 
     -- notification = "notifier",
-    -- notification = "mininotify"
-  }
+    notification = 'mininotify',
+  },
 })

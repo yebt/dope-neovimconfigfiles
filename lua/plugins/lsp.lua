@@ -64,11 +64,29 @@ return {
   -- Formatters and Linters
   {
     'nvimdev/guard.nvim',
-    event = 'LspAttach',
+    event = { 'LspAttach', 'VeryLazy' },
     -- Builtin configuration, optional
     dependencies = {
       'nvimdev/guard-collection',
     },
-    config = require("plugins.configs.guard")
+    config = require('plugins.configs.guard'),
+  },
+
+  -- Trouble
+  {
+    'folke/trouble.nvim',
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = 'Trouble',
+  },
+
+  -- Saga
+  {
+    'nvimdev/lspsaga.nvim',
+    event = 'LspAttach',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter', -- optional
+      'nvim-tree/nvim-web-devicons',     -- optional
+    },
+    config = require('plugins.configs.saga'),
   },
 }
