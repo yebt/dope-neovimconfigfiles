@@ -2,8 +2,8 @@ return function()
   local tokyonight = require('tokyonight')
 
   local vt = {
-    bg = "#1e1e1e",
-    bg_dark = "#141414",
+    bg = '#1e1e1e',
+    bg_dark = '#141414',
   }
   local vcolors = {
     _name = 'tokyonight_vitesse',

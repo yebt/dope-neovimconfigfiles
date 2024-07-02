@@ -1,3 +1,3 @@
-return function ()
-  require("modeline").setup({})
+return function()
+  require('modeline').setup({})
 end

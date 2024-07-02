@@ -19,19 +19,18 @@ return {
     },
   },
   {
-    "craftzdog/solarized-osaka.nvim",
+    'craftzdog/solarized-osaka.nvim',
   },
   {
-    "marko-cerovac/material.nvim"
+    'marko-cerovac/material.nvim',
   },
   {
-    "loctvl842/monokai-pro.nvim",
-    config = require("plugins.configs.monokaipro")
+    'loctvl842/monokai-pro.nvim',
+    config = require('plugins.configs.monokaipro'),
   },
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    config = require("plugins.configs.catppuccin")
-  }
-
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    config = require('plugins.configs.catppuccin'),
+  },
 }

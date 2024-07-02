@@ -30,9 +30,9 @@ return function()
       -- common use-cases are custom filtering and sorting. You can use
       -- default `process_items` as `MiniCompletion.default_process_items()`.
       -- process_items = --<function: filters out snippets; sorts by LSP specs>,
-      process_items = function(items,base)
+      process_items = function(items, base)
         -- vim.notify(vim.inspect(items))
-        local kitems =vim.tbl_map(function(val)
+        local kitems = vim.tbl_map(function(val)
           -- kind
           -- insertText
           if val.kind == 15 then
@@ -42,10 +42,10 @@ return function()
             vim.notify(vim.inspect(val))
           end
           return val
-        end,items)
+        end, items)
         -- table.sort(kitems, function(a, b) return (a.sortText or a.label) < (b.sortText or b.label) end)
         return items
-      end
+      end,
     },
 
     -- Fallback action. It will always be run in Insert mode. To use Neovim's
@@ -62,7 +62,7 @@ return function()
 
     -- Whether to set Vim's settings for better experience (modifies
     -- `shortmess` and `completeopt`)
-    set_vim_settings = true
+    set_vim_settings = true,
   }
 
   --

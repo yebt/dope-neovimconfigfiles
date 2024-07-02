@@ -12,9 +12,9 @@ return function()
 
   local default_settings = {}
 
--- Borders
--- Specify how the border looks like
-local border = {
+  -- Borders
+  -- Specify how the border looks like
+  local border = {
     { '┌', 'FloatBorder' },
     { '─', 'FloatBorder' },
     { '┐', 'FloatBorder' },
@@ -23,15 +23,14 @@ local border = {
     { '─', 'FloatBorder' },
     { '└', 'FloatBorder' },
     { '│', 'FloatBorder' },
-}
+  }
 
--- Add the border on hover and on signature help popup window
-local handlers = {
+  -- Add the border on hover and on signature help popup window
+  local handlers = {
     ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
     ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
     -- ['window/showDocument'] = vim.lsp.with(vim.lsp.util.show_document, { border = "rounded" }),
-}
-
+  }
 
   default_settings.handlers = handlers
 
