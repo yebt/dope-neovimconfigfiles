@@ -66,8 +66,8 @@ return function()
     if vim.fn.pumvisible() == 1 then
       return '<C-y>'
     end
-    return '<cr>'
-    -- return minipairs.cr()
+    -- return '<cr>'
+    return minipairs.cr()
   end, { expr = true, noremap = true })
 
   ----------
