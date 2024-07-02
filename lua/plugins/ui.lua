@@ -59,7 +59,7 @@ return {
   {
     "nvimdev/indentmini.nvim",
     event = "VeryLazy",
-    config = require("lua.plugins.configs.indentmini")
+    config = require("plugins.configs.indentmini")
     -- config  =
   },
 
@@ -69,6 +69,13 @@ return {
   --   event = "VeryLazy",
   --   -- lazy = false,
   --
-  --   config = require("lua.plugins.configs.modeline")
+  --   config = require("plugins.configs.modeline")
   -- },
+
+  -- Colorized
+  {
+    "NvChad/nvim-colorizer.lua",
+    cmd = {"ColorizerToggle"},
+    config = require("plugins.configs.colorizer")
+  },
 }
