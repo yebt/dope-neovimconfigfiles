@@ -39,9 +39,9 @@ return {
             node_decremental = 'grm',
           },
         },
-        indent = {
-          enable = true,
-        },
+        -- indent = {
+        --   enable = true,
+        -- },
         -- rainbow = {
         --   enable = true,
         --   -- list of languages you want to disable the plugin for
