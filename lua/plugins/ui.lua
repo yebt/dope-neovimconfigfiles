@@ -60,7 +60,6 @@ return {
     'nvimdev/indentmini.nvim',
     event = 'VeryLazy',
     config = require('plugins.configs.indentmini'),
-    -- config  =
   },
 
   -- indent line
@@ -80,26 +79,26 @@ return {
   },
 
   -- Reactive
-  {
-    'rasulomaroff/reactive.nvim',
-    event = 'VeryLazy',
-    opts = {
-      builtin = {
-        cursorline = true,
-        cursor = true,
-        modemsg = true,
-      },
-    },
-  },
+  -- {
+  --   'rasulomaroff/reactive.nvim',
+  --   event = 'VeryLazy',
+  --   opts = {
+  --     builtin = {
+  --       cursorline = true,
+  --       cursor = true,
+  --       modemsg = true,
+  --     },
+  --   },
+  -- },
 
   -- Rainbow pairs
-  {
-    'HiPhish/rainbow-delimiters.nvim',
-    event = 'VeryLazy',
-    config = function()
-      require('rainbow-delimiters.setup').setup({})
-    end,
-  },
+  -- {
+  --   'HiPhish/rainbow-delimiters.nvim',
+  --   event = 'VeryLazy',
+  --   config = function()
+  --     require('rainbow-delimiters.setup').setup({})
+  --   end,
+  -- },
 
   -- WhicKey
   {
