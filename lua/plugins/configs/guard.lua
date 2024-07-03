@@ -2,29 +2,29 @@ return function()
   local ft = require('guard.filetype')
   local linter = require('guard.lint')
 
-
   --- Markdownlint-cli
   -- try to add the linter and the formatter
   --- Formatter
-  ft('markdown')
-      :lint({
-        fn = function(buf, range)
-          vim.system({
-              "mardownlint",
-              "--stdin"
-            }, {},
-            vim.schedule_wrap(function(result)
-              -- vim.notify(vim.inspect(result))
-              if result.code ~= 0 then
-                vim.notify(result.stderr, vim.log.levels.ERROR)
-                return
-              end
-              -- reload changes
-              vim.cmd([[silent e]])
-            end)
-          )
-        end
-      })
+  ft('markdown'):lint({
+    fn = function(buf, range)
+      vim.system(
+        {
+          'mardownlint',
+          '--stdin',
+        },
+        {},
+        vim.schedule_wrap(function(result)
+          -- vim.notify(vim.inspect(result))
+          if result.code ~= 0 then
+            vim.notify(result.stderr, vim.log.levels.ERROR)
+            return
+          end
+          -- reload changes
+          vim.cmd([[silent e]])
+        end)
+      )
+    end,
+  })
   -- :fmt({
   --   fn = function(buf, range)
   --     if vim.fn.has('nvim-0.10') ~= 1 then
