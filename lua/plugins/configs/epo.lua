@@ -5,7 +5,7 @@ return function()
   -- use default settings
   require('epo').setup({
     -- fuzzy match
-    fuzzy = true,
+    -- fuzzy = true,
     -- increase this value can aviod trigger complete when delete character.
     -- debounce = 50,
     debounce = 1000,
@@ -14,34 +14,46 @@ return function()
     -- border for lsp signature popup, :h nvim_open_win
     signature_border = 'rounded',
     -- lsp kind formatting, k is kind string "Field", "Struct", "Keyword" etc.
-    -- kind_format = function(k)
-    --   return k
-    -- end,
+    kind_format = function(k)
+      -- vim.notify(vim.inspect(k))
+      return k
+    end,
   })
 
   ---------------- MAPS -------------------------
   -- Expand snippet
-  vim.keymap.set('i', '<TAB>', function()
-    if vim.fn.pumvisible() == 1 then
-      return '<C-n>'
-      -- elseif vim.snippet.jumpable(1) then
-    elseif vim.snippet.active({ direction = 1 }) then
+  vim.keymap.set({ 'i', 's' }, '<TAB>', function()
+    if vim.snippet.active({ direction = 1 }) then
       return '<cmd>lua vim.snippet.jump(1)<cr>'
     else
       return '<TAB>'
     end
+
+    -- if vim.fn.pumvisible() == 1 then
+    --   return '<C-n>'
+    --   -- elseif vim.snippet.jumpable(1) then
+    -- elseif vim.snippet.active({ direction = 1 }) then
+    --   return '<cmd>lua vim.snippet.jump(1)<cr>'
+    -- else
+    --   return '<TAB>'
+    -- end
   end, { expr = true })
 
   -- jump -1
-  vim.keymap.set('i', '<S-TAB>', function()
-    if vim.fn.pumvisible() == 1 then
-      return '<C-p>'
-      -- elseif vim.snippet.jumpable(-1) then
-    elseif vim.snippet.active({ direction = -1 }) then
-      return '<cmd>lua vim.snippet.jump(-1)<CR>'
+  vim.keymap.set({ 'i', 's' }, '<S-TAB>', function()
+    if vim.snippet.active({ direction = -1 }) then
+      return '<cmd>lua vim.snippet.jump(-1)<cr>'
     else
-      return '<S-TAB>'
+      return '<TAB>'
     end
+    -- if vim.fn.pumvisible() == 1 then
+    --   return '<C-p>'
+    --   -- elseif vim.snippet.jumpable(-1) then
+    -- elseif vim.snippet.active({ direction = -1 }) then
+    --   return '<cmd>lua vim.snippet.jump(-1)<CR>'
+    -- else
+    --   return '<S-TAB>'
+    -- end
   end, { expr = true })
 
   -- cancel completion
