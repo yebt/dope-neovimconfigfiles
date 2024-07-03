@@ -14,9 +14,9 @@ return function()
     -- border for lsp signature popup, :h nvim_open_win
     signature_border = 'rounded',
     -- lsp kind formatting, k is kind string "Field", "Struct", "Keyword" etc.
-    kind_format = function(k)
-      return k
-    end,
+    -- kind_format = function(k)
+    --   return k
+    -- end,
   })
 
   ---------------- MAPS -------------------------
@@ -90,5 +90,5 @@ return function()
   -- end
 
   -- the default completetopt set by epo
-  vim.opt.completeopt = 'menu,menuone,noselect,noinsert,popup'
+  -- vim.opt.completeopt = 'menu,menuone,noselect,noinsert,popup'
 end
