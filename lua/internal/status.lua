@@ -30,8 +30,26 @@ _G.guard_status_w = function()
   end
   return ''
 end
+
 --
-stts_str = padding
+_G.lsp_clients = function()
+  local lspcs = vim.lsp.get_clients({ bufnr = 0 })
+  if #lspcs == 0 then
+    return ''
+  end
+  local names = ''
+  for _, cl in ipairs(lspcs) do
+    if #names == 0 then
+      names = cl.name
+    else
+      names = names .. ', ' .. cl.name
+    end
+  end
+  return '[ ' .. names .. ' ]'
+end
+
+--
+local stts_str = padding
   .. "%1*%{ v:lua.append_v(get(b:,'gitsigns_head',''),'  [', ']')}%0*"
   -- .. "%1*%{ v:lua.append_v(get(b:,'walo_git_head_cwd',''),'  [', ']')}%0*"
   -- .. "%{ get(g:, 'walo_git_head_cwd','') }!"
@@ -40,6 +58,8 @@ stts_str = padding
   .. '%{v:lua.guard_status_w() }'
   .. separator
   -- diagnostic
+  -- servers
+  .. '%{v:lua.lsp_clients()}'
   .. separator
   --.. '%2*%{v:lua.Lazyupdates()}%0*' -- Updates
   .. '%2*%{v:lua.lazyupdates()}%0*'
