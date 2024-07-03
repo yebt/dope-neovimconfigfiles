@@ -1,38 +1,66 @@
 return function()
   local ft = require('guard.filetype')
+  local linter = require('guard.lint')
+
 
   --- Markdownlint-cli
   -- try to add the linter and the formatter
   --- Formatter
-  ft('markdown'):fmt({
-    fn = function(buf, range)
-      if vim.fn.has('nvim-0.10') ~= 1 then
-        vim.notify('[guard-manual]: mardownlint uses vim.system introduced in nvim 0.10', 4)
-        return
-      end
-
-      vim.system({ 'echo', 'hello' }, {}, function(obj)
-        vim.notify(vim.inspect(obj), 3)
-      end)
-      -- local handler = vim.system({
-      --   'markdownlint',
-      --   '--fix',
-      --   vim.api.nvim_buf_get_name(buf),
-      -- }, {
-      --   on_exit = function(obj)
-      --     vim.notify(vim.inspect(obj))
-      --   end,
-      -- })
-    end,
-    -- cmd = 'markdownlint',
-    -- args = {
-    --   '--fix',
-    -- },
-    -- fname = true,
-    -- parse = function(...)
-    --   return "uwu"
-    -- end
-  })
+  ft('markdown')
+      :lint({
+        fn = function(buf, range)
+          vim.system({
+              "mardownlint",
+              "--stdin"
+            }, {},
+            vim.schedule_wrap(function(result)
+              -- vim.notify(vim.inspect(result))
+              if result.code ~= 0 then
+                vim.notify(result.stderr, vim.log.levels.ERROR)
+                return
+              end
+              -- reload changes
+              vim.cmd([[silent e]])
+            end)
+          )
+        end
+      })
+  -- :fmt({
+  --   fn = function(buf, range)
+  --     if vim.fn.has('nvim-0.10') ~= 1 then
+  --       vim.notify('[guard-manual]: mardownlint uses vim.system introduced in nvim 0.10', 4)
+  --       return
+  --     end
+  --     vim.system(
+  --       {
+  --         'markdownlint',
+  --         '--fix',
+  --         vim.api.nvim_buf_get_name(buf),
+  --       },
+  --       {},
+  --       vim.schedule_wrap(function(result)
+  --         -- vim.notify(vim.inspect(result))
+  --         if result.code ~= 0 then
+  --           vim.notify(result.stderr, vim.log.levels.ERROR)
+  --           return
+  --         end
+  --         -- reload changes
+  --         vim.cmd([[silent e]])
+  --       end)
+  --     )
+  --   end,
+  -- })
+  -- :lint({
+  --   cmd = 'echo',
+  --   args = { '-s' },
+  --   -- stdin = true,
+  --   fname = false,
+  --   parse = function(result, bufnr)
+  --     print(vim.inspect({ result, bufnr }))
+  --     local diags = {}
+  --     return diags
+  --   end
+  -- })
 
   -- Builting
   ft('lua'):fmt('lsp'):append('stylua')
@@ -56,6 +84,7 @@ return function()
   })
 
   local is_formatting = false
+  local group = require('guard.events').group
 
   _G.guard_status = function()
     -- display icon if auto-format is enabled for current buffer
@@ -64,7 +93,13 @@ return function()
       buffer = 0,
     })
     if vim.bo.ft and #au ~= 0 then
-      return is_formatting and '' or ''
+      local bufau = vim.api.nvim_get_autocmds({ group = group, event = 'BufWritePre', buffer = 0 })
+      if #bufau == 0 then
+        return ''
+        -- return '󰦞'
+      end
+      return is_formatting and '' or '󰞀'
+      -- return is_formatting and '' or ''
     end
     return ''
   end
