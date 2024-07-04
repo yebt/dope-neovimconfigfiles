@@ -49,6 +49,9 @@ mps('n', '<M-->', ':split<cr>', { silent = true, desc = 'Horizontal split' })
 mps('n', '\\', fns.toggleNetrw, { silent = true, desc = 'Toggle netrw' })
 -- Toggle wrap
 mps('n', '<M-z>w', ':set wrap!<CR>', { silent = true, desc = 'Toggle wrap' })
+mps('n', '<M-z>m', function()
+  vim.opt.mouse = vim.opt.mouse._value == '' and 'a' or ''
+end, { silent = true, desc = 'Toggle wrap' })
 
 --- Buffer
 -- Move beetween splits
