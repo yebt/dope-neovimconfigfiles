@@ -32,21 +32,44 @@ _G.guard_status_w = function()
 end
 
 --
-_G.lsp_clients = function()
-  local lspcs = vim.lsp.get_clients({ bufnr = 0 })
-  if #lspcs == 0 then
-    return ''
-  end
-  local names = ''
-  for _, cl in ipairs(lspcs) do
-    if #names == 0 then
-      names = cl.name
-    else
-      names = names .. ', ' .. cl.name
+-- local agroup = vim.api.nvim_create_augroup
+-- local au = vim.api.nvim_create_autocmd
+vim.api.nvim_create_autocmd({ 'LspAttach' }, {
+  buffer = 0,
+  callback = function(args)
+    local lspcs = vim.lsp.get_clients({ bufnr = 0 })
+    if #lspcs == 0 then
+      return
     end
-  end
-  return '[ ' .. names .. ' ]'
-end
+
+    local names = ''
+    for _, cl in ipairs(lspcs) do
+      if #names == 0 then
+        names = cl.name
+      else
+        names = names .. ', ' .. cl.name
+      end
+    end
+    vim.b.lsp_clients = names
+  end,
+})
+
+-- _G.lsp_clients = function()
+--   local lspcs = vim.lsp.get_clients({ bufnr = 0 })
+--   if #lspcs == 0 then
+--     return ''
+--   end
+--
+--   local names = ''
+--   for _, cl in ipairs(lspcs) do
+--     if #names == 0 then
+--       names = cl.name
+--     else
+--       names = names .. ', ' .. cl.name
+--     end
+--   end
+--   return '[ ' .. names .. ' ]'
+-- end
 
 --
 local stts_str = padding
@@ -59,7 +82,7 @@ local stts_str = padding
   .. separator
   -- diagnostic
   -- servers
-  .. '%{v:lua.lsp_clients()}'
+  .. "%1*%{ v:lua.append_v(get(b:,'lsp_clients',''),' 󰿘 [', ']')}%0*"
   .. separator
   --.. '%2*%{v:lua.Lazyupdates()}%0*' -- Updates
   .. '%2*%{v:lua.lazyupdates()}%0*'
