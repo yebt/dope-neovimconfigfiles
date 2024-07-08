@@ -32,7 +32,8 @@ return {
   {
     'nvimdev/epo.nvim',
     cond = _G.kernel.opts.plugins.completion == 'epo',
-    event = { 'InsertEnter', 'LspAttach' },
+    -- event = { 'InsertEnter', 'LspAttach' },
+    event = { 'LspAttach' },
     config = require('plugins.configs.epo'),
   },
 
