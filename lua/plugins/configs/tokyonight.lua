@@ -48,6 +48,14 @@ return function()
     ---@param highlights Highlights
     ---@param colors ColorScheme
     on_highlights = function(highlights, colors)
+      highlights.FoldColumn     = {
+        bg = '#1a1b26',
+        fg = '#565f89',
+      }
+      highlights.GitSignsAdd    = { bg = colors.git.add }    -- diff mode: Added line |diff.txt|
+      highlights.GitSignsChange = { bg = colors.git.change } -- diff mode: Changed line |diff.txt|
+      highlights.GitSignsDelete = { bg = colors.git.delete } -- diff mode: Deleted line |diff.txt|
+
       -- highlights.Pmenu = {
       --   bg = '#16161e',
       --   fg = '#c0caf5',
