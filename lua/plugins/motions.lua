@@ -173,7 +173,7 @@ return {
           jump_labels = true,
           -- labels = "abcdefghijklmnopqrstuvwxyz",
           -- labels = "asdfghjklqwertyuiopzxcvbnm",
-          label = { exclude = 'hjkliardcs' },
+          label = { exclude = 'hjkliardcsg' },
         },
       },
     },
