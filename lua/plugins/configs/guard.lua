@@ -75,7 +75,8 @@ return function()
   -- Call setup() LAST!
   require('guard').setup({
     -- Choose to format on every write to a buffer
-    fmt_on_save = true,
+    -- fmt_on_save = true,
+    fmt_on_save = false,
     -- Use lsp if no formatter was defined for this filetype
     lsp_as_default_formatter = false,
     -- By default, Guard writes the buffer on every format
@@ -104,16 +105,12 @@ return function()
     return ''
   end
   -- sets a super simple statusline when entering a buffer
-  vim.cmd('au BufEnter * lua vim.opt.stl = [[%f %m ]] .. guard_status()')
+  -- vim.cmd('au BufEnter * lua vim.opt.stl = [[%f %m ]] .. guard_status()')
   -- update statusline on GuardFmt event
   vim.api.nvim_create_autocmd('User', {
     pattern = 'GuardFmt',
     callback = function(opt)
-      -- receive data from opt.data
       is_formatting = opt.data.status == 'pending'
-      -- vim.opt.stl = [[%f %m ]] .. guard_status()
-
-      -- vim.opt.stl = (stl) .. guard_status()
     end,
   })
 end
