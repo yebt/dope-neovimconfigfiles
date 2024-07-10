@@ -2,6 +2,7 @@ return function()
   local lspconfig = require('lspconfig')
   local mason = require('mason')
   local masonlsp = require('mason-lspconfig')
+  local util = require('utils.functions')
 
   mason.setup({})
   masonlsp.setup({
@@ -29,14 +30,17 @@ return function()
   local handlers = {
     ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
     ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
-    -- ['window/showDocument'] = vim.lsp.with(vim.lsp.util.show_document, { border = "rounded" }),
+    ['window/showDocument'] = vim.lsp.with(vim.lsp.util.show_document, { border = 'rounded' }),
   }
 
   default_settings.handlers = handlers
 
   -- pass completins capabilities
   -- default_settings.capabilities = require("cmp_nvim_lsp").default_capabilities()
-  -- default_settings.capabilities =vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), require("epo").register_cap())
+  if _G.kernel.opts.plugins.completion == 'epo' and util.plugin_is_available('epo') then
+    default_settings.capabilities =
+      vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), require('epo').register_cap())
+  end
   -- require('lspconfig').pyright.setup({})
   masonlsp.setup_handlers({
     -- The first entry (without a key) will be the default handler
