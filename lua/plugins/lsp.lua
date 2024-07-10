@@ -90,7 +90,7 @@ return {
     event = 'LspAttach',
     dependencies = {
       'nvim-treesitter/nvim-treesitter', -- optional
-      'nvim-tree/nvim-web-devicons',     -- optional
+      'nvim-tree/nvim-web-devicons', -- optional
     },
     config = require('plugins.configs.saga'),
   },
@@ -103,14 +103,13 @@ return {
       -- hint_prefix = "🐼 ", -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
       -- or, provide a table with 3 icons
       hint_prefix = {
-        above = "↙ ", -- when the hint is on the line above the current line
-        current = "← ", -- when the hint is on the same line
-        below = "↖ " -- when the hint is on the line below the current line
+        above = '↙ ', -- when the hint is on the line above the current line
+        current = '← ', -- when the hint is on the same line
+        below = '↖ ', -- when the hint is on the line below the current line
       },
       handler_opts = {
-        border = "rounded" -- double, rounded, single, shadow, none, or a table of borders
+        border = 'rounded', -- double, rounded, single, shadow, none, or a table of borders
       },
-
     },
     config = function(_, opts)
       require('lsp_signature').setup(opts)
