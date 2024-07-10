@@ -15,8 +15,6 @@ return {
       'williamboman/mason-lspconfig.nvim',
       -- pavkages
       'williamboman/mason.nvim',
-
-      'nvimdev/epo.nvim',
     },
     event = 'VeryLazy',
     config = require('plugins.configs.lspconfig'),
@@ -31,14 +29,27 @@ return {
   },
 
   -- Completions
+
+  -- {
+  --   'nvimdev/epo.nvim',
+  --   cond = _G.kernel.opts.plugins.completion == 'epo',
+  --   lazy = false,
+  --   priority = 10000,
+  --   -- event = { 'InsertEnter', 'LspAttach' },
+  --   -- event = { 'LspAttach' },
+  --   config = require('plugins.configs.epoconfig'),
+  -- },
   {
-    'nvimdev/epo.nvim',
+    -- 'nvimdev/epo.nvim',
+    'yebt/epo.nvim',
+    branch = 'feat/support-other-lsps',
+    name = 'yepo',
     cond = _G.kernel.opts.plugins.completion == 'epo',
     lazy = false,
     priority = 10000,
     -- event = { 'InsertEnter', 'LspAttach' },
     -- event = { 'LspAttach' },
-    config = require('plugins.configs.epo'),
+    config = require('plugins.configs.epoconfig'),
   },
 
   -- Completions
