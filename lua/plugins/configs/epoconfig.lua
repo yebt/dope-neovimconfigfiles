@@ -2,22 +2,26 @@ return function()
   -- Preload autopairs to load premaps
   local minipairs = require('mini.pairs')
 
+  -- the default completetopt set by epo
+  -- vim.opt.completeopt = 'menu,menuone,noselect,popup'
+
   -- use default settings
   require('epo').setup({
     -- fuzzy match
-    -- fuzzy = true,
+    fuzzy = false,
     -- increase this value can aviod trigger complete when delete character.
     -- debounce = 50,
-    debounce = 1000,
+    debounce = 2000,
     -- when completion confrim auto show a signature help floating window.
-    signature = true,
+    -- signature = true,
+    signature = false,
     -- border for lsp signature popup, :h nvim_open_win
     signature_border = 'rounded',
     -- lsp kind formatting, k is kind string "Field", "Struct", "Keyword" etc.
-    kind_format = function(k)
-      -- vim.notify(vim.inspect(k))
-      return k
-    end,
+    -- kind_format = function(k)
+    --   -- vim.notify(vim.inspect(k))
+    --   return k
+    -- end,
   })
 
   ---------------- MAPS -------------------------
@@ -68,19 +72,43 @@ return function()
   -- vim.keymap.set('i', '<esc>', function()
   --   if vim.fn.pumvisible() == 1 then
   --     require('epo').disable_trigger()
+  --     -- return '<c-e>'
   --     return '<c-e>'
   --   end
   --   return '<esc>'
   -- end, { expr = true, noremap = true })
 
+  -- stop completion
+  vim.keymap.set('i', '<c-c>', function()
+    if vim.fn.pumvisible() == 1 then
+      require('epo').disable_trigger()
+      return '<c-e>'
+    end
+    return '<esc>'
+  end, { expr = true, noremap = true })
+
   -- For using enter as completion, may conflict with some autopair plugin
   vim.keymap.set('i', '<cr>', function()
+    local pkey = ''
     if vim.fn.pumvisible() == 1 then
-      return '<C-y>'
+      local data = vim.fn.complete_info({ 'selected' })
+      if data.selected >= 0 then
+        return '<C-y>'
+      end
+      pkey = '<c-e>'
     end
-    -- return '<cr>'
-    return minipairs.cr()
+    return pkey .. minipairs.cr()
   end, { expr = true, noremap = true })
+
+  -- C
+  vim.keymap.set('i', '<c-space>', function()
+    -- if vim.fn.pumvisible() == 1 then
+    --   require('epo').disable_trigger()
+    --   return '<c-e>'
+    -- end
+    -- return '<esc>'
+    require('epo').complete()
+  end, {})
 
   ----------
 
@@ -103,4 +131,6 @@ return function()
 
   -- the default completetopt set by epo
   -- vim.opt.completeopt = 'menu,menuone,noselect,noinsert,popup'
+  -- vim.opt.completeopt = 'menu,menuone,noselect,noinsert'
+  -- vim.opt.completeopt = 'menu,menuone,noselect,popup,noinsert'
 end
