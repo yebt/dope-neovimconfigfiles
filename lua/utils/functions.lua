@@ -90,4 +90,11 @@ M.surround = function()
   local pair_char = surrounds[char] or char
   return 'c' .. char .. '<C-r><C-o>"' .. pair_char .. '<ESC><Left>vi' .. char
 end
+
+-- Check if an plugin is available
+M.plugin_is_available = function(pg)
+  local lazy_config_avail, lazy_config = pcall(require, "lazy.core.config")
+  return lazy_config_avail and lazy_config.spec.plugins[pg] ~= nil
+end
+
 return M
