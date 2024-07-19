@@ -11,6 +11,6 @@ require('kernel').setup({
     -- completion = 'minicompletion',
 
     -- notification = "notifier",
-    notification = 'mininotify',
+    -- notification = 'mininotify',
   },
 })

@@ -4,7 +4,12 @@ return function()
   local masonlsp = require('mason-lspconfig')
   local util = require('utils.functions')
 
-  mason.setup({})
+  mason.setup({
+    ui = {
+      border = 'rounded',
+    },
+  })
+
   masonlsp.setup({
     ensure_installed = { 'lua_ls', 'pyright' },
     automatic_installation = false,
@@ -33,7 +38,7 @@ return function()
     ['window/showDocument'] = vim.lsp.with(vim.lsp.util.show_document, { border = 'rounded' }),
   }
 
-  default_settings.handlers = handlers
+  -- default_settings.handlers = handlers
 
   -- pass completins capabilities
   -- default_settings.capabilities = require("cmp_nvim_lsp").default_capabilities()

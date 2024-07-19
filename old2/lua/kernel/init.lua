@@ -48,6 +48,9 @@ kernel.setup = function(opts)
     'keymaps',
     'lsp',
   }
+  if kernel.opts.plugins.satatusline == 'builtin' then
+    require("internal.status")
+  end
   for _, file in ipairs(initials) do
     require('kernel.' .. file)
   end
@@ -65,9 +68,6 @@ kernel.setup = function(opts)
         -- 'status',
         -- 'lsp',
       }
-      if kernel.opts.plugins.satatusline == 'builtin' then
-        table.insert(lazy_loads, 'status')
-      end
 
       for _, file in pairs(lazy_loads) do
         require('internal.' .. file)

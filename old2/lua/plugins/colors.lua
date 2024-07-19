@@ -33,4 +33,7 @@ return {
     name = 'catppuccin',
     config = require('plugins.configs.catppuccin'),
   },
+  {
+    'nvimdev/nightsky.vim',
+  },
 }

@@ -11,22 +11,23 @@ return {
     -- lspconfig
     'neovim/nvim-lspconfig',
     dependencies = {
-      --bridge
-      'williamboman/mason-lspconfig.nvim',
       -- pavkages
       'williamboman/mason.nvim',
+      --bridge
+      'williamboman/mason-lspconfig.nvim',
     },
     event = 'VeryLazy',
+    -- lazy = false,
     config = require('plugins.configs.lspconfig'),
   },
 
   -- NONE
-  {
-    'nvimtools/none-ls.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    },
-  },
+  -- {
+  --   'nvimtools/none-ls.nvim',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --   },
+  -- },
 
   -- Completions
 
@@ -45,9 +46,9 @@ return {
     branch = 'feat/support-other-lsps',
     name = 'yepo',
     cond = _G.kernel.opts.plugins.completion == 'epo',
-    lazy = false,
-    priority = 10000,
-    -- event = { 'InsertEnter', 'LspAttach' },
+    -- lazy = false,
+    -- priority = 10000,
+    event = { 'InsertEnter', 'LspAttach' },
     -- event = { 'LspAttach' },
     config = require('plugins.configs.epoconfig'),
   },
