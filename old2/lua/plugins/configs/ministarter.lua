@@ -34,21 +34,21 @@ return function()
   --
 
   local fsessions = function(n)
-    local msessions = require('mini.sessions')
+    local msessions = require("mini.sessions")
     local items = vim.tbl_keys(msessions.detected)
 
     local fitems = {}
     for indx, el in ipairs(items) do
-      local els = vim.split(el, ' ')
+      local els = vim.split(el, " ")
       local name = els[1]
-      local path = els[2] and '  -> ' .. els[2] or ''
-      path = path:gsub('%%', '/')
+      local path = els[2] and "  -> " .. els[2] or ""
+      path = path:gsub("%%", "/")
       table.insert(fitems, {
         name = name .. path,
         action = function()
           msessions.read(els)
         end,
-        section = 'Sessions',
+        section = "Sessions",
       })
       if indx == n then
         break
@@ -74,7 +74,7 @@ return function()
     -- end
     -- return fitems
   end
-  local starter = require('mini.starter')
+  local starter = require("mini.starter")
   starter.setup({
     --     header =
     -- "⠀⠀⣀⣤⣤⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣤⣤⣀⠀".. "\n"..
@@ -90,8 +90,8 @@ return function()
     -- ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░
     -- ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░
     --  ░▒▓█████████████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓██████▓▒░
-    header = 'PERFECTO',
-    footer = '---',
+    header = "PERFECTO",
+    footer = "---",
     evaluate_single = true,
     items = {
       -- starter.sections.telescope(),
@@ -99,8 +99,8 @@ return function()
       --
       fsessions(4),
       {
-        { name = 'Files', action = [[Pick files]], section = 'CMD' },
-        { name = 'Old files', action = [[Pick oldfiles]], section = 'CMD' },
+        { name = "Files", action = [[Pick files]], section = "CMD" },
+        { name = "Old files", action = [[Pick oldfiles]], section = "CMD" },
         -- {name="Old files", action = [[Pick oldfiles]], section="CMD"},
       },
       -- starter.sections.pick(),
@@ -116,7 +116,7 @@ return function()
       -- starter.gen_hook.adding_bullet('┃ '),
       -- starter.gen_hook.indexing('all', { 'Builtin actions' }),
       -- starter.gen_hook.adding_bullet('├ ', true),
-      starter.gen_hook.aligning('center', 'center'),
+      starter.gen_hook.aligning("center", "center"),
       -- starter.gen_hook.indexing('all', { 'Builtin actions' }),
       -- starter.gen_hook.padding(3, 2),
 

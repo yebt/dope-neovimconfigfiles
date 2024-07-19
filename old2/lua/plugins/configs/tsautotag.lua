@@ -1,5 +1,5 @@
 return function()
-  require('nvim-ts-autotag').setup({
+  require("nvim-ts-autotag").setup({
     opts = {
       -- Defaults
       enable_close = true, -- Auto close tags

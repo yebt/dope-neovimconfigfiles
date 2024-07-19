@@ -1,6 +1,8 @@
 *.bak
 test/*
 old/*
+old2/*
+old3/*
 ~/.config/nvim/.backups
 lazy-lock.json
 sessions

@@ -2,15 +2,15 @@
 local vopt = vim.opt
 local vg = vim.g
 local vapi = vim.api
-local spf = vim.fs.joinpath(vim.fn.stdpath('config'), 'spell')
+local spf = vim.fs.joinpath(vim.fn.stdpath("config"), "spell")
 
 --- OPTIONS VAR LOOP
 local options = {
 
   -- Cursor
   cursorline = true,
-  guicursor = 'a:block-cursor',
-  virtualedit = 'block',
+  guicursor = "a:block-cursor",
+  virtualedit = "block",
 
   -- Tab
   expandtab = true,
@@ -27,32 +27,32 @@ local options = {
 
   -- Wrap
   linebreak = true,
-  breakindentopt = 'shift:2,min:20', --"min:40, shift:0,sbr"
+  breakindentopt = "shift:2,min:20", --"min:40, shift:0,sbr"
   breakindent = true,
-  showbreak = '↳ ',
+  showbreak = "↳ ",
 
   -- File
   -- autowrite = true,
   autoread = true,
   backup = false,
   writebackup = false,
-  backupdir = vim.fs.joinpath(vim.fn.stdpath('config'), '.backups'),
+  backupdir = vim.fs.joinpath(vim.fn.stdpath("config"), ".backups"),
   swapfile = false,
   undofile = true,
 
   -- Spell
-  spelllang = 'en,es',
-  spelloptions = 'camel',
+  spelllang = "en,es",
+  spelloptions = "camel",
   spellfile = {
-    vim.fs.joinpath(vim.fn.stdpath('config'), 'spell/en.utf-8.add'),
-    vim.fs.joinpath(vim.fn.stdpath('config'), 'spell/es.utf-8.add'),
+    vim.fs.joinpath(vim.fn.stdpath("config"), "spell/en.utf-8.add"),
+    vim.fs.joinpath(vim.fn.stdpath("config"), "spell/es.utf-8.add"),
   },
 
   -- View
-  background = 'dark',
+  background = "dark",
   termguicolors = true,
   fillchars = {
-    diff = '╱',
+    diff = "╱",
     -- 
     -- 
     -- foldclose = "",
@@ -69,8 +69,8 @@ local options = {
   -- Split
   splitbelow = true,
   splitright = true,
-  splitkeep = 'screen',
-  inccommand = 'split',
+  splitkeep = "screen",
+  inccommand = "split",
 
   -- CMD
   cmdheight = 1,
@@ -94,11 +94,11 @@ local options = {
   -- Fold
   foldenable = true,
   foldlevelstart = 99,
-  foldmethod = 'indent', -- marker, indent
-  foldcolumn = '1',
+  foldmethod = "indent", -- marker, indent
+  foldcolumn = "1",
 
   -- Sign
-  signcolumn = 'yes',
+  signcolumn = "yes",
 
   -- Text
   textwidth = 100,
@@ -113,10 +113,10 @@ local options = {
   },
 
   list = true,
-  listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←',
+  listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←",
 
   -- Conceal
-  concealcursor = 'nc',
+  concealcursor = "nc",
   conceallevel = 2,
 
   -- Buffer
@@ -133,14 +133,14 @@ local options = {
   -- autochdir=true, -- change the dir to file dir
 
   -- Editing
-  backspace = 'indent,eol,start,nostop',
+  backspace = "indent,eol,start,nostop",
   diffopt = {
-    'filler', -- sync text content
+    "filler", -- sync text content
     -- "horizontal", -- use horizontal views -
-    'closeoff', -- off diff on just 1 window
+    "closeoff", -- off diff on just 1 window
     --"followwrap",
     -- "internal",
-    'linematch:60', --
+    "linematch:60", --
     --  myers      the default algorithm
     -- minimal    spend extra time to generate the
     -- smallest possible diff
@@ -150,9 +150,9 @@ local options = {
   },
 
   -- -- Usage
-  clipboard = 'unnamed',
+  clipboard = "unnamed",
   compatible = false,
-  whichwrap = 'h,l,<,>,[,],~',
+  whichwrap = "h,l,<,>,[,],~",
   confirm = true,
   cpoptions = {
     a = true, -- change windows name with the read comman file name
@@ -164,10 +164,10 @@ local options = {
     s = true, -- Set the buffer options for first time
     --
     n = true, -- use number for wrap number
-    ['_'] = true, -- not cut the white space nex to word when press cw
+    ["_"] = true, -- not cut the white space nex to word when press cw
   },
-  sessionoptions = 'buffers,curdir,winsize',
-  viewoptions = 'folds,cursor',
+  sessionoptions = "buffers,curdir,winsize",
+  viewoptions = "folds,cursor",
 
   -- Time
   timeout = true,
@@ -182,14 +182,14 @@ local options = {
   sidescrolloff = 5,
 
   -- Completionos
-  complete = '.,k,w,b,u,t',
+  complete = ".,k,w,b,u,t",
   completeopt = {
-    'menu',
-    'menuone',
+    "menu",
+    "menuone",
     -- 'preview',-- show extra info in preview windows -- not complatible with preview
     -- 'popup', -- show extra info in a popup winndow
-    'noinsert',
-    'noselect',
+    "noinsert",
+    "noselect",
     -- 'fuzzy' -- is not in nvim 10
   },
   pumheight = 15,
@@ -216,6 +216,6 @@ for key, valor in pairs(globals) do
 end
 
 --if vim.fn.executable('rg') == 1 then
-vopt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
-vopt.grepprg = 'rg --vimgrep --no-heading --smart-case'
+vopt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
+vopt.grepprg = "rg --vimgrep --no-heading --smart-case"
 --end

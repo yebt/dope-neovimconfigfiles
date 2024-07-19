@@ -2,7 +2,7 @@ local M = {}
 M.overwrite_format2 = function(options)
   options = options or {}
   local bufnr = options.bufnr or api.nvim_get_current_buf()
-  local method = 'textDocument/formatting'
+  local method = "textDocument/formatting"
   local clients = vim.lsp.get_active_clients({
     id = options.id,
     bufnr = bufnr,
@@ -19,12 +19,12 @@ M.overwrite_format2 = function(options)
   end, clients)
 
   if #clients == 0 then
-    vim.notify('[LSP] Format request failed, no matching language servers.', vim.log.levels.WARN)
+    vim.notify("[LSP] Format request failed, no matching language servers.", vim.log.levels.WARN)
   end
 
   local copyClient = vim.deepcopy(clients)
-  table.insert(copyClient, { name = 'all' })
-  table.insert(copyClient, { name = 'Set default formatter' })
+  table.insert(copyClient, { name = "all" })
+  table.insert(copyClient, { name = "Set default formatter" })
 
   --@private
   local function applyFormat(clientsi)
@@ -52,7 +52,7 @@ M.overwrite_format2 = function(options)
           util.apply_text_edits(result.result, bufnr, client.offset_encoding)
         end
         if err then
-          vim.notify(string.format('[LSP][%s] %s', client.name, err), vim.log.levels.WARN)
+          vim.notify(string.format("[LSP][%s] %s", client.name, err), vim.log.levels.WARN)
         end
       end
     end
@@ -67,31 +67,31 @@ M.overwrite_format2 = function(options)
         return
       end
     end
-    vim.notify('Default Formatter not found: ' .. vim.g.defaultFormatClient)
+    vim.notify("Default Formatter not found: " .. vim.g.defaultFormatClient)
   end
 
   if #clients > 1 then
     vim.ui.select(copyClient, {
-      prompt = 'Select a formatter:',
+      prompt = "Select a formatter:",
       format_item = function(item)
         return item.name
       end,
     }, function(choice)
       if not choice then
-        vim.notify('No formatter selected')
-      elseif choice.name == 'all' then
+        vim.notify("No formatter selected")
+      elseif choice.name == "all" then
         applyFormat(clients)
-      elseif choice.name == 'Set default formatter' then
+      elseif choice.name == "Set default formatter" then
         vim.ui.select(clients, {
-          prompt = 'Select a formatter:',
+          prompt = "Select a formatter:",
           format_item = function(item)
             return item.name
           end,
         }, function(choicei)
           if not choicei then
-            vim.notify('No formatter selected')
+            vim.notify("No formatter selected")
           else
-            vim.notify('Set default formatter:' .. choicei.name)
+            vim.notify("Set default formatter:" .. choicei.name)
             vim.g.defaultFormatClient = choicei.name
             applyFormat({ choicei })
           end

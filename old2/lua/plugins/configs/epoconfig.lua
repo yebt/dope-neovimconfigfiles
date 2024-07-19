@@ -1,12 +1,12 @@
 return function()
   -- Preload autopairs to load premaps
-  local minipairs = require('mini.pairs')
+  local minipairs = require("mini.pairs")
 
   -- the default completetopt set by epo
   -- vim.opt.completeopt = 'menu,menuone,noselect,popup'
 
   -- use default settings
-  require('epo').setup({
+  require("epo").setup({
     -- fuzzy match
     fuzzy = false,
     -- increase this value can aviod trigger complete when delete character.
@@ -16,7 +16,7 @@ return function()
     -- signature = true,
     signature = false,
     -- border for lsp signature popup, :h nvim_open_win
-    signature_border = 'rounded',
+    signature_border = "rounded",
     -- lsp kind formatting, k is kind string "Field", "Struct", "Keyword" etc.
     -- kind_format = function(k)
     --   -- vim.notify(vim.inspect(k))
@@ -26,11 +26,11 @@ return function()
 
   ---------------- MAPS -------------------------
   -- Expand snippet
-  vim.keymap.set({ 'i', 's' }, '<TAB>', function()
+  vim.keymap.set({ "i", "s" }, "<TAB>", function()
     if vim.snippet.active({ direction = 1 }) then
-      return '<cmd>lua vim.snippet.jump(1)<cr>'
+      return "<cmd>lua vim.snippet.jump(1)<cr>"
     else
-      return '<TAB>'
+      return "<TAB>"
     end
 
     -- if vim.fn.pumvisible() == 1 then
@@ -44,11 +44,11 @@ return function()
   end, { expr = true })
 
   -- jump -1
-  vim.keymap.set({ 'i', 's' }, '<S-TAB>', function()
+  vim.keymap.set({ "i", "s" }, "<S-TAB>", function()
     if vim.snippet.active({ direction = -1 }) then
-      return '<cmd>lua vim.snippet.jump(-1)<cr>'
+      return "<cmd>lua vim.snippet.jump(-1)<cr>"
     else
-      return '<TAB>'
+      return "<TAB>"
     end
     -- if vim.fn.pumvisible() == 1 then
     --   return '<C-p>'
@@ -61,11 +61,11 @@ return function()
   end, { expr = true })
 
   -- cancel completion
-  vim.keymap.set('i', '<C-e>', function()
+  vim.keymap.set("i", "<C-e>", function()
     if vim.fn.pumvisible() == 1 then
-      require('epo').disable_trigger()
+      require("epo").disable_trigger()
     end
-    return '<C-e>'
+    return "<C-e>"
   end, { expr = true })
 
   -- completion esc to dont use the completion
@@ -79,35 +79,35 @@ return function()
   -- end, { expr = true, noremap = true })
 
   -- stop completion
-  vim.keymap.set('i', '<c-c>', function()
+  vim.keymap.set("i", "<c-c>", function()
     if vim.fn.pumvisible() == 1 then
-      require('epo').disable_trigger()
-      return '<c-e>'
+      require("epo").disable_trigger()
+      return "<c-e>"
     end
-    return '<esc>'
+    return "<esc>"
   end, { expr = true, noremap = true })
 
   -- For using enter as completion, may conflict with some autopair plugin
-  vim.keymap.set('i', '<cr>', function()
-    local pkey = ''
+  vim.keymap.set("i", "<cr>", function()
+    local pkey = ""
     if vim.fn.pumvisible() == 1 then
-      local data = vim.fn.complete_info({ 'selected' })
+      local data = vim.fn.complete_info({ "selected" })
       if data.selected >= 0 then
-        return '<C-y>'
+        return "<C-y>"
       end
-      pkey = '<c-e>'
+      pkey = "<c-e>"
     end
     return pkey .. minipairs.cr()
   end, { expr = true, noremap = true })
 
   -- C
-  vim.keymap.set('i', '<c-space>', function()
+  vim.keymap.set("i", "<c-space>", function()
     -- if vim.fn.pumvisible() == 1 then
     --   require('epo').disable_trigger()
     --   return '<c-e>'
     -- end
     -- return '<esc>'
-    require('epo').complete()
+    require("epo").complete()
   end, {})
 
   ----------

@@ -4,34 +4,34 @@ local au = vim.api.nvim_create_autocmd
 local cmd = vim.cmd
 
 local function ag(name)
-  return agroup('core_' .. name, { clear = true })
+  return agroup("core_" .. name, { clear = true })
 end
 
 -- auto no h in normal mode
 vim.on_key(function(char)
-  if vim.fn.mode() == 'n' then
-    local new_hlsearch = vim.tbl_contains({ '<CR>', 'n', 'N', '*', '#', '?', '/' }, vim.fn.keytrans(char))
+  if vim.fn.mode() == "n" then
+    local new_hlsearch = vim.tbl_contains({ "<CR>", "n", "N", "*", "#", "?", "/" }, vim.fn.keytrans(char))
     if vim.opt.hlsearch:get() ~= new_hlsearch then
       vim.opt.hlsearch = new_hlsearch
     end
   end
-end, vim.api.nvim_create_namespace('auto_hlsearch'))
+end, vim.api.nvim_create_namespace("auto_hlsearch"))
 
 --
 -- Check if we need to reload the file when it changed
-au({ 'FocusGained', 'TermClose', 'TermLeave' }, {
-  group = ag('checktime'),
+au({ "FocusGained", "TermClose", "TermLeave" }, {
+  group = ag("checktime"),
   callback = function()
-    if vim.o.buftype ~= 'nofile' then
-      vim.cmd('checktime')
+    if vim.o.buftype ~= "nofile" then
+      vim.cmd("checktime")
     end
   end,
 })
 
 --
 -- Highlight on yank
-au('TextYankPost', {
-  group = ag('highlight_yank'),
+au("TextYankPost", {
+  group = ag("highlight_yank"),
   callback = function()
     vim.highlight.on_yank()
   end,
@@ -39,12 +39,12 @@ au('TextYankPost', {
 
 --
 -- resize splits if window got resized
-au({ 'VimResized' }, {
-  group = ag('resize_splits'),
+au({ "VimResized" }, {
+  group = ag("resize_splits"),
   callback = function()
     local current_tab = vim.fn.tabpagenr()
-    vim.cmd('tabdo wincmd =')
-    vim.cmd('tabnext ' .. current_tab)
+    vim.cmd("tabdo wincmd =")
+    vim.cmd("tabnext " .. current_tab)
   end,
 })
 
@@ -69,10 +69,10 @@ au({ 'VimResized' }, {
 
 -- Automake the views
 
-local view_group = ag('_auto_view')
+local view_group = ag("_auto_view")
 -- Make view
-au({ 'BufWinLeave', 'BufWritePost', 'WinLeave' }, {
-  desc = 'Save view with mkview for real files',
+au({ "BufWinLeave", "BufWritePost", "WinLeave" }, {
+  desc = "Save view with mkview for real files",
   group = view_group,
   callback = function(event)
     if vim.b[event.buf].view_activated then
@@ -82,15 +82,15 @@ au({ 'BufWinLeave', 'BufWritePost', 'WinLeave' }, {
 })
 
 -- Load view
-au('BufWinEnter', {
-  desc = 'Try to load file view if available and enable view saving for real files',
+au("BufWinEnter", {
+  desc = "Try to load file view if available and enable view saving for real files",
   group = view_group,
   callback = function(event)
     if not vim.b[event.buf].view_activated then
-      local filetype = vim.api.nvim_get_option_value('filetype', { buf = event.buf })
-      local buftype = vim.api.nvim_get_option_value('buftype', { buf = event.buf })
-      local ignore_filetypes = { 'gitcommit', 'gitrebase', 'svg', 'hgcommit' }
-      if buftype == '' and filetype and filetype ~= '' and not vim.tbl_contains(ignore_filetypes, filetype) then
+      local filetype = vim.api.nvim_get_option_value("filetype", { buf = event.buf })
+      local buftype = vim.api.nvim_get_option_value("buftype", { buf = event.buf })
+      local ignore_filetypes = { "gitcommit", "gitrebase", "svg", "hgcommit" }
+      if buftype == "" and filetype and filetype ~= "" and not vim.tbl_contains(ignore_filetypes, filetype) then
         vim.b[event.buf].view_activated = true
         vim.cmd.loadview({ mods = { emsg_silent = true } })
       end
@@ -100,39 +100,39 @@ au('BufWinEnter', {
 
 --
 -- Add fast close (q) to some files
-au('FileType', {
-  group = ag('close_with_q'),
+au("FileType", {
+  group = ag("close_with_q"),
   pattern = {
-    'PlenaryTestPopup',
-    'help',
-    'lspinfo',
-    'notify',
-    'qf',
-    'spectre_panel',
-    'startuptime',
-    'tsplayground',
-    'neotest-output',
-    'checkhealth',
-    'neotest-summary',
-    'neotest-output-panel',
-    'dbout',
+    "PlenaryTestPopup",
+    "help",
+    "lspinfo",
+    "notify",
+    "qf",
+    "spectre_panel",
+    "startuptime",
+    "tsplayground",
+    "neotest-output",
+    "checkhealth",
+    "neotest-summary",
+    "neotest-output-panel",
+    "dbout",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
   end,
 })
 
 --
 -- Enable spell for typing files
 -- wrap and check for spell in text filetypes
-au('FileType', {
-  group = ag('wrap_spell'),
+au("FileType", {
+  group = ag("wrap_spell"),
   pattern = _G.kernel.opts.text_filetypes,
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
-    vim.opt_local.colorcolumn = '100'
+    vim.opt_local.colorcolumn = "100"
   end,
 })
 
@@ -159,9 +159,9 @@ au('FileType', {
 
 --
 -- Better conceal level for json files
-au({ 'FileType' }, {
-  group = ag('json_conceal'),
-  pattern = { 'json', 'jsonc', 'json5' },
+au({ "FileType" }, {
+  group = ag("json_conceal"),
+  pattern = { "json", "jsonc", "json5" },
   callback = function()
     vim.opt_local.conceallevel = 0
   end,
@@ -169,19 +169,19 @@ au({ 'FileType' }, {
 
 --
 -- Terminal view
-local c = ag('terming')
-au({ 'TermOpen' }, {
+local c = ag("terming")
+au({ "TermOpen" }, {
   group = c,
   callback = function()
     vim.opt_local.conceallevel = 0
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
-    vim.opt_local.signcolumn = 'no'
-    vim.cmd('startinsert')
+    vim.opt_local.signcolumn = "no"
+    vim.cmd("startinsert")
   end,
 })
-au({ 'BufEnter', 'WinEnter' }, { pattern = { 'term://*' }, group = c, command = [[startinsert]] })
-au({ 'BufLeave' }, { pattern = { 'term://*' }, group = c, command = [[stopinsert]] })
+au({ "BufEnter", "WinEnter" }, { pattern = { "term://*" }, group = c, command = [[startinsert]] })
+au({ "BufLeave" }, { pattern = { "term://*" }, group = c, command = [[stopinsert]] })
 
 --
 -- Lazy events

@@ -1,11 +1,11 @@
 return function()
-  local minigit = require('mini.git')
+  local minigit = require("mini.git")
 
   minigit.setup({
     -- General CLI execution
     job = {
       -- Path to Git executable
-      git_executable = 'git',
+      git_executable = "git",
 
       -- Timeout (in ms) for each job before force quit
       timeout = 30000,
@@ -14,7 +14,7 @@ return function()
     -- Options for `:Git` command
     command = {
       -- Default split direction
-      split = 'auto',
+      split = "auto",
     },
   })
 end

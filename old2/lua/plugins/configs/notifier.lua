@@ -1,10 +1,10 @@
 return function()
-  require('notifier').setup({
+  require("notifier").setup({
     ignore_messages = {}, -- Ignore message from LSP servers with this name
     -- status_width = something, -- COmputed using 'columns' and 'textwidth'
     components = { -- Order of the components to draw from top to bottom (first nvim notifications, then lsp)
-      'nvim', -- Nvim notifications (vim.notify and such)
-      'lsp', -- LSP status updates
+      "nvim", -- Nvim notifications (vim.notify and such)
+      "lsp", -- LSP status updates
     },
     notify = {
       clear_time = 5000, -- Time in milliseconds before removing a vim.notify notification, 0 to make them sticky

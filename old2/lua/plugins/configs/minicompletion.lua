@@ -1,5 +1,5 @@
 return function()
-  local minicompletion = require('mini.completion')
+  local minicompletion = require("mini.completion")
 
   local opts = {
     -- Delay (debounce type, in ms) between certain Neovim event and action.
@@ -11,14 +11,14 @@ return function()
     -- - `height` and `width` are maximum dimensions.
     -- - `border` defines border (as in `nvim_open_win()`).
     window = {
-      info = { height = 25, width = 80, border = 'none' },
-      signature = { height = 25, width = 80, border = 'none' },
+      info = { height = 25, width = 80, border = "none" },
+      signature = { height = 25, width = 80, border = "none" },
     },
 
     -- Way of how module does LSP completion
     lsp_completion = {
       -- `source_func` should be one of 'completefunc' or 'omnifunc'.
-      source_func = 'completefunc',
+      source_func = "completefunc",
 
       -- `auto_setup` should be boolean indicating if LSP completion is set up
       -- on every `BufEnter` event.
@@ -56,8 +56,8 @@ return function()
     -- Module mappings. Use `''` (empty string) to disable one. Some of them
     -- might conflict with system mappings.
     mappings = {
-      force_twostep = '<C-Space>', -- Force two-step completion
-      force_fallback = '<A-Space>', -- Force fallback completion
+      force_twostep = "<C-Space>", -- Force two-step completion
+      force_fallback = "<A-Space>", -- Force fallback completion
     },
 
     -- Whether to set Vim's settings for better experience (modifies

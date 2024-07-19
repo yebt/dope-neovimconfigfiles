@@ -3,27 +3,27 @@ return {
 
   -- Jumps
   {
-    'folke/flash.nvim',
+    "folke/flash.nvim",
     keys = {
       {
-        '<c-s>',
-        mode = { 'c' },
+        "<c-s>",
+        mode = { "c" },
         function()
-          require('flash').toggle()
+          require("flash").toggle()
         end,
-        desc = 'Toggle Flash Search',
+        desc = "Toggle Flash Search",
       },
-      { 'f', mode = { 'x', 'n' } },
-      { 'F', mode = { 'x', 'n' } },
-      { 't', mode = { 'x', 'n' } },
-      { 'T', mode = { 'x', 'n' } },
-      { ';', mode = { 'x', 'n' } },
-      { ',', mode = { 'x', 'n' } },
+      { "f", mode = { "x", "n" } },
+      { "F", mode = { "x", "n" } },
+      { "t", mode = { "x", "n" } },
+      { "T", mode = { "x", "n" } },
+      { ";", mode = { "x", "n" } },
+      { ",", mode = { "x", "n" } },
       -- Show diagnostics at target, without changing cursor position
       {
-        '<leader><leader>d',
+        "<leader><leader>d",
         function()
-          require('flash').jump({
+          require("flash").jump({
             action = function(match, state)
               vim.api.nvim_win_call(match.win, function()
                 vim.api.nvim_win_set_cursor(match.win, match.pos)
@@ -33,15 +33,15 @@ return {
             end,
           })
         end,
-        mode = { 'x', 'n' },
-        desc = 'Show diagnostic at target',
+        mode = { "x", "n" },
+        desc = "Show diagnostic at target",
       },
 
       -- Show diagnostics at target, without changing cursor position, also highlights diagnostics
       {
-        '<leader><leader>D',
+        "<leader><leader>D",
         function()
-          require('flash').jump({
+          require("flash").jump({
             matcher = function(win)
               ---@param diag Diagnostic
               return vim.tbl_map(function(diag)
@@ -60,8 +60,8 @@ return {
             end,
           })
         end,
-        mode = { 'x', 'n' },
-        desc = 'show diagnostic advanced',
+        mode = { "x", "n" },
+        desc = "show diagnostic advanced",
       },
       -- Match beginning of words only
       -- {
@@ -101,34 +101,34 @@ return {
       -- },
       -- Jump to a line
       {
-        '<leader><leader>l',
+        "<leader><leader>l",
         function()
-          require('flash').jump({
-            search = { mode = 'search', max_length = 0 },
+          require("flash").jump({
+            search = { mode = "search", max_length = 0 },
             label = { after = { 0, 0 } },
-            pattern = '^',
+            pattern = "^",
           })
         end,
-        mode = { 'x', 'n' },
-        desc = 'Jump to line',
+        mode = { "x", "n" },
+        desc = "Jump to line",
       },
       -- Hop
       {
-        '<leader><leader>h',
+        "<leader><leader>h",
         function()
-          local Flash = require('flash')
+          local Flash = require("flash")
 
           ---@param opts Flash.Format
           local function format(opts)
             -- always show first and second label
             return {
-              { opts.match.label1, 'FlashMatch' },
-              { opts.match.label2, 'FlashLabel' },
+              { opts.match.label1, "FlashMatch" },
+              { opts.match.label2, "FlashLabel" },
             }
           end
 
           Flash.jump({
-            search = { mode = 'search' },
+            search = { mode = "search" },
             label = { after = false, before = { 0, 0 }, uppercase = false, format = format },
             pattern = [[\<]],
             action = function(match, state)
@@ -160,8 +160,8 @@ return {
             end,
           })
         end,
-        mode = { 'x', 'n' },
-        desc = 'Hop',
+        mode = { "x", "n" },
+        desc = "Hop",
       },
     },
     opts = {
@@ -173,7 +173,7 @@ return {
           jump_labels = true,
           -- labels = "abcdefghijklmnopqrstuvwxyz",
           -- labels = "asdfghjklqwertyuiopzxcvbnm",
-          label = { exclude = 'hjkliardcsgx' },
+          label = { exclude = "hjkliardcsgx" },
         },
       },
     },

@@ -24,7 +24,7 @@ return function()
     window = {
       -- Floating window config
       config = {
-        border = 'solid',
+        border = "solid",
       },
 
       -- Maximum window width as share (between 0 and 1) of available columns
@@ -35,14 +35,14 @@ return function()
     },
   }
   --
-  local notify = require('mini.notify')
+  local notify = require("mini.notify")
   notify.setup(opts)
   vim.notify = notify.make_notify({
-    ERROR = { duration = 5000, hl_group = 'DiagnosticError' },
-    WARN = { duration = 5000, hl_group = 'DiagnosticWarn' },
-    INFO = { duration = 5000, hl_group = 'DiagnosticInfo' },
-    DEBUG = { duration = 0, hl_group = 'DiagnosticHint' },
-    TRACE = { duration = 0, hl_group = 'DiagnosticOk' },
-    OFF = { duration = 0, hl_group = 'MiniNotifyNormal' },
+    ERROR = { duration = 5000, hl_group = "DiagnosticError" },
+    WARN = { duration = 5000, hl_group = "DiagnosticWarn" },
+    INFO = { duration = 5000, hl_group = "DiagnosticInfo" },
+    DEBUG = { duration = 0, hl_group = "DiagnosticHint" },
+    TRACE = { duration = 0, hl_group = "DiagnosticOk" },
+    OFF = { duration = 0, hl_group = "MiniNotifyNormal" },
   })
 end

@@ -1,16 +1,16 @@
 return function()
-  local ft = require('guard.filetype')
-  local linter = require('guard.lint')
+  local ft = require("guard.filetype")
+  local linter = require("guard.lint")
 
   --- Markdownlint-cli
   -- try to add the linter and the formatter
   --- Formatter
-  ft('markdown'):lint({
+  ft("markdown"):lint({
     fn = function(buf, range)
       vim.system(
         {
-          'mardownlint',
-          '--stdin',
+          "mardownlint",
+          "--stdin",
         },
         {},
         vim.schedule_wrap(function(result)
@@ -63,7 +63,7 @@ return function()
   -- })
 
   -- Builting
-  ft('lua'):fmt('lsp'):append('stylua')
+  ft("lua"):fmt("lsp"):append("stylua")
 
   -- Assuming you have guard-collection
   -- ft('lang'):fmt('format-tool-1')
@@ -73,7 +73,7 @@ return function()
   --           :extra(extra_args)
 
   -- Call setup() LAST!
-  require('guard').setup({
+  require("guard").setup({
     -- Choose to format on every write to a buffer
     -- fmt_on_save = true,
     fmt_on_save = false,
@@ -85,32 +85,32 @@ return function()
   })
 
   local is_formatting = false
-  local group = require('guard.events').group
+  local group = require("guard.events").group
 
   _G.guard_status = function()
     -- display icon if auto-format is enabled for current buffer
     local au = vim.api.nvim_get_autocmds({
-      group = 'Guard',
+      group = "Guard",
       buffer = 0,
     })
     if vim.bo.ft and #au ~= 0 then
-      local bufau = vim.api.nvim_get_autocmds({ group = group, event = 'BufWritePre', buffer = 0 })
+      local bufau = vim.api.nvim_get_autocmds({ group = group, event = "BufWritePre", buffer = 0 })
       if #bufau == 0 then
-        return ''
+        return ""
         -- return '󰦞'
       end
-      return is_formatting and '' or '󰞀'
+      return is_formatting and "" or "󰞀"
       -- return is_formatting and '' or ''
     end
-    return ''
+    return ""
   end
   -- sets a super simple statusline when entering a buffer
   -- vim.cmd('au BufEnter * lua vim.opt.stl = [[%f %m ]] .. guard_status()')
   -- update statusline on GuardFmt event
-  vim.api.nvim_create_autocmd('User', {
-    pattern = 'GuardFmt',
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "GuardFmt",
     callback = function(opt)
-      is_formatting = opt.data.status == 'pending'
+      is_formatting = opt.data.status == "pending"
     end,
   })
 end
