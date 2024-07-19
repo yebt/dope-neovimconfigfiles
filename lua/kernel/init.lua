@@ -31,7 +31,7 @@ local defaults = {
 }
 
 local options
-local  function load_conf(name)
+local function load_conf(name)
   require('config' .. '.' .. name)
 end
 
@@ -39,8 +39,8 @@ function M.setup(opts)
   options = vim.tbl_deep_extend('force', defaults, opts or {}) or {}
 
   -- Bootstrap lazy
-  load_conf("lazy")
-  load_conf("options")
+  load_conf('lazy')
+  load_conf('options')
 
   -- autocmds can be loaded lazily when not opening a file
   local without_args = vim.fn.argc(-1) == 0
