@@ -1,9 +1,12 @@
 --
-local M = {}
 
 local defaults = {
   colorscheme = 'dessert',
   text_filetypes = { '*.txt', '*.tex', '*.typ', 'gitcommit', 'markdown' },
+  keys = {
+    -- leader = ' ',
+    -- localleader = ',',
+  },
   lazy = {
     desiabled_plugins = {
       -- "editorconfig",
@@ -35,8 +38,12 @@ local function load_conf(name)
   require('config' .. '.' .. name)
 end
 
-function M.setup(opts)
+function setup(opts)
   options = vim.tbl_deep_extend('force', defaults, opts or {}) or {}
+
+  -- make leaders pre lazy.nvim
+  vim.g.mapleader = options.keys.leader or ' '
+  vim.g.maplocalleader = options.keys.localleader or ' '
 
   -- Bootstrap lazy
   load_conf('lazy')
@@ -59,15 +66,18 @@ function M.setup(opts)
       end
       load_conf('keymaps')
       -- call colorscheme
-      local ok, _ = pcall(vim.cmd.colorscheme, kernel.opts.colorscheme)
+      local ok, _ = pcall(vim.cmd.colorscheme, options.colorscheme)
       if not ok then
-        vim.notify("Error when try to load colorscheme '" .. kernel.opts.colorscheme .. "'")
-        vim.cmd.colorscheme('desert')
+        vim.notify("Error when try to load colorscheme '" .. options.colorscheme .. "'")
+        vim.cmd.colorscheme('habamax')
       end
     end,
   })
 end
 
-M.options = options
+local M = {
+  setup = setup,
+  options = options
+}
 _G._kernel = M
 return M
