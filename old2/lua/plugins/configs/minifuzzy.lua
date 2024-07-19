@@ -1,5 +1,5 @@
 return function()
-  require("mini.fuzzy").setup(
+  require('mini.fuzzy').setup(
     -- No need to copy this inside `setup()`. Will be used automatically.
     {
       -- Maximum allowed value of match features (width and first match). All

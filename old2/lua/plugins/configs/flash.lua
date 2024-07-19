@@ -259,5 +259,5 @@ return function()
       },
     },
   }
-  require("flash").jump(opts)
+  require('flash').jump(opts)
 end

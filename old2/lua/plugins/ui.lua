@@ -2,11 +2,11 @@
 return {
   -- Starter view
   {
-    "echasnovski/mini.starter",
+    'echasnovski/mini.starter',
     version = false,
-    event = "VimEnter",
+    event = 'VimEnter',
     dependencies = {
-      { "echasnovski/mini.sessions", version = false },
+      { 'echasnovski/mini.sessions', version = false },
     },
     cond = function()
       local lines = vim.api.nvim_buf_get_lines(0, 0, 2, false)
@@ -21,7 +21,7 @@ return {
 
       if not skip then
         for _, arg in pairs(vim.v.argv) do
-          if arg == "-b" or arg == "-c" or vim.startswith(arg, "+") or arg == "-S" then
+          if arg == '-b' or arg == '-c' or vim.startswith(arg, '+') or arg == '-S' then
             skip = true
             break
           end
@@ -29,22 +29,22 @@ return {
       end
       return not skip
     end,
-    config = require("plugins.configs.ministarter"),
+    config = require('plugins.configs.ministarter'),
   },
 
   -- Notifications
   {
-    "echasnovski/mini.notify",
+    'echasnovski/mini.notify',
     version = false,
-    event = "VeryLazy",
-    cond = _G.kernel.opts.plugins.notification == "mininotify",
-    config = require("plugins.configs.mininotify"),
+    event = 'VeryLazy',
+    cond = _G.kernel.opts.plugins.notification == 'mininotify',
+    config = require('plugins.configs.mininotify'),
   },
   {
-    "vigoux/notifier.nvim",
+    'vigoux/notifier.nvim',
     lazy = false,
-    cond = _G.kernel.opts.plugins.notification == "notifier",
-    config = require("plugins.configs.notifier"),
+    cond = _G.kernel.opts.plugins.notification == 'notifier',
+    config = require('plugins.configs.notifier'),
   },
 
   -- Clue Key Wich
@@ -57,9 +57,9 @@ return {
 
   -- Scope
   {
-    "nvimdev/indentmini.nvim",
-    event = "VeryLazy",
-    config = require("plugins.configs.indentmini"),
+    'nvimdev/indentmini.nvim',
+    event = 'VeryLazy',
+    config = require('plugins.configs.indentmini'),
   },
 
   -- indent line
@@ -73,9 +73,9 @@ return {
 
   -- Colorized
   {
-    "NvChad/nvim-colorizer.lua",
-    cmd = { "ColorizerToggle" },
-    config = require("plugins.configs.colorizer"),
+    'NvChad/nvim-colorizer.lua',
+    cmd = { 'ColorizerToggle' },
+    config = require('plugins.configs.colorizer'),
   },
 
   -- Reactive
@@ -102,23 +102,23 @@ return {
 
   -- WhicKey
   {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    config = require("plugins.configs.whickey"),
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
+    config = require('plugins.configs.whickey'),
   },
 
   -- Better inputs
   {
-    "stevearc/dressing.nvim",
+    'stevearc/dressing.nvim',
     init = function()
       ---@diagnostic disable-next-line: duplicate-set-field
       vim.ui.select = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
+        require('lazy').load({ plugins = { 'dressing.nvim' } })
         return vim.ui.select(...)
       end
       ---@diagnostic disable-next-line: duplicate-set-field
       vim.ui.input = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
+        require('lazy').load({ plugins = { 'dressing.nvim' } })
         return vim.ui.input(...)
       end
     end,

@@ -1,5 +1,5 @@
 return function()
-  require("lspsaga").setup({
+  require('lspsaga').setup({
     -- breadcrumb
     symbol_in_winbar = {
       enable = false,

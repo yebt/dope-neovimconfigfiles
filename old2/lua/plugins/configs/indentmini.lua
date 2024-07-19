@@ -1,8 +1,8 @@
 return function()
-  require("indentmini").setup({
+  require('indentmini').setup({
     -- ╎ │ ▏
-    char = "▏",
-    exclude = { "markdown" },
+    char = '▏',
+    exclude = { 'markdown' },
     minlevel = 1,
   })
   -- vim.api.nvim_set_hl(0, 'CmpItemKindTypeParameter', { fg = '#D8EEEB', bg = '#58B5A8' })
@@ -11,5 +11,5 @@ return function()
   -- vim.cmd.highlight('IndentLine guifg=#123456')
   -- Current indent line highlight
   -- vim.cmd.highlight('IndentLineCurrent guifg=#123456')
-  vim.cmd.highlight(" link IndentLine LineNr")
+  vim.cmd.highlight(' link IndentLine LineNr')
 end

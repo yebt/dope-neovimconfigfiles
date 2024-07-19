@@ -9,10 +9,10 @@ return function()
 
       -- Directory where global sessions are stored (use `''` to disable)
       -- directory = --<"session" subdir of user data directory from |stdpath()|>,
-      directory = vim.fn.stdpath("config") .. "/sessions",
+      directory = vim.fn.stdpath('config') .. '/sessions',
 
       -- File for local session (use `''` to disable)
-      file = "Session.vim",
+      file = 'Session.vim',
 
       -- Whether to force possibly harmful actions (meaning depends on function)
       force = { read = false, write = true, delete = false },
@@ -29,5 +29,5 @@ return function()
       verbose = { read = false, write = true, delete = true },
     }
 
-  require("mini.sessions").setup(opts)
+  require('mini.sessions').setup(opts)
 end

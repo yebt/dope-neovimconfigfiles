@@ -18,8 +18,8 @@ return {
 
   -- Signs
   {
-    "lewis6991/gitsigns.nvim",
-    event = "VeryLazy",
-    config = require("plugins.configs.gitsigns"),
+    'lewis6991/gitsigns.nvim',
+    event = 'VeryLazy',
+    config = require('plugins.configs.gitsigns'),
   },
 }

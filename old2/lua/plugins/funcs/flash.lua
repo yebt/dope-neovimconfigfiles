@@ -1,16 +1,16 @@
-local Flash = require("flash")
+local Flash = require('flash')
 
 ---@param opts Flash.Format
 local function format(opts)
   -- always show first and second label
   return {
-    { opts.match.label1, "FlashMatch" },
-    { opts.match.label2, "FlashLabel" },
+    { opts.match.label1, 'FlashMatch' },
+    { opts.match.label2, 'FlashLabel' },
   }
 end
 
 Flash.jump({
-  search = { mode = "search" },
+  search = { mode = 'search' },
   label = { after = false, before = { 0, 0 }, uppercase = false, format = format },
   pattern = [[\<]],
   action = function(match, state)
