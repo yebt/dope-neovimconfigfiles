@@ -1,3 +1,4 @@
+-- HERE: all integrations for work with git
 return {
 
   -- Signs
