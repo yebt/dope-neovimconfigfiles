@@ -23,7 +23,6 @@ vim.on_key(function(char)
   end
 end, vim.api.nvim_create_namespace('auto_hlsearch'))
 
-
 -- Check if we need to reload the file when it changed
 au({ 'FocusGained', 'TermClose', 'TermLeave' }, {
   group = agroup('checktime'),
@@ -99,7 +98,6 @@ au('BufWinEnter', {
   end,
 })
 
-
 -- close some filetypes with <q>
 au('FileType', {
   group = augroup('close_with_q'),
@@ -130,7 +128,6 @@ au('FileType', {
   end,
 })
 
-
 -- wrap and check for spell in text filetypes
 au('FileType', {
   group = augroup('wrap_spell'),
@@ -143,7 +140,6 @@ au('FileType', {
   end,
 })
 
-
 -- Better conceal level for json files
 au({ 'FileType' }, {
   group = agroup('json_conceal'),
@@ -152,7 +148,6 @@ au({ 'FileType' }, {
     vim.opt_local.conceallevel = 0
   end,
 })
-
 
 -- Better Terminal iteration
 local c = agroup('terming')
