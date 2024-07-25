@@ -1,9 +1,10 @@
+local au = vim.api.nvim_create_autocmd
 -- This file is automatically loaded by lazyvim.config.init.
 local function augroup(name)
   return vim.api.nvim_create_augroup('_kernel_' .. name, { clear = true })
 end
 --
-vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
+au({ 'FocusGained', 'TermClose', 'TermLeave' }, {
   group = augroup('checktime'),
   callback = function()
     if vim.o.buftype ~= 'nofile' then
@@ -12,8 +13,29 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
   end,
 })
 
+-- auto no h in normal mode
+vim.on_key(function(char)
+  if vim.fn.mode() == 'n' then
+    local new_hlsearch = vim.tbl_contains({ '<CR>', 'n', 'N', '*', '#', '?', '/' }, vim.fn.keytrans(char))
+    if vim.opt.hlsearch:get() ~= new_hlsearch then
+      vim.opt.hlsearch = new_hlsearch
+    end
+  end
+end, vim.api.nvim_create_namespace('auto_hlsearch'))
+
+
+-- Check if we need to reload the file when it changed
+au({ 'FocusGained', 'TermClose', 'TermLeave' }, {
+  group = agroup('checktime'),
+  callback = function()
+    if vim.o.buftype ~= 'nofile' then
+      vim.cmd('checktime')
+    end
+  end,
+})
+
 -- Highlight on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
+au('TextYankPost', {
   group = augroup('highlight_yank'),
   callback = function()
     vim.highlight.on_yank()
@@ -21,7 +43,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- resize splits if window got resized
-vim.api.nvim_create_autocmd({ 'VimResized' }, {
+au({ 'VimResized' }, {
   group = augroup('resize_splits'),
   callback = function()
     local current_tab = vim.fn.tabpagenr()
@@ -31,25 +53,55 @@ vim.api.nvim_create_autocmd({ 'VimResized' }, {
 })
 
 -- go to last loc when opening a buffer
-vim.api.nvim_create_autocmd('BufReadPost', {
-  group = augroup('last_loc'),
+-- au('BufReadPost', {
+--   group = augroup('last_loc'),
+--   callback = function(event)
+--     local exclude = { 'gitcommit' }
+--     local buf = event.buf
+--     if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc then
+--       return
+--     end
+--     vim.b[buf].lazyvim_last_loc = true
+--     local mark = vim.api.nvim_buf_get_mark(buf, '"')
+--     local lcount = vim.api.nvim_buf_line_count(buf)
+--     if mark[1] > 0 and mark[1] <= lcount then
+--       pcall(vim.api.nvim_win_set_cursor, 0, mark)
+--     end
+--   end,
+-- })
+
+-- Automake the views
+local view_group = agroup('_auto_view')
+-- Make view
+au({ 'BufWinLeave', 'BufWritePost', 'WinLeave' }, {
+  desc = 'Save view with mkview for real files',
+  group = view_group,
   callback = function(event)
-    local exclude = { 'gitcommit' }
-    local buf = event.buf
-    if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc then
-      return
+    if vim.b[event.buf].view_activated then
+      vim.cmd.mkview({ mods = { emsg_silent = true } })
     end
-    vim.b[buf].lazyvim_last_loc = true
-    local mark = vim.api.nvim_buf_get_mark(buf, '"')
-    local lcount = vim.api.nvim_buf_line_count(buf)
-    if mark[1] > 0 and mark[1] <= lcount then
-      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+  end,
+})
+-- Load the view
+au('BufWinEnter', {
+  desc = 'Try to load file view if available and enable view saving for real files',
+  group = view_group,
+  callback = function(event)
+    if not vim.b[event.buf].view_activated then
+      local filetype = vim.api.nvim_get_option_value('filetype', { buf = event.buf })
+      local buftype = vim.api.nvim_get_option_value('buftype', { buf = event.buf })
+      local ignore_filetypes = { 'gitcommit', 'gitrebase', 'svg', 'hgcommit' }
+      if buftype == '' and filetype and filetype ~= '' and not vim.tbl_contains(ignore_filetypes, filetype) then
+        vim.b[event.buf].view_activated = true
+        vim.cmd.loadview({ mods = { emsg_silent = true } })
+      end
     end
   end,
 })
 
+
 -- close some filetypes with <q>
-vim.api.nvim_create_autocmd('FileType', {
+au('FileType', {
   group = augroup('close_with_q'),
   pattern = {
     'PlenaryTestPopup',
@@ -78,13 +130,41 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+
 -- wrap and check for spell in text filetypes
-vim.api.nvim_create_autocmd('FileType', {
+au('FileType', {
   group = augroup('wrap_spell'),
   pattern = _kernel.options.text_filetypes or { 'text', 'plaintex', 'typst', 'gitcommit', 'markdown' },
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
-    listchars.eol = '¶'
+    vim.opt_local.listchars.eol = '¶'
+    vim.opt_local.colorcolumn = '100'
   end,
 })
+
+
+-- Better conceal level for json files
+au({ 'FileType' }, {
+  group = agroup('json_conceal'),
+  pattern = { 'json', 'jsonc', 'json5' },
+  callback = function()
+    vim.opt_local.conceallevel = 0
+  end,
+})
+
+
+-- Better Terminal iteration
+local c = agroup('terming')
+au({ 'TermOpen' }, {
+  group = c,
+  callback = function()
+    vim.opt_local.conceallevel = 0
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.signcolumn = 'no'
+    vim.cmd('startinsert')
+  end,
+})
+au({ 'BufEnter', 'WinEnter' }, { pattern = { 'term://*' }, group = c, command = [[startinsert]] })
+au({ 'BufLeave' }, { pattern = { 'term://*' }, group = c, command = [[stopinsert]] })
