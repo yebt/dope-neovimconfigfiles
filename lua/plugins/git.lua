@@ -1,7 +1,7 @@
 -- HERE: all integrations for work with git
 return {
 
-  -- Signs
+  -- Git signs
   {
     'lewis6991/gitsigns.nvim',
     event = 'VeryLazy',
@@ -22,8 +22,8 @@ return {
         changedelete = { text = '~' },
         untracked = { text = '┆' },
       },
-      signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
-      numhl      = true, -- Toggle with `:Gitsigns toggle_numhl`
+      signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+      numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
     },
   },
 }
