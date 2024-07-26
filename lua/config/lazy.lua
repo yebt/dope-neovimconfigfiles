@@ -17,7 +17,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.fn.getchar()
     os.exit(1)
   end
-  vim.api.nvim_echo({ { '✓  Done' } }, false, {})
+  vim.api.nvim_echo({ { '✓  Done','ModeMsg' } }, true, {})
 end
 vim.opt.rtp:prepend(lazypath)
 
