@@ -25,7 +25,7 @@ end, vim.api.nvim_create_namespace('auto_hlsearch'))
 
 -- Check if we need to reload the file when it changed
 au({ 'FocusGained', 'TermClose', 'TermLeave' }, {
-  group = agroup('checktime'),
+  group = augroup('checktime'),
   callback = function()
     if vim.o.buftype ~= 'nofile' then
       vim.cmd('checktime')
@@ -37,7 +37,9 @@ au({ 'FocusGained', 'TermClose', 'TermLeave' }, {
 au('TextYankPost', {
   group = augroup('highlight_yank'),
   callback = function()
-    vim.highlight.on_yank()
+    vim.highlight.on_yank({
+      timeout = _kernel.options.yanc_timeout or 300,
+    })
   end,
 })
 
@@ -70,7 +72,7 @@ au({ 'VimResized' }, {
 -- })
 
 -- Automake the views
-local view_group = agroup('_auto_view')
+local view_group = augroup('_auto_view')
 -- Make view
 au({ 'BufWinLeave', 'BufWritePost', 'WinLeave' }, {
   desc = 'Save view with mkview for real files',
@@ -142,7 +144,7 @@ au('FileType', {
 
 -- Better conceal level for json files
 au({ 'FileType' }, {
-  group = agroup('json_conceal'),
+  group = augroup('json_conceal'),
   pattern = { 'json', 'jsonc', 'json5' },
   callback = function()
     vim.opt_local.conceallevel = 0
@@ -150,7 +152,7 @@ au({ 'FileType' }, {
 })
 
 -- Better Terminal iteration
-local c = agroup('terming')
+local c = augroup('terming')
 au({ 'TermOpen' }, {
   group = c,
   callback = function()

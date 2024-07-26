@@ -21,7 +21,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require('lazy').setup({
   rocks = {
-    enabled = false
+    enabled = false,
   },
   defaults = {
     lazy = true,
