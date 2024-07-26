@@ -56,21 +56,21 @@ return function()
     -- Window related options
     window = {
       -- Float window config (table or callable returning it)
-      -- config = function()
-      --   -- height = math.floor(0.6 * vim.o.lines)
-      --   -- width = math.floor(0.5 * vim.o.columns)
-      --   height = 10
-      --   width = 60
-      --   return {
-      --     anchor = 'NW',
-      --     height = height,
-      --     width = width,
-      --     -- row = math.floor(0.5 * (vim.o.lines - height)),
-      --     row = 1,
-      --     col = math.floor(0.5 * (vim.o.columns - width)),
-      --     border = 'double',
-      --   }
-      -- end,
+      config = function()
+        -- height = math.floor(0.6 * vim.o.lines)
+        -- width = math.floor(0.5 * vim.o.columns)
+        height = 10
+        width = 60
+        return {
+          anchor = 'NW',
+          height = height,
+          width = width,
+          -- row = math.floor(0.5 * (vim.o.lines - height)),
+          row = 1,
+          col = math.floor(0.5 * (vim.o.columns - width)),
+          border = 'double',
+        }
+      end,
 
       -- String to use as cursor in prompt
       prompt_cursor = '▏',
@@ -79,5 +79,8 @@ return function()
       prompt_prefix = '> ',
     },
   }
+  require('mini.extra').setup()
+  -- TODO: add the way to list the files from the original dir, restore the dir when go out of nettree
+  -- TODO: add spect to list the buffers in the new order
   minipick.setup(opts)
 end

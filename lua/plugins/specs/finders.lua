@@ -123,7 +123,17 @@ return {
     name = 'mini.pick',
     cond = is_finder,
     cmd = { 'Pick' },
+    keys = {
+      {
+        '<C-p>',
+        function()
+          MiniPick.builtin.files({tool='rg'})
+        end,
+      },
+    },
     dependencies = {
+      { 'echasnovski/mini.extra', version = false },
+      ---
       {
         'echasnovski/mini.icons',
         version = false,
@@ -147,6 +157,7 @@ return {
         cond = (_kernel.options.plugins.pickicons or '') == 'dev',
       },
     },
+    init = require('plugins.inits.minipicki'),
     config = require('plugins.configs.minipickc'),
   },
 }
