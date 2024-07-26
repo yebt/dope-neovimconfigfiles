@@ -103,7 +103,7 @@ local options = {
   foldenable = true,
   foldlevelstart = 99,
   foldmethod = 'indent', -- marker, indent
-  foldcolumn = '1',
+  foldcolumn =  (_kernel.options.plugins.foldcolumn == 'builtin' and '1' or '0'),
 
   -- Sign
   -- signcolumn = 'yes',
@@ -212,10 +212,11 @@ local options = {
   completeopt = {
     'menu',
     'menuone',
-    -- 'preview',-- show extra info in preview windows -- not complatible with preview
+    'preview',-- show extra info in preview windows -- not complatible with preview
     -- 'popup', -- show extra info in a popup winndow
-    'noinsert',
-    'noselect',
+    --- Sometimes i need insert the selected options when i trigger it manually
+    -- 'noinsert',
+    -- 'noselect',
     -- 'fuzzy' -- is not in nvim 10
   },
   -- pumheight = 15,
