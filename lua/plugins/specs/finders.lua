@@ -127,7 +127,7 @@ return {
       {
         '<C-p>',
         function()
-          MiniPick.builtin.files({tool='rg'})
+          MiniPick.builtin.files({ tool = 'rg' })
         end,
       },
     },
