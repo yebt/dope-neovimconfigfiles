@@ -1,12 +1,13 @@
 -- HERE: Make most easy search
+local selected_plugin = require('util.functions').selected_plugin
 
 -- Select the finder plugin
 function is_finder(plug)
-  return plug.name == _kernel.options.plugins.finder
+  return selected_plugin('finder', plug.name)
 end
 -- Select  the plugin for the telescope
 function telescope_prefomance(plug)
-  return _kernel.options.plugins.telescope == plug.name
+  return selected_plugin('telescope', plug.name)
 end
 
 return {
@@ -137,7 +138,7 @@ return {
       {
         'echasnovski/mini.icons',
         version = false,
-        cond = (_kernel.options.plugins.pickicons or '') == 'mini',
+        cond = selected_plugin('pickicons','mini'),
         opts = {
           -- Icon style: 'glyph' or 'ascii'
           style = 'glyph',
@@ -154,10 +155,48 @@ return {
       },
       {
         'nvim-tree/nvim-web-devicons',
-        cond = (_kernel.options.plugins.pickicons or '') == 'dev',
+        cond = selected_plugin('pickicons', 'dev'),
       },
     },
     init = require('plugins.inits.minipicki'),
     config = require('plugins.configs.minipickc'),
+  },
+
+  -- FZF
+  {
+    'junegunn/fzf',
+    build = './install --bin',
+    cond = is_finder,
+    cmd = {
+      'Files',
+      'GFiles',
+      'Buffers',
+      'Colors',
+      'Ag',
+      'Rg',
+      'RG',
+      'Lines',
+      'BLines',
+      'Tags',
+      'BTags',
+      'Changes',
+      'Marks',
+      'Jumps',
+      'Windows',
+      'Locate',
+      'History',
+      'History',
+      'History',
+      'Snippets',
+      'Commits',
+      'BCommits',
+      'Commands',
+      'Maps',
+      'Helptags',
+      'Filetypes',
+    },
+    dependencies = {
+      { 'junegunn/fzf.vim' },
+    },
   },
 }

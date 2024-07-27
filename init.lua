@@ -1,7 +1,8 @@
 require('kernel').setup({
   -- colorscheme = 'habamax',
   -- colorscheme = 'tokyonight-night',
-  colorscheme = 'tokyonight',
+  -- colorscheme = 'tokyonight',
+  colorscheme = 'porcelain',
 
   keys = {
     leader = ' ',
@@ -18,11 +19,15 @@ require('kernel').setup({
 
     satatusline = 'builtin',
 
+    foldcolumn = 'sign', -- 'builtina', 'sign'
+
     completion = 'epo',
     -- completion = 'cmp',
     -- completion = 'minicompletion',
 
     -- notification = "notifier",
     -- notification = 'mininotify',
+
+    sessions = "minisessions", -- minisessions
   },
 })

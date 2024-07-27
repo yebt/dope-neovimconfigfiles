@@ -2,6 +2,7 @@ local vopt = vim.opt
 local vg = vim.g
 local vapi = vim.api
 local spf = vim.fs.joinpath(vim.fn.stdpath('config'), 'spell')
+local selected_plugin = require('util.functions').selected_plugin
 
 --- OPTIONS VAR LOOP
 local options = {
@@ -103,11 +104,12 @@ local options = {
   foldenable = true,
   foldlevelstart = 99,
   foldmethod = 'indent', -- marker, indent
-  foldcolumn =  (_kernel.options.plugins.foldcolumn == 'builtin' and '1' or '0'),
+  foldcolumn =  selected_plugin('foldcolumn','builtin') and '1' or '0',
 
   -- Sign
   -- signcolumn = 'yes',
-  signcolumn = 'yes:1',
+  -- signcolumn = 'yes:1',
+  signcolumn = 'auto:4',
 
   -- Text
   textwidth = 100,
