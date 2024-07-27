@@ -28,6 +28,6 @@ require('kernel').setup({
     -- notification = "notifier",
     -- notification = 'mininotify',
 
-    sessions = "minisessions", -- minisessions
+    sessions = 'minisessions', -- minisessions
   },
 })

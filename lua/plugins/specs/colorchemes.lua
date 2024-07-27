@@ -2,6 +2,6 @@
 return {
   -- Porcelain
   {
-    "nvimdev/porcelain.nvim"
-  }
+    'nvimdev/porcelain.nvim',
+  },
 }

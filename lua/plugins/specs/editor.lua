@@ -13,7 +13,7 @@ return {
   {
     'echasnovski/mini.sessions',
     version = false,
-    cond = selected_plugin('sessions','minisessions'),
+    cond = selected_plugin('sessions', 'minisessions'),
     config = require('plugins.configs.minisessionsc'),
   },
 }

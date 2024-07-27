@@ -1,4 +1,4 @@
-local M ={}
+local M = {}
 
 --- Return if in the kernel plugins options is selected some
 --- value, return nil if is not defined de vdef

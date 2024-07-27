@@ -104,7 +104,7 @@ local options = {
   foldenable = true,
   foldlevelstart = 99,
   foldmethod = 'indent', -- marker, indent
-  foldcolumn =  selected_plugin('foldcolumn','builtin') and '1' or '0',
+  foldcolumn = selected_plugin('foldcolumn', 'builtin') and '1' or '0',
 
   -- Sign
   -- signcolumn = 'yes',
@@ -214,7 +214,7 @@ local options = {
   completeopt = {
     'menu',
     'menuone',
-    'preview',-- show extra info in preview windows -- not complatible with preview
+    'preview', -- show extra info in preview windows -- not complatible with preview
     -- 'popup', -- show extra info in a popup winndow
     --- Sometimes i need insert the selected options when i trigger it manually
     -- 'noinsert',

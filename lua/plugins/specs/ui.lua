@@ -23,7 +23,7 @@ return {
   {
     'yaocccc/nvim-foldsign',
     lazy = false,
-    cond = selected_plugin('foldcolumn','sign'),
+    cond = selected_plugin('foldcolumn', 'sign'),
     opts = {
       offset = -2,
       foldsigns = {

@@ -138,7 +138,7 @@ return {
       {
         'echasnovski/mini.icons',
         version = false,
-        cond = selected_plugin('pickicons','mini'),
+        cond = selected_plugin('pickicons', 'mini'),
         opts = {
           -- Icon style: 'glyph' or 'ascii'
           style = 'glyph',
