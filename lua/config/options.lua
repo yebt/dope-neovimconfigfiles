@@ -7,6 +7,7 @@ local selected_plugin = require('util.functions').selected_plugin
 --- OPTIONS VAR LOOP
 local options = {
 
+
   -- Cursor
   cursorline = true, -- show cursor line highlights:
   guicursor = 'a:block-cursor', -- show the cursor in block in any mode
@@ -74,6 +75,7 @@ local options = {
   -- statuscolumn
   -- statusline
 
+
   -- Split
   splitbelow = true,
   splitright = true,
@@ -85,14 +87,15 @@ local options = {
   -- cmdwinheight = 8,
   showcmd = true,
   showmode = false,
-  -- --
+
+  -- Short
   shortmess = {
     a = true, -- abbreviate all messages
     o = true, -- overwite write message
     O = true, --
     T = true, -- trunkate messages ...
     F = true,
-    --   c = true, -- now show autocmpletion print
+    c = true, -- now show autocmpletion print
     --   I = true, -- not get intro message
   },
 
