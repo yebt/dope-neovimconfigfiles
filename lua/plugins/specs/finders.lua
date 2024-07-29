@@ -131,6 +131,14 @@ return {
           MiniPick.builtin.files({ tool = 'rg' })
         end,
       },
+      {
+        '<leader>b',
+        function()
+          if MiniPick.registry.bufferlist then
+            MiniPick.registry.bufferlist()
+          end
+        end,
+      },
     },
     dependencies = {
       { 'echasnovski/mini.extra', version = false },
