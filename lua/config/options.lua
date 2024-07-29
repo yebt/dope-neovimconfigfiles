@@ -7,7 +7,6 @@ local selected_plugin = require('util.functions').selected_plugin
 --- OPTIONS VAR LOOP
 local options = {
 
-
   -- Cursor
   cursorline = true, -- show cursor line highlights:
   guicursor = 'a:block-cursor', -- show the cursor in block in any mode
@@ -74,7 +73,6 @@ local options = {
   -- laststatus = 3,
   -- statuscolumn
   -- statusline
-
 
   -- Split
   splitbelow = true,
