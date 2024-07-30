@@ -2,7 +2,8 @@ require('kernel').setup({
   -- colorscheme = 'habamax',
   -- colorscheme = 'tokyonight-night',
   -- colorscheme = 'tokyonight',
-  colorscheme = 'porcelain',
+  -- colorscheme = 'porcelain',
+  colorscheme = 'kanagawa',
 
   keys = {
     leader = ' ',
