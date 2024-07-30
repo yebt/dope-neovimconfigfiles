@@ -45,7 +45,7 @@ return {
             },
           })
         end,
-      desc = "Search the fiels in path",
+        desc = 'Search the fiels in path',
       },
     },
     dependencies = {
@@ -111,7 +111,7 @@ return {
             },
           })
         end,
-      desc = "Search the fiels in path",
+        desc = 'Search the fiels in path',
       },
     },
     config = function()
@@ -133,7 +133,7 @@ return {
           MiniPick.builtin.files({ tool = 'rg' })
         end,
 
-      desc = "Search the fiels in path",
+        desc = 'Search the fiels in path',
       },
       {
         '<leader>b',
@@ -143,7 +143,7 @@ return {
           end
         end,
 
-      desc = "Pick orderer buffers",
+        desc = 'Pick orderer buffers',
       },
     },
     dependencies = {
