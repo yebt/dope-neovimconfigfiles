@@ -124,9 +124,11 @@ return function()
           buf = buf_num,
           -- name = buf_relname,
           -- text = buf_relname,
+          -- text = buf_relname,
+          -- text = buf_filename,
           text = ' ' .. buf_filename .. ' \n ' .. buf_relpath,
-          -- file = buf_filename,s
-          -- path = buf_relpath,
+          -- filename = buf_filename,
+          -- pathname = buf_relpath,
           -- -- flag = flag,
           time = order[buf_num] or -1,
         })
@@ -144,6 +146,13 @@ return function()
       show = function(buf_id, items, query)
         MiniPick.default_show(buf_id, items, query, { show_icons = true })
       end,
+      -- show = function(buf_id, items_arr, query)
+      --   local lines = vim.tbl_map(function(x)
+      --     -- return 'Item: ' .. x.text
+      --     return x.text
+      --   end, items_arr)
+      --   vim.api.nvim_buf_set_lines(buf_id, 0, -1, false, lines)
+      -- end,
     }
     MiniPick.start({ source = source })
 
