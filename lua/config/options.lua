@@ -70,9 +70,12 @@ local options = {
 
   ruler = true,
   showtabline = 2, -- always
+  -- tabline='%0*%#TabLine#%#TabLineSel#> %<%f %h%m%r %0*'
+  tabline='%#TabLine# %#TabLineSel#> %<%f %#WarningMsg#%h%m%r %#TabLineFill#',
   -- laststatus = 3,
   -- statuscolumn
   -- statusline
+  statusline = " ",
 
   -- Split
   splitbelow = true,
