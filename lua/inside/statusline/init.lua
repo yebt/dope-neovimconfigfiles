@@ -8,23 +8,29 @@ end
 local function default()
   local comps = {
     p.gitinfo(),
-    p.git_branch(),
+    p.separator,
+
     ------------------
     -- p.mode(),
     -- p.encoding(),
     -- p.eol(),
     -- [[%{(&modified&&&readonly?'%*':(&modified?'**':(&readonly?'%%':'--')))}  ]],
     -- p.fileinfo(),
-    -- '   %P   (L%l,C%c)  ',
+    -- '(L%l,C%c)',
     -- p.gitinfo(),
     -- ' %=',
     -- [[ %{!empty(bufname()) ? '(' : ''}]],
     -- '%{!empty(&filetype) ? toupper(strpart(&filetype, 0, 1)) . strpart(&filetype, 1) : toupper(strpart(&buftype, 0, 1)) . strpart(&buftype, 1)}',
-    -- p.diagnostic(),
+    p.diagnostic(),
     -- [[%{!empty(bufname()) ? ')' : ''}]],
-    -- p.progress(),
-    -- p.lsp(),
+    -- " ",
+
+    p.progress(),
+    p.separator,
+    p.lsp(),
+     ' %2l/%L:%c ',
     -- '%=%=',
+    p.mode(),
   }
   local e, pieces = {}, {}
   iter(ipairs(comps))

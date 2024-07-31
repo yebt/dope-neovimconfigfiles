@@ -83,7 +83,7 @@ function M.mode()
     event = { 'ModeChanged' },
     attr = {
       bg = stl_bg,
-      fg = 'black',
+      -- fg = 'black',
       bold = true,
     },
   }
@@ -162,26 +162,38 @@ function M.gitinfo()
   return {
     stl = function()
       return coroutine.create(function(pieces, idx)
-        local signs = { '', '+', '~', '-' }
-        local order = { 'head', 'added', 'changed', 'removed' }
-
+        -- local order = { 'head', 'added', 'changed', 'removed' }
         local ok, dict = pcall(api.nvim_buf_get_var, 0, 'gitsigns_status_dict')
         if not ok or vim.tbl_isempty(dict) then
           return ''
         end
-        if dict['head'] == '' then
-          local co = coroutine.running()
-          vim.system({ 'git', 'config', '--get', 'init.defaultBranch' }, { text = true }, function(result)
-            coroutine.resume(co, #result.stdout > 0 and vim.trim(result.stdout) or nil)
-          end)
-          dict['head'] = coroutine.yield()
-        end
+        local actions = {
+          head = 1,
+          added = 2,
+          changed = 3,
+          removed = 4,
+        }
+        local order = { 'head', 'added', 'changed', 'removed' }
+        local signs = { '', '+', '~', '-' }
         local parts = ''
-        for i = 1, 4 do
-          if i == 1 or (type(dict[order[i]]) == 'number' and dict[order[i]] > 0) then
-            parts = ('%s %s'):format(parts, group_fmt('Git', alias[i], signs[i] .. dict[order[i]]))
+
+        for indx, val_key in ipairs(order) do
+          local val = dict[val_key]
+          if val ~= nil then
+            if type(val) == 'number' and val > 0 then
+            parts = ('%s %s'):format(parts, group_fmt('Git', alias[indx], signs[indx] .. val))
+            elseif  type(val) == 'string' then
+            parts = ('%s %s'):format(parts, group_fmt('Git', alias[indx], signs[indx] ..   ' [' .. val .. ']'
+))
+            end
           end
         end
+        -- for key, val in pairs(dict) do
+        --   local index = actions[key]
+        --   if index ~= nil and (type(val) == 'number' and val > 0) then
+        --     parts = ('%s %s'):format(parts, group_fmt('Git', alias[index], signs[index] .. val))
+        --   end
+        -- end
         pieces[idx] = parts
       end)
     end,
@@ -261,32 +273,7 @@ function M.git_branch()
         if not name then
           return
         end
-        pieces[idx] = '  [' .. name .. ']'
-        cb()
-      end)
-    end,
-    async = true,
-    name = 'git',
-    event = { 'User GitSignsUpdate', 'BufEnter' },
-  }
-end
-
-function M.git_file_status()
-  return {
-    stl = function()
-      return coroutine.create(function(pieces, idx, cb)
-        local cr = coroutine.running()
-        system_exec('git rev-parse --is-inside-work-tree', cr)
-        if coroutine.yield().code > 0 then
-          return
-        end
-        system_exec('git rev-parse --abbrev-ref HEAD', cr)
-        local rslt = coroutine.yield().stdout
-        local name = rslt and vim.trim(rslt) or nil
-        if not name then
-          return
-        end
-        pieces[idx] = '  [' .. name .. ']'
+        pieces[idx] = ' [' .. name .. ']'
         cb()
       end)
     end,
