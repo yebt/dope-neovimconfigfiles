@@ -145,6 +145,13 @@ return {
 
         desc = 'Pick orderer buffers',
       },
+      {
+        '<C-T>',
+        function()
+          MiniPick.registry.oldfiles()
+        end,
+        desc = 'Pick old files',
+      },
     },
     dependencies = {
       { 'echasnovski/mini.extra', version = false },
