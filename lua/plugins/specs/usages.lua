@@ -17,9 +17,26 @@ return {
     'folke/which-key.nvim',
     event = 'VeryLazy',
     opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
+      ---@type false | "classic" | "modern" | "helix"
+      preset = "helix",
+      icons = {
+        breadcrumb = '»', -- symbol used in the command line area that shows your active key combo
+        -- ⤳ ⤑ 🠶 ⤇ ➔ ↯ ↬ ⇛ ➝
+        separator = "·> ", -- symbol used between a key and it's label
+        group = '+', -- symbol prepended to a group
+        ellipsis = '…',
+        -- set to false to disable all mapping icons,
+        -- both those explicitely added in a mapping
+        -- and those from rules
+        mappings = false,
+        --- See `lua/which-key/icons.lua` for more details
+        --- Set to `false` to disable keymap icons from rules
+        ---@type wk.IconRule[]|false
+        rules = {},
+        -- use the highlights from mini.icons
+        -- When `false`, it will use `WhichKeyIcon` instead
+        colors = true,
+      },
     },
     keys = {
       {
