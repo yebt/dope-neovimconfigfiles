@@ -45,7 +45,7 @@ function setup(opts)
         load_conf('autocmds')
       end
       load_conf('keymaps')
-      require('inside.statusline').setup()
+      -- require('inside.statusline').setup()
       -- vim.api.nvim_exec_autocmds('FileType', {})
     end,
   })
