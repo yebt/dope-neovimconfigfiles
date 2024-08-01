@@ -3,7 +3,6 @@
 local fns = require('util.maps')
 local mp = vim.keymap.set
 
-
 --- Usage
 mp('n', '0', fns.homeVsKey, { silent = true, expr = true, desc = "Go to start of line like 'Home' in vscode" })
 
@@ -20,7 +19,12 @@ mp({ 'n' }, '<C-z>', '', {})
 
 --- Yaks
 mp('x', '<leader>y', '"+y', { silent = true, desc = 'Copy the selection inside the system clipboard' })
-mp('n', '<leader>Y', '"+y$', { silent = true, desc = 'Copy from position until to end of the line inside the system clipboard' })
+mp(
+  'n',
+  '<leader>Y',
+  '"+y$',
+  { silent = true, desc = 'Copy from position until to end of the line inside the system clipboard' }
+)
 mp('n', '<leader>y', '"+y', { silent = true, desc = 'Start copy to system clipboard yank' })
 -- mps('n', '<leader>yy', '"+yy', { silent = true, desc = 'Copy the lines' })
 
@@ -30,7 +34,6 @@ mp('x', '<leader>p', '"_dP', { silent = true, desc = 'Paste without losee conten
 --- Edit
 mp('n', '[<space>', fns.blank_above, { silent = true, desc = 'Blank above' })
 mp('n', ']<space>', fns.blank_below, { silent = true, desc = 'Blank below' })
-
 
 --- Indentation
 mp('x', '<', '<gv', { silent = true, desc = 'Decrease indentation of selection' })

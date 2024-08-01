@@ -104,7 +104,7 @@ return {
           })
         end,
         mode = { 'x', 'n' },
-        desc= "Flash: Select any word"
+        desc = 'Flash: Select any word',
       },
 
       -- jump to a line
