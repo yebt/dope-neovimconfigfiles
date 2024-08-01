@@ -153,7 +153,7 @@ return {
   {
     'nvim-neo-tree/neo-tree.nvim',
     cmd = 'Neotree',
-    cond = selected_plugin('fileexplorer', 'neo-tree')
+    cond = selected_plugin('fileexplorer', 'neo-tree'),
     deactivate = function()
       vim.cmd([[Neotree close]])
     end,
@@ -186,8 +186,8 @@ return {
       'Lcarbon',
       'Fcarbon',
     },
-    cond = selected_plugin('fileexplorer', 'carbon')
-    opts = {}
+    cond = selected_plugin('fileexplorer', 'carbon'),
+    opts = {},
   },
 
   --- TODO comments
