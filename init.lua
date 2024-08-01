@@ -21,7 +21,9 @@ require('kernel').setup({
 
     satatusline = 'builtin',
 
-    foldcolumn = 'sign', -- 'builtina', 'sign'
+    foldcolumn = 'builtin', -- 'builtina', 'sign'
+
+    fileexplorer = 'carbon', -- 'carbon', 'neo-tree'
 
     completion = 'epo',
     -- completion = 'cmp',
