@@ -71,11 +71,11 @@ local options = {
   ruler = true,
   showtabline = 2, -- always
   -- tabline='%0*%#TabLine#%#TabLineSel#> %<%f %h%m%r %0*'
-  tabline='%#TabLine# %#TabLineSel#> %<%f %#WarningMsg#%h%m%r %#TabLineFill#',
+  -- tabline='%#TabLine# %#TabLineSel#> %<%f %#WarningMsg#%h%m%r %#TabLineFill#',
   -- laststatus = 3,
   -- statuscolumn
   -- statusline
-  statusline = " ",
+  -- statusline = " ",
 
   -- Split
   splitbelow = true,
@@ -194,10 +194,19 @@ local options = {
     F = true, -- When included, a ":write" command a filename set filename to buffer
     s = true, -- Set the buffer options for first time
     --
-    n = true, -- use number for wrap number
+    -- n = true, -- use number for wrap number
     ['_'] = true, -- not cut the white space nex to word when press cw
   },
-  sessionoptions = 'buffers,curdir,winsize',
+  -- sessionoptions = 'buffers,curdir,winsize',
+  sessionoptions = {
+    'buffers',
+    'curdir',
+    'tabpages',
+    'winpos',
+    'winsize',
+    -- 'folds',
+  },
+
   viewoptions = 'folds,cursor',
 
   -- Time
