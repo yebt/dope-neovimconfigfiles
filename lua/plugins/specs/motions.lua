@@ -12,7 +12,7 @@ return {
         function()
           require('flash').toggle()
         end,
-        desc = 'toggle flash search',
+        desc = 'Toggle flash search',
       },
 
       --- Flow
@@ -38,7 +38,7 @@ return {
           })
         end,
         mode = { 'x', 'n' },
-        desc = 'show diagnostic at target',
+        desc = 'Flash: show diagnostic at target',
       },
 
       -- show diagnostics at target, without changing cursor position, also highlights diagnostics
@@ -65,7 +65,7 @@ return {
           })
         end,
         mode = { 'x', 'n' },
-        desc = 'show diagnostic advanced',
+        desc = 'Flash: show diagnostic advanced',
       },
 
       -- match beginning of words only
@@ -104,6 +104,7 @@ return {
           })
         end,
         mode = { 'x', 'n' },
+        desc= "Flash: Select any word"
       },
 
       -- jump to a line
@@ -169,7 +170,7 @@ return {
           })
         end,
         mode = { 'x', 'n' },
-        desc = 'hop',
+        desc = 'Flas: hop',
       },
     },
     opts = {
