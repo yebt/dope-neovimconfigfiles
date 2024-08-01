@@ -37,7 +37,12 @@ return {
     'echasnovski/mini.bufremove',
     version = false,
     keys = {
-      {"<M-c>", function () MiniBufremove.delete() end}
+      {
+        '<M-c>',
+        function()
+          MiniBufremove.delete()
+        end,
+      },
     },
     opts = {
       -- Whether to set Vim's settings for buffers (allow hidden buffers)
@@ -47,5 +52,4 @@ return {
       silent = false,
     },
   },
-
 }

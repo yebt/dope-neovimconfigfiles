@@ -31,6 +31,6 @@ require('kernel').setup({
     -- notification = 'mininotify',
 
     sessions = 'minisessions', -- minisessions, persistence
-    sessions_dir =  vim.fn.stdpath('state') .. '/sessions/',
+    sessions_dir = vim.fn.stdpath('state') .. '/sessions/',
   },
 })

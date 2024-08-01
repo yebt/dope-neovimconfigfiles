@@ -40,7 +40,6 @@ return {
   --   config = require("plugins.configs.miniiconsc")
   -- }
 
-
   {
     'echasnovski/mini.starter',
     version = false,

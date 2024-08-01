@@ -181,10 +181,9 @@ function M.gitinfo()
           local val = dict[val_key]
           if val ~= nil then
             if type(val) == 'number' and val > 0 then
-            parts = ('%s %s'):format(parts, group_fmt('Git', alias[indx], signs[indx] .. val))
-            elseif  type(val) == 'string' then
-            parts = ('%s %s'):format(parts, group_fmt('Git', alias[indx], signs[indx] ..   ' [' .. val .. ']'
-))
+              parts = ('%s %s'):format(parts, group_fmt('Git', alias[indx], signs[indx] .. val))
+            elseif type(val) == 'string' then
+              parts = ('%s %s'):format(parts, group_fmt('Git', alias[indx], signs[indx] .. ' [' .. val .. ']'))
             end
           end
         end

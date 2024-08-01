@@ -18,7 +18,7 @@ return function()
     for indx, el in ipairs(items) do
       local dir, branch = unpack(vim.split(el, '%%', { plain = true }))
       local name = dir:gsub('%%', '/'):gsub(homed, '~')
-      branch =  branch and  " [" .. branch:gsub('%%', '/') .."]"  or ""
+      branch = branch and ' [' .. branch:gsub('%%', '/') .. ']' or ''
       table.insert(fitems, {
         name = name .. branch,
         action = function()

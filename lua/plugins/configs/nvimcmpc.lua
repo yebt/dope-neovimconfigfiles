@@ -122,7 +122,7 @@ return function()
       docs = {
         auto_opts = true,
         follow_cursor = true,
-      }
+      },
     },
     snippet = {
       -- REQUIRED - you must specify a snippet engine

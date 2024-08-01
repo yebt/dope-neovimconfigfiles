@@ -28,7 +28,7 @@ local function default()
     p.progress(),
     p.separator,
     p.lsp(),
-     ' %2l/%L:%c ',
+    ' %2l/%L:%c ',
     -- '%=%=',
     p.mode(),
   }

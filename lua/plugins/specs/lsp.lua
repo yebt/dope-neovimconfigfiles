@@ -12,7 +12,7 @@ return {
       --
       'onsails/lspkind.nvim',
     },
-    config = require("plugins.configs.nvimcmpc")
+    config = require('plugins.configs.nvimcmpc'),
   },
 
   --- LSP

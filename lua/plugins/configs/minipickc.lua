@@ -220,22 +220,22 @@ return function()
       local name = '**' .. (dir:gsub('%%', '/'):gsub(homed, '~')) .. '**'
       branch = branch and ' _[' .. branch:gsub('%%', '/') .. ']_' or ''
       local item = name .. branch
-      table.insert(fitems, item )
-      refs [item] = el
+      table.insert(fitems, item)
+      refs[item] = el
     end
     -- table.sort(fitems)
     local source = {
       items = fitems,
       index = indx,
       name = 'Sessions',
-      choose = function ()end,
+      choose = function() end,
       show = function(buf_id, items, query)
         vim.treesitter.start(buf_id, 'markdown')
         MiniPick.default_show(buf_id, items, query, { show_icons = false })
       end,
     }
     local chosen_picker_session = MiniPick.start({ source = source })
-    if chosen_picker_session  == nil then
+    if chosen_picker_session == nil then
       return
     end
     minisessions.read(refs[chosen_picker_session])

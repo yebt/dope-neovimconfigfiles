@@ -104,7 +104,7 @@ return {
           if branch and branch ~= 'main' and branch ~= 'master' then
             name = name .. '%%' .. branch:gsub('[\\/:]+', '%%')
           end
-          require("mini.sessions").write(name)
+          require('mini.sessions').write(name)
         end,
         desc = "Save sessions 'mini'",
       },
