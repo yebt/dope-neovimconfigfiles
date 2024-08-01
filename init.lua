@@ -4,6 +4,7 @@ require('kernel').setup({
   -- colorscheme = 'tokyonight',
   -- colorscheme = 'porcelain',
   colorscheme = 'kanagawa',
+  -- colorscheme = 'catppuccin',
 
   keys = {
     leader = ' ',
@@ -29,6 +30,7 @@ require('kernel').setup({
     -- notification = "notifier",
     -- notification = 'mininotify',
 
-    sessions = 'minisessions', -- minisessions
+    sessions = 'minisessions', -- minisessions, persistence
+    sessions_dir =  vim.fn.stdpath('state') .. '/sessions/',
   },
 })
