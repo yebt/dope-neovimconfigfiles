@@ -19,7 +19,6 @@ return {
   {
     'rebelot/kanagawa.nvim',
     opts = {
-
       compile = true, -- enable compiling the colorscheme
       undercurl = true, -- enable undercurls
       commentStyle = { italic = true },
@@ -34,8 +33,61 @@ return {
         palette = {},
         theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
       },
-      overrides = function(colors) -- add/modify highlights
-        return {}
+      -- overrides = function(colors) -- add/modify highlights
+      --   return {}
+      -- end,
+      overrides = function(colors)
+        local theme = colors.theme
+        return {
+          Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
+          PmenuSel = { fg = 'NONE', bg = theme.ui.bg_p2 },
+          PmenuSbar = { bg = theme.ui.bg_m1 },
+          PmenuThumb = { bg = theme.ui.bg_p2 },
+
+          -- -- Colors are applied automatically based on user-defined highlight groups.
+          -- -- There is no default value.
+          -- vim.cmd.highlight('IndentLine guifg=#123456')
+          -- -- Current indent line highlight
+          -- vim.cmd.highlight('IndentLineCurrent guifg=#123456')
+
+          -- vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { fg = '#7E8294', bg = 'NONE', strikethrough = true })
+          -- vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch', { fg = '#82AAFF', bg = 'NONE', bold = true })
+          -- vim.api.nvim_set_hl(0, 'CmpItemAbbrMatchFuzzy', { fg = '#82AAFF', bg = 'NONE', bold = true })
+          -- vim.api.nvim_set_hl(0, 'CmpItemMenu', { fg = '#C792EA', bg = 'NONE', italic = true })
+          --
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindField', { fg = '#EED8DA' })
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindProperty', { fg = '#EED8DA' })
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindEvent', { fg = '#EED8DA' })
+          --
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindText', { fg = '#C3E88D' })
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindEnum', { fg = '#C3E88D' })
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { fg = '#C3E88D' })
+          --
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindConstant', { fg = '#FFE082' })
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindConstructor', { fg = '#FFE082' })
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindReference', { fg = '#FFE082' })
+          --
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindFunction', { fg = '#EADFF0' })
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindStruct', { fg = '#EADFF0' })
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindClass', { fg = '#EADFF0' })
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindModule', { fg = '#EADFF0' })
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindOperator', { fg = '#EADFF0' })
+          --
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindVariable', { fg = '#C5CDD9' })
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindFile', { fg = '#C5CDD9' })
+          --
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindUnit', { fg = '#F5EBD9' })
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindSnippet', { fg = '#F5EBD9' })
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindFolder', { fg = '#F5EBD9' })
+          --
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindMethod', { fg = '#DDE5F5' })
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindValue', { fg = '#DDE5F5' })
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindEnumMember', { fg = '#DDE5F5' })
+          --
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindInterface', { fg = '#D8EEEB' })
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindColor', { fg = '#D8EEEB' })
+          -- vim.api.nvim_set_hl(0, 'CmpItemKindTypeParameter', { fg = '#D8EEEB' })
+        }
       end,
       theme = 'wave', -- Load "wave" theme when 'background' option is not set
       background = { -- map the value of 'background' option to a theme
@@ -45,7 +97,7 @@ return {
     },
   },
 
-  --- colorscheme
+  --- Catppucin
   {
     'catppuccin/nvim',
     name = 'catppuccin',
@@ -117,5 +169,10 @@ return {
         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
       },
     },
+  },
+
+  --- Night owl
+  {
+    'oxfist/night-owl.nvim',
   },
 }

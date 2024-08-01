@@ -31,4 +31,21 @@ return {
       },
     },
   },
+
+  --- Remove buffer
+  {
+    'echasnovski/mini.bufremove',
+    version = false,
+    keys = {
+      {"<M-c>", function () MiniBufremove.delete() end}
+    },
+    opts = {
+      -- Whether to set Vim's settings for buffers (allow hidden buffers)
+      set_vim_settings = true,
+
+      -- Whether to disable showing non-error feedback
+      silent = false,
+    },
+  },
+
 }
