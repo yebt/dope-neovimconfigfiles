@@ -47,7 +47,7 @@ mp('x', '<C-s>', fns.surround, { silent = true, expr = true, desc = 'Add surroun
 -- Replace cursor word
 mp(
   'n',
-  '<leader>s',
+  '<leader>r',
   ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>',
   { desc = 'Remplace cursor word, in all document' }
 )
