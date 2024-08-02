@@ -5,7 +5,7 @@ return function()
   end
 
   vim.ui.select = function(...)
-    vim.ui.select = require("mini.pick").ui_select
+    vim.ui.select = require('mini.pick').ui_select
     return vim.ui.select(...)
   end
 

@@ -1,4 +1,4 @@
-return function(_,opts)
+return function(_, opts)
   require('mason').setup(opts)
   local mr = require('mason-registry')
   mr:on('package:install:success', function()

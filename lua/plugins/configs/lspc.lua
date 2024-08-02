@@ -1,3 +1,1 @@
-return function(a, b)
-
-end
+return function(a, b) end
