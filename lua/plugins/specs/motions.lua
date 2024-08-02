@@ -17,9 +17,9 @@ return {
 
       --- Flow
       { 'f', mode = { 'x', 'n' } },
-      { 'f', mode = { 'x', 'n' } },
+      { 'F', mode = { 'x', 'n' } },
       { 't', mode = { 'x', 'n' } },
-      { 't', mode = { 'x', 'n' } },
+      { 'T', mode = { 'x', 'n' } },
       { ';', mode = { 'x', 'n' } },
       { ',', mode = { 'x', 'n' } },
 
