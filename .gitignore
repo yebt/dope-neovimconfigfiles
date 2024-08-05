@@ -3,6 +3,7 @@ test/*
 old/*
 old2/*
 old3/*
+old4/*
 ~/.config/nvim/.backups
 lazy-lock.json
 sessions
