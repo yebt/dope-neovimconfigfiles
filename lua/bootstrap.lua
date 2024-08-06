@@ -35,4 +35,4 @@ vim.api.nvim_create_autocmd('User', {
 
 --- Load package manager
 -- require('minideps') -- I don't like
-require('lazynvim')
+require('plugins')
