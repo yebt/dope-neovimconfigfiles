@@ -4,22 +4,22 @@ This could be contain the some TODOs for the needed in the editor
 
 ## Basic but needed
 
-- [ ] Package managment
-  - [ ] Lazy.nvim
-  - [ ] Mini.deeps
+- [x] Package management
+  - [x] Lazy.nvim
+  - [-] Mini.deeps
 
 ## Coding
 
 - [ ] LSP
 - [ ] Autocompletion
 - [ ] AutoPairs
-- [ ] Sintax Highlight
+- [ ] Syntax Highlight
 - [ ] Emmet
 - [ ] Snippets
 
 ## Extras - Needed
 
-- [ ] Hardtimes
+- [ ] Hard times
 - [ ] TODO comments
 - [ ] Sessions
 - [ ] Finders or picker
@@ -29,7 +29,17 @@ This could be contain the some TODOs for the needed in the editor
 ## Extras - Usage
 
 - [ ] Starter
+- [ ] Finders
+- [ ] Motions
+- [ ] Explorer
 - [ ] Split Join
+- [x] Colorized
+- [ ] Align
+- [ ] Bufremove
+- [ ] Buf swhitcher
+  - [ ] https://github.com/toppair/reach.nvim
+- [ ] Task runner
+- [ ] DAP
 
 ## Extras - Coding
 
@@ -42,5 +52,6 @@ This could be contain the some TODOs for the needed in the editor
 - [ ] Dressign
 - [ ] Statusline
 - [ ] Tab line
+- [ ] Notification
 
 ---
