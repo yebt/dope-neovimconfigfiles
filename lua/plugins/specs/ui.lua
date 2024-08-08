@@ -4,9 +4,9 @@
 
 return {
   {
-    "echasnovski/mini.notify",
+    'echasnovski/mini.notify',
     version = false,
     lazy = false, -- load in core
-    config = require("plugins.configs.mininotifyc")
+    config = require('plugins.configs.mininotifyc'),
   },
 }

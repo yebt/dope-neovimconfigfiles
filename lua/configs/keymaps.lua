@@ -21,7 +21,7 @@ mp('n', '<leader>a', 'ggVG', { silent = true, desc = 'select all content' })
 mp({ 'n' }, '<C-z>', '', {})
 
 --- Yaks
-mp({'x','v'}, '<leader>y', '"+y', { silent = true, desc = 'Copy the selection inside the system clipboard' })
+mp({ 'x', 'v' }, '<leader>y', '"+y', { silent = true, desc = 'Copy the selection inside the system clipboard' })
 mp(
   'n',
   '<leader>Y',

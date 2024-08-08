@@ -2,8 +2,8 @@
 --- Plugins for a better usage, but
 --- not needed for coding
 --- ----------------------------------------
-local  colorizer =  'nvim-highlight-colors' -- 'nvim-colorizer.nvim' 'nvim-highlight-colors'
-function is_clrzr (plgn)
+local colorizer = 'nvim-highlight-colors' -- 'nvim-colorizer.nvim' 'nvim-highlight-colors'
+function is_clrzr(plgn)
   return plgn.name == colorizer
 end
 return {
