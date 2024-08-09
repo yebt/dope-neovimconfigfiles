@@ -288,7 +288,8 @@ return function()
       --- Invert the selection
       hl.Visual = {
         -- bg = util.lighten(c.info, 0.1, c.bg),
-        bg = util.lighten(c.info, 0.08, c.bg),
+        -- bg = util.lighten(c.info, 0.2, c.bg),
+        bg = util.lighten("#fefefe", 0.15, c.bg),
         -- reverse = true,
       }
 
@@ -331,6 +332,12 @@ return function()
         fg = c.fg_gutter,
         italic = true,
       }
+      -- StatusLine     xxx guifg=#a9b1d6 guibg=#1c1c20
+      hl.StatusLine = {
+        fg = util.darken(c.blue, 0.9, c.bg),
+        bg = c.bg_dark,
+      }
+
     end,
 
     cache = true, -- When set to true, the theme will be cached for better performance
