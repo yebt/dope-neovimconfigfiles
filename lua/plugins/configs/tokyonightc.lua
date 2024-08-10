@@ -135,7 +135,7 @@ return function()
       colors.blue2 = '#0db9d7'
       -- colors.blue5 = '#89ddff'
       colors.blue5 = '#E68383'
-      colors.blue6 = '#b4f9f8'
+      colors.blue6 = '#b4f9b8'
       colors.blue7 = '#394b70'
       colors.border = '#15161e'
       colors.border_highlight = '#27a1b9'
@@ -207,8 +207,10 @@ return function()
       local textfg = util.darken(
         -- util.lighten(hl.Normal.fg, 0.1, '#ffffff'),
         -- hl.Normal.fg,
-        util.lighten(hl.Normal.fg, 0.4, '#ffffff'),
-        0.75,
+        '#fefefe',
+        -- util.lighten(hl.Normal.fg, 0.4, '#ffffff'),
+        -- 0.75,
+        0.7,
         hl.Normal.bg
       )
 
@@ -280,16 +282,15 @@ return function()
       -- hi TabNum term=bold cterm=bold ctermfg=16 ctermbg=145
       -- ]])
 
-      --- Make a better string in md
       hl.String.fg = util.darken(c.green, 0.4, c.yellow)
-
+      --- Make a better string in md
       --- better text view
       hl.Normal.fg = textfg
       --- Invert the selection
       hl.Visual = {
         -- bg = util.lighten(c.info, 0.1, c.bg),
         -- bg = util.lighten(c.info, 0.2, c.bg),
-        bg = util.lighten("#fefefe", 0.15, c.bg),
+        bg = util.lighten('#fefefe', 0.15, c.bg),
         -- reverse = true,
       }
 
@@ -337,7 +338,6 @@ return function()
         fg = util.darken(c.blue, 0.9, c.bg),
         bg = c.bg_dark,
       }
-
     end,
 
     cache = true, -- When set to true, the theme will be cached for better performance

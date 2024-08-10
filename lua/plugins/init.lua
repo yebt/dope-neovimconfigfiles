@@ -25,11 +25,38 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
+--- Map event for usage LazyFile
+-- Add support for the LazyFile event
 
--- Setup lazy.nvim
+-- vim.api.nvim_create_autocmd("BufReadPost", {
+--   once = true,
+--   callback = function(event)
+--     -- Skip if we already entered vim
+--     if vim.v.vim_did_enter == 1 then
+--       return
+--     end
+--
+--     -- Try to guess the filetype (may change later on during Neovim startup)
+--     local ft = vim.filetype.match({ buf = event.buf })
+--     if ft then
+--       -- Add treesitter highlights and fallback to syntax
+--       local lang = vim.treesitter.language.get_lang(ft)
+--       if not (lang and pcall(vim.treesitter.start, event.buf, lang)) then
+--         vim.bo[event.buf].syntax = ft
+--       end
+--
+--       -- Trigger early redraw
+--       vim.cmd([[redraw]])
+--     end
+--   end,
+-- })
+
+local Event = require('lazy.core.handler.event')
+
+Event.mappings.LazyFile = { id = 'LazyFile', event = { 'BufReadPost', 'BufNewFile', 'BufWritePre' } }
+Event.mappings['User LazyFile'] = Event.mappings.LazyFile
+
+--- Setup lazy.nvim
 require('lazy').setup({
 
   defaults = {
@@ -93,7 +120,7 @@ require('lazy').setup({
         'rplugin',
         -- "matchit",
         -- "matchparen",
-        -- "netrwPlugin",
+        'netrwPlugin',
       },
     },
   },

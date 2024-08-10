@@ -120,4 +120,14 @@ return {
       exclude_buftypes = {},
     },
   },
+
+  --- Make a better markdown view
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+    event = 'VeryLazy',
+    cmd = {
+      'RenderMarkdown',
+    },
+  },
 }
