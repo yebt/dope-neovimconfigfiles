@@ -16,6 +16,7 @@ This could be contain the some TODOs for the needed in the editor
 - [ ] Syntax Highlight
 - [ ] Emmet
 - [ ] Snippets
+- [ ] Guard -- Formatting Linter
 
 ## Extras - Needed
 
@@ -54,4 +55,11 @@ This could be contain the some TODOs for the needed in the editor
 - [ ] Tab line
 - [ ] Notification
 
+## Workings
+
+- [ ] Add in the starter the plugins and the staartup time
+- [ ] Add the Carbon initialize if the starter neovim is a directory
+- [ ] Autopairs
+- [ ] Remove all `opts` un used in plugins
+- [ ] Problems with load the astro files
 ---
